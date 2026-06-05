@@ -127,6 +127,19 @@
   .hero-bg img { width:100%; height:100%; object-fit:cover; }
   .hero-bg::after { content:""; position:absolute; inset:0; background:linear-gradient(rgba(46,33,64,0.4),rgba(46,33,64,0.5)); }
 
+  /* ---------- Social ---------- */
+  .social { padding: clamp(60px,9vh,110px) 0; background: var(--paper); }
+  .social-title { text-align:center; font-size:clamp(1.8rem,3.5vw,2.6rem); font-weight:300; margin:6px 0 10px; }
+  .social-title em { font-style:italic; color:var(--violet); }
+  .social-intro { text-align:center; color:#4a3d5c; max-width:60ch; margin:0 auto 36px; }
+  .social-intro a { color:var(--violet); border-bottom:1px solid var(--lilac); }
+  .social-grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(300px,1fr)); gap:24px; align-items:start; justify-items:center; }
+  .social-embed { width:100%; max-width:340px; min-height:120px; }
+  .social-embed blockquote { margin:0 auto; }
+  .social-follow { display:flex; gap:16px; justify-content:center; flex-wrap:wrap; margin-top:40px; }
+  .btn.ghost { background:transparent; border:1px solid var(--violet); color:var(--violet); }
+  .btn.ghost:hover { background:var(--violet); color:#fff; }
+
   /* ---------- Gallery ---------- */
   .gallery { padding: clamp(60px,9vh,110px) 0; background: var(--paper); }
   .gallery-grid { display:grid; grid-template-columns: repeat(3,1fr); gap: 14px; }
@@ -623,6 +636,54 @@
     </div>
   </div>
 </section>
+
+<!-- SOCIAL FEED: hand-picked embedded posts.
+     TO UPDATE: replace the contents of each .social-embed below with a fresh
+     embed code. Instagram: post ... menu > Embed. TikTok: Share > Embed.
+     Paste the <blockquote>...</blockquote> they give you in place of the
+     existing one. The platform scripts at the bottom render them automatically. -->
+<section class="social" id="social">
+  <div class="wrap">
+    <div class="section-label" style="text-align:center;">Follow Along</div>
+    <h2 class="social-title">From our <em>Instagram &amp; TikTok</em></h2>
+    <p class="social-intro">A little of farm life, lavender and the bees. Follow us
+      <a href="https://www.instagram.com/nenevalleylavender" target="_blank" rel="noopener">@nenevalleylavender</a> and
+      <a href="https://www.tiktok.com/@nene.valley.laven" target="_blank" rel="noopener">@nene.valley.laven</a>.</p>
+
+    <div class="social-grid">
+
+      <!-- ===== INSTAGRAM POST 1 — replace this blockquote with a fresh embed ===== -->
+      <div class="social-embed">
+        <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/nenevalleylavender/" data-instgrm-version="14">
+          <a href="https://www.instagram.com/nenevalleylavender/" target="_blank" rel="noopener">View our Instagram</a>
+        </blockquote>
+      </div>
+
+      <!-- ===== INSTAGRAM POST 2 — replace this blockquote with a fresh embed ===== -->
+      <div class="social-embed">
+        <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/nenevalleylavender/" data-instgrm-version="14">
+          <a href="https://www.instagram.com/nenevalleylavender/" target="_blank" rel="noopener">View our Instagram</a>
+        </blockquote>
+      </div>
+
+      <!-- ===== TIKTOK POST — replace this blockquote with a fresh embed ===== -->
+      <div class="social-embed">
+        <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@nene.valley.laven" data-unique-id="nene.valley.laven" style="max-width:325px;min-width:200px;">
+          <a href="https://www.tiktok.com/@nene.valley.laven" target="_blank" rel="noopener">View our TikTok</a>
+        </blockquote>
+      </div>
+
+    </div>
+
+    <div class="social-follow">
+      <a class="btn solid" href="https://www.instagram.com/nenevalleylavender" target="_blank" rel="noopener">Follow on Instagram</a>
+      <a class="btn ghost" href="https://www.tiktok.com/@nene.valley.laven" target="_blank" rel="noopener">Follow on TikTok</a>
+    </div>
+  </div>
+</section>
+<!-- Platform embed scripts (render the blockquotes above) -->
+<script async src="https://www.instagram.com/embed.js"></script>
+<script async src="https://www.tiktok.com/embed.js"></script>
 
 <section class="contact" id="contact">
   <div class="wrap contact-grid">
