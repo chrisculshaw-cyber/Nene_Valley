@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nene Valley Lavender — Organic English Lavender, Brigstock</title>
+<meta name="description" content="A little farm at Drumbledrone Eden on the edge of the Nene Valley, growing English Lavender and producing 100% organic essential oil, honey and skincare.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Jost:wght@300;400;500&family=Tangerine:wght@700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #2e2140;          /* deep aubergine, from logo script */
+    --violet: #6b4f9e;       /* mid lavender-violet */
+    --lilac: #b9a3da;        /* soft lilac wash */
+    --lilac-pale: #ece3f7;   /* palest wash */
+    --paper: #f7f3ee;        /* warm cream paper */
+    --paper-deep: #efe7dd;   /* slightly deeper cream */
+    --gold: #b08d57;         /* warm accent for fine detail */
+    --line: #ddd1c4;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Jost', sans-serif;
+    color: var(--ink);
+    background: var(--paper);
+    line-height: 1.65;
+    font-weight: 300;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  /* subtle paper grain */
+  body::before {
+    content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 1; opacity: 0.04;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  a { color: inherit; text-decoration: none; }
+  h1,h2,h3 { font-family: 'Fraunces', serif; font-weight: 400; line-height: 1.1; }
+  .wrap { max-width: 1180px; margin: 0 auto; padding: 0 6vw; }
+
+  /* ---------- Header ---------- */
+  header {
+    position: sticky; top: 0; z-index: 50;
+    background: rgba(247,243,238,0.82);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line);
+  }
+  .nav-inner { display: flex; align-items: center; justify-content: space-between; padding: 14px 6vw; }
+  .nav-logo img { height: 84px; display: block; mix-blend-mode: multiply; transition: height .3s ease; }
+  @media (max-width: 860px){ .nav-logo img { height: 64px; } }
+  nav ul { list-style: none; display: flex; gap: 34px; }
+  nav a { font-size: 0.82rem; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 400; position: relative; padding: 4px 0; }
+  nav a::after { content:""; position:absolute; left:0; bottom:-2px; width:0; height:1px; background: var(--violet); transition: width .35s ease; }
+  nav a:hover::after { width: 100%; }
+  .nav-toggle { display:none; background:none; border:none; font-size:1.6rem; color:var(--ink); cursor:pointer; }
+
+  /* ---------- Hero ---------- */
+  .hero { position: relative; padding: clamp(70px,12vh,150px) 0 clamp(80px,14vh,160px); overflow: hidden; }
+  .hero .wash {
+    position:absolute; z-index:0; border-radius: 50%; filter: blur(60px); opacity:0.55;
+  }
+  .hero .wash.a { width: 560px; height: 420px; background: var(--lilac); top:-120px; right:-100px; }
+  .hero .wash.b { width: 460px; height: 360px; background: #d9cae9; bottom:-140px; left:-120px; opacity:0.45; }
+  .hero-grid { position: relative; z-index: 2; display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 50px; align-items: center; }
+  .eyebrow { font-size: 0.8rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--violet); margin-bottom: 26px; display:flex; align-items:center; gap:14px; }
+  .eyebrow::before { content:""; width:42px; height:1px; background: var(--gold); display:inline-block; }
+  .hero h1 { font-size: clamp(2.8rem, 6.5vw, 5.2rem); font-weight: 300; letter-spacing: -0.02em; }
+  .hero h1 em { font-style: italic; color: var(--violet); }
+  .hero p.lead { font-size: 1.18rem; max-width: 30em; margin: 30px 0 38px; color: #4a3d5c; }
+  .hero-art { position: relative; }
+  .hero-art img { width: 100%; max-width: 440px; margin: 0 auto; display:block; mix-blend-mode: multiply; transform: rotate(-2deg); }
+  .btn {
+    display:inline-block; font-family:'Jost'; font-size:0.82rem; letter-spacing:0.18em; text-transform:uppercase;
+    padding: 16px 38px; border:1px solid var(--ink); color: var(--ink); background: transparent;
+    transition: all .4s cubic-bezier(.2,.7,.3,1); cursor:pointer;
+  }
+  .btn:hover { background: var(--ink); color: var(--paper); }
+  .btn.solid { background: var(--ink); color: var(--paper); }
+  .btn.solid:hover { background: var(--violet); border-color: var(--violet); }
+
+  /* reveal animation */
+  .reveal { opacity:0; transform: translateY(26px); animation: rise .9s cubic-bezier(.2,.7,.3,1) forwards; }
+  @keyframes rise { to { opacity:1; transform:none; } }
+  .d1{animation-delay:.05s}.d2{animation-delay:.18s}.d3{animation-delay:.32s}.d4{animation-delay:.46s}.d5{animation-delay:.6s}
+
+  /* ---------- Decorative lavender sprigs ---------- */
+  .sprig { position:absolute; z-index:1; pointer-events:none; opacity:0.5; }
+  .sprig svg { display:block; width:100%; height:100%; }
+  .sprig path, .sprig line { stroke: var(--violet); stroke-width:1.4; fill:none; stroke-linecap:round; }
+  .sprig .bud { fill: var(--lilac); stroke:none; opacity:0.85; }
+  .hero .sprig.s1 { width:120px; height:230px; top:40px; right:36%; opacity:0.4; transform:rotate(8deg); }
+  .intro .sprig.s2 { width:90px; height:180px; top:-30px; right:4%; opacity:0.45; transform:rotate(-12deg); }
+  .visit .sprig.s3 { width:100px; height:200px; bottom:20px; right:6%; opacity:0.4; transform:rotate(14deg); }
+  @media (max-width:860px){ .hero .sprig.s1, .intro .sprig.s2 { display:none; } }
+
+  /* ---------- Full-width photo band ---------- */
+  .band {
+    position:relative; height: clamp(320px, 46vh, 520px); overflow:hidden;
+    display:flex; align-items:center; justify-content:center; text-align:center;
+    background: linear-gradient(120deg, var(--lilac-pale), #ded0ef);
+  }
+  .band img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:0; }
+  .band::after { content:""; position:absolute; inset:0; background: linear-gradient(rgba(46,33,64,0.32),rgba(46,33,64,0.42)); z-index:1; }
+  .band .band-inner { position:relative; z-index:2; color:#fff; padding:0 6vw; max-width:34em; }
+  .band .band-inner .placeholder-note { color:var(--violet); font-family:'Fraunces',serif; font-style:italic; }
+  .band.has-photo .band-inner { color:#fff; }
+  .band h2 { font-size:clamp(1.8rem,4vw,3rem); font-weight:300; }
+  .band h2 em { font-style:italic; }
+  .band p { margin-top:14px; font-size:1.05rem; opacity:0.95; }
+  /* when no photo loads, hide the white overlay text-shadow look and show a soft note */
+  .band-fallback { position:relative; z-index:2; color:var(--violet); }
+
+  /* ---------- Hero photo background (optional) ---------- */
+  .hero.has-bg { color:#fff; }
+  .hero.has-bg .eyebrow { color:#e7dcf7; }
+  .hero.has-bg .lead { color:#f0e9f8; }
+  .hero.has-bg .btn { border-color:#fff; color:#fff; }
+  .hero.has-bg .btn:hover { background:#fff; color:var(--ink); }
+  .hero.has-bg .btn.solid { background:#fff; color:var(--ink); border-color:#fff; }
+  .hero-bg { position:absolute; inset:0; z-index:0; overflow:hidden; }
+  .hero-bg img { width:100%; height:100%; object-fit:cover; }
+  .hero-bg::after { content:""; position:absolute; inset:0; background:linear-gradient(rgba(46,33,64,0.4),rgba(46,33,64,0.5)); }
+
+  /* ---------- Marquee strip ---------- */
+  .strip { background: var(--ink); color: var(--paper); padding: 16px 0; overflow:hidden; white-space:nowrap; }
+  .strip .track { display:inline-block; animation: slide 28s linear infinite; }
+  .strip span { font-family:'Fraunces',serif; font-style:italic; font-size:1.1rem; padding: 0 38px; opacity:0.9; }
+  .strip span::after{ content:"¾7"; margin-left: 38px; color: var(--lilac); font-style:normal; }
+  @keyframes slide { to { transform: translateX(-50%); } }
+
+  /* ---------- Intro / philosophy ---------- */
+  .intro { padding: clamp(80px,12vh,140px) 0; position:relative; }
+  .intro-grid { display:grid; grid-template-columns: 0.9fr 1.1fr; gap: 70px; align-items:start; }
+  .section-label { font-size:0.78rem; letter-spacing:0.28em; text-transform:uppercase; color:var(--gold); }
+  .intro h2 { font-size: clamp(2rem,4vw,3.1rem); font-weight:300; margin: 18px 0 0; }
+  .intro h2 em { font-style:italic; color: var(--violet); }
+  .intro .body p { margin-bottom: 22px; font-size:1.08rem; color:#4a3d5c; }
+  .pull { font-family:'Tangerine',cursive; font-size: clamp(2.4rem,5vw,3.4rem); color: var(--violet); line-height:1; margin: 10px 0 26px; }
+
+  /* ---------- Products ---------- */
+  .shop { padding: clamp(60px,9vh,110px) 0 clamp(80px,12vh,140px); background: var(--paper-deep); position:relative; }
+  .shop-head { display:flex; align-items:flex-end; justify-content:space-between; flex-wrap:wrap; gap:18px; margin-bottom: 54px; }
+  .shop-head h2 { font-size: clamp(2rem,4vw,3rem); font-weight:300; }
+  .shop-head h2 em { font-style:italic; color:var(--violet); }
+  .products { display:grid; grid-template-columns: repeat(auto-fill, minmax(280px,1fr)); gap: 4px; background: var(--line); border:1px solid var(--line); }
+  .card { background: var(--paper); padding: 30px; display:flex; flex-direction:column; transition: background .4s; }
+  .card:hover { background: #fff; }
+  .card .ph {
+    aspect-ratio: 4/5; margin: -30px -30px 26px; background: var(--lilac-pale);
+    display:flex; align-items:center; justify-content:center; overflow:hidden; position:relative;
+  }
+  .card .ph img { width:100%; height:100%; object-fit:cover; transition: transform .8s cubic-bezier(.2,.7,.3,1); }
+  .card:hover .ph img { transform: scale(1.05); }
+  .card .ph .placeholder { font-family:'Fraunces',serif; font-style:italic; color:var(--lilac); font-size:0.95rem; text-align:center; padding:20px; }
+  .card .tag { position:absolute; top:14px; left:14px; background:var(--ink); color:var(--paper); font-size:0.66rem; letter-spacing:0.16em; text-transform:uppercase; padding:5px 11px; }
+  .card .tag.out { background: var(--gold); }
+  .card h3 { font-size:1.32rem; font-weight:400; }
+  .card .desc { font-size:0.92rem; color:#5d5070; margin:10px 0 20px; flex:1; }
+  .card .foot { display:flex; align-items:center; justify-content:space-between; border-top:1px solid var(--line); padding-top:18px; }
+  .card .price { font-family:'Fraunces',serif; font-size:1.3rem; }
+  .card .enquire { font-size:0.74rem; letter-spacing:0.14em; text-transform:uppercase; border-bottom:1px solid var(--violet); color:var(--violet); padding-bottom:2px; transition: opacity .3s; }
+  .card .enquire:hover { opacity:0.6; }
+  .card .soldout { font-size:0.74rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--gold); }
+
+  /* ---------- Visit ---------- */
+  .visit { padding: clamp(80px,12vh,140px) 0; position:relative; overflow:hidden; }
+  .visit .wash { position:absolute; width:600px; height:480px; background:var(--lilac); border-radius:50%; filter:blur(70px); opacity:0.4; top:-100px; left:-160px; z-index:0; }
+  .visit-grid { position:relative; z-index:2; display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:center; }
+  .visit h2 { font-size:clamp(2rem,4vw,3rem); font-weight:300; margin-bottom:22px; }
+  .visit h2 em { font-style:italic; color:var(--violet); }
+  .visit p { font-size:1.08rem; color:#4a3d5c; margin-bottom:18px; max-width:34em; }
+  .info-card { background:var(--paper); border:1px solid var(--line); padding:38px; }
+  .info-card h3 { font-family:'Fraunces'; font-size:1.1rem; letter-spacing:0.02em; margin-bottom:6px; }
+  .info-row { display:flex; justify-content:space-between; padding:7px 0; border-bottom:1px dashed var(--line); font-size:0.95rem; }
+  .info-row:last-child{border:none;}
+  .info-row .day{color:#6d6178;}
+  .info-block{ margin-bottom:26px; }
+  .info-block a{ color:var(--violet); border-bottom:1px solid var(--lilac); }
+
+  /* ---------- Contact ---------- */
+  .contact { background: var(--ink); color: var(--paper); padding: clamp(80px,12vh,140px) 0; }
+  .contact-grid { display:grid; grid-template-columns:1fr 1fr; gap:60px; }
+  .contact h2 { font-size:clamp(2rem,4vw,3rem); font-weight:300; color:var(--paper); }
+  .contact h2 em{ font-style:italic; color:var(--lilac); }
+  .contact .section-label{ color:var(--lilac); }
+  .contact p.sub{ color:#cdbfdf; margin:18px 0 0; max-width:30em; }
+  .field { margin-bottom:20px; }
+  .field input, .field textarea {
+    width:100%; background:transparent; border:none; border-bottom:1px solid #5b4d72;
+    color:var(--paper); font-family:'Jost'; font-size:1rem; padding:14px 2px; transition:border-color .3s;
+  }
+  .field input::placeholder, .field textarea::placeholder { color:#8c7da5; }
+  .field input:focus, .field textarea:focus { outline:none; border-color:var(--lilac); }
+  .field textarea{ resize:vertical; min-height:110px; }
+  #formMsg{ margin-top:16px; font-size:0.95rem; min-height:1.2em; }
+
+  /* ---------- Footer ---------- */
+  footer { background:#241a33; color:var(--paper); padding: 70px 0 40px; }
+  .foot-grid{ display:flex; justify-content:space-between; flex-wrap:wrap; gap:40px; align-items:flex-start; }
+  .foot-brand img{ height:64px; mix-blend-mode:screen; opacity:0.95; margin-bottom:14px; }
+  .foot-brand p{ color:#b7a8c9; font-size:0.9rem; max-width:24em; }
+  .foot-nav{ display:flex; gap:60px; flex-wrap:wrap; }
+  .foot-col h4{ font-family:'Jost'; font-weight:500; font-size:0.78rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--lilac); margin-bottom:16px; }
+  .foot-col a{ display:block; color:#cdbfdf; font-size:0.95rem; padding:5px 0; transition:color .3s; }
+  .foot-col a:hover{ color:#fff; }
+  .socials{ display:flex; gap:14px; margin-top:6px; }
+  .socials a{ width:42px; height:42px; border:1px solid #4a3d63; border-radius:50%; display:flex; align-items:center; justify-content:center; transition:all .3s; }
+  .socials a:hover{ background:var(--lilac); border-color:var(--lilac); }
+  .socials a:hover svg{ fill:var(--ink); }
+  .socials svg{ width:18px; height:18px; fill:#cdbfdf; transition:fill .3s; }
+  .foot-base{ border-top:1px solid #3a2e4f; margin-top:50px; padding-top:26px; display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px; color:#8c7da5; font-size:0.82rem; }
+
+  @media (max-width: 860px) {
+    nav ul { display:none; }
+    .nav-toggle{ display:block; }
+    nav.open ul{ display:flex; position:absolute; top:100%; left:0; right:0; flex-direction:column; gap:0; background:var(--paper); border-bottom:1px solid var(--line); padding:10px 6vw 20px; }
+    nav.open ul li{ border-bottom:1px solid var(--line); }
+    nav.open ul a{ display:block; padding:14px 0; }
+    .hero-grid, .intro-grid, .visit-grid, .contact-grid { grid-template-columns:1fr; gap:40px; }
+    .hero-art{ order:-1; max-width:300px; margin:0 auto; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav-inner">
+    <a class="nav-logo" href="#top"><img src="images/logo_1701860470.webp" alt="Nene Valley Lavender"></a>
+    <nav id="nav">
+      <button class="nav-toggle" id="navToggle" aria-label="Menu">&#9776;</button>
+      <ul>
+        <li><a href="#shop">Shop</a></li>
+        <li><a href="#story">Our Story</a></li>
+        <li><a href="#visit">Visit</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<a id="top"></a>
+<section class="hero" id="hero">
+  <!-- OPTIONAL HERO PHOTO: drop a wide lavender-field photo at images/hero.jpeg and it
+       will appear as the background automatically (text restyles to white). Until then,
+       the soft watercolour washes below are shown instead. -->
+  <div class="hero-bg" id="heroBg" style="display:none;"><img src="images/hero.jpeg" alt="Nene Valley lavender field" id="heroImg"></div>
+  <div class="wash a"></div>
+  <div class="wash b"></div>
+  <div class="sprig s1" aria-hidden="true">
+    <svg viewBox="0 0 60 120"><path d="M30 118 V52"/><path d="M30 70 C18 66 14 56 16 48 C24 50 30 58 30 64"/><path d="M30 64 C42 60 46 50 44 42 C36 44 30 52 30 58"/><path d="M30 56 C20 52 17 44 19 37 C26 39 30 46 30 51"/><ellipse class="bud" cx="30" cy="20" rx="9" ry="15"/><circle class="bud" cx="24" cy="14" r="3.5"/><circle class="bud" cx="36" cy="16" r="3.5"/><circle class="bud" cx="30" cy="8" r="3.5"/></svg>
+  </div>
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow reveal d1">Est. 2023 &middot; Brigstock, Northamptonshire</div>
+      <h1 class="reveal d2">English lavender,<br>grown in the <em>Nene Valley</em></h1>
+      <p class="lead reveal d3">A little farm at Drumbledrone Eden on the edge of the incredibly scenic Nene Valley, growing several varieties of English lavender and producing 100% organic essential oil, honey and skincare.</p>
+      <div class="reveal d4" style="display:flex; gap:16px; flex-wrap:wrap;">
+        <a class="btn solid" href="#shop">Explore the shop</a>
+        <a class="btn" href="#visit">Plan a visit</a>
+      </div>
+    </div>
+    <div class="hero-art reveal d3">
+      <img src="images/logo_1701860470.webp" alt="Nene Valley Lavender">
+    </div>
+  </div>
+</section>
+
+<div class="strip">
+  <div class="track">
+    <span>100% organic essential oil</span><span>Hand-grown &amp; distilled on the farm</span><span>Honey from our own hives</span><span>Wander the lavender fields</span>
+    <span>100% organic essential oil</span><span>Hand-grown &amp; distilled on the farm</span><span>Honey from our own hives</span><span>Wander the lavender fields</span>
+  </div>
+</div>
+
+<section class="intro" id="story">
+  <div class="sprig s2" aria-hidden="true">
+    <svg viewBox="0 0 60 120"><path d="M30 118 V52"/><path d="M30 70 C18 66 14 56 16 48 C24 50 30 58 30 64"/><path d="M30 64 C42 60 46 50 44 42 C36 44 30 52 30 58"/><ellipse class="bud" cx="30" cy="20" rx="9" ry="15"/><circle class="bud" cx="24" cy="14" r="3.5"/><circle class="bud" cx="36" cy="16" r="3.5"/><circle class="bud" cx="30" cy="8" r="3.5"/></svg>
+  </div>
+  <div class="wrap intro-grid">
+    <div>
+      <div class="section-label">Our Story</div>
+      <h2>Calm, grown <em>by hand</em></h2>
+    </div>
+    <div class="body">
+      <p class="pull">Our aim is simple &mdash; to create products that relax you.</p>
+      <p>We want to give you an experience of calming wellbeing when you come and wander around our lavender fields. Lavender has been used for centuries for many remedies, and wandering among our plants is extremely peaceful.</p>
+      <p>Everything we make &mdash; the essential oil, the skincare blends, the honey and beeswax from our own hives &mdash; comes from this one small farm in the stunning Nene Valley, made to promote both mental and body wellbeing.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FULL-WIDTH PHOTO BAND: drop a wide lavender photo at images/field.jpeg and it
+     appears here. Until then a soft lilac gradient with a note is shown. -->
+<section class="band" id="band">
+  <img src="images/field.jpeg" alt="Lavender fields at Nene Valley Lavender" id="bandImg"
+    onerror="this.style.display='none'; document.getElementById('band').classList.add('no-photo');">
+  <div class="band-inner">
+    <h2 id="bandText">Rows of English lavender, <em>on the edge of the Nene Valley</em></h2>
+    <p id="bandSub">Come and see it for yourself &mdash; the farm is open weekends through the season.</p>
+  </div>
+</section>
+
+<section class="shop" id="shop">
+  <div class="wrap">
+    <div class="shop-head">
+      <div>
+        <div class="section-label">The Collection</div>
+        <h2>From our <em>fields &amp; hives</em></h2>
+      </div>
+      <p style="max-width:24em; color:#5d5070; font-size:0.98rem;">To order, send us an enquiry and we&rsquo;ll arrange payment and delivery. Online checkout is coming soon.</p>
+    </div>
+    <div class="products">
+
+      <div class="card">
+        <div class="ph"><span class="tag">Bestseller</span><img src="images/lavender-essential-oil.jpeg" alt="Lavender Essential Oil" onerror="this.style.display='none';this.parentNode.insertAdjacentHTML('beforeend','<span class=\'placeholder\'>Lavender Essential Oil<br>(add photo: images/lavender-essential-oil.jpeg)</span>')"></div>
+        <h3>Lavender Essential Oil</h3>
+        <p class="desc">10ml · grown &amp; distilled on the farm, 100% organic. Promotes relaxation and calm.</p>
+        <div class="foot"><span class="price">£8.00</span><a class="enquire" href="#contact" onclick="document.getElementById('message').value='I\u2019d like to order: Lavender Essential Oil. ';">Enquire &rarr;</a></div>
+      </div>
+      <div class="card">
+        <div class="ph"><img src="images/lavender-hydrosol.jpeg" alt="Lavender Hydrosol" onerror="this.style.display='none';this.parentNode.insertAdjacentHTML('beforeend','<span class=\'placeholder\'>Lavender Hydrosol<br>(add photo: images/lavender-hydrosol.jpeg)</span>')"></div>
+        <h3>Lavender Hydrosol</h3>
+        <p class="desc">250ml flower water spray. A soothing skincare toner, naturally antibacterial.</p>
+        <div class="foot"><span class="price">£6.00</span><a class="enquire" href="#contact" onclick="document.getElementById('message').value='I\u2019d like to order: Lavender Hydrosol. ';">Enquire &rarr;</a></div>
+      </div>
+      <div class="card">
+        <div class="ph"><img src="images/nourishing-argan.jpeg" alt="Nourishing Skin Care Oil" onerror="this.style.display='none';this.parentNode.insertAdjacentHTML('beforeend','<span class=\'placeholder\'>Nourishing Skin Care Oil<br>(add photo: images/nourishing-argan.jpeg)</span>')"></div>
+        <h3>Nourishing Skin Care Oil</h3>
+        <p class="desc">20ml argan blend with our lavender oil. Rich in vitamin E and antioxidants.</p>
+        <div class="foot"><span class="price">£8.00</span><a class="enquire" href="#contact" onclick="document.getElementById('message').value='I\u2019d like to order: Nourishing Skin Care Oil. ';">Enquire &rarr;</a></div>
+      </div>
+      <div class="card">
+        <div class="ph"><img src="images/natural-jojoba.jpeg" alt="Natural Skin Care Oil" onerror="this.style.display='none';this.parentNode.insertAdjacentHTML('beforeend','<span class=\'placeholder\'>Natural Skin Care Oil<br>(add photo: images/natural-jojoba.jpeg)</span>')"></div>
+        <h3>Natural Skin Care Oil</h3>
+        <p class="desc">20ml jojoba blend. Non-greasy, suits all skin types, the perfect carrier oil.</p>
+        <div class="foot"><span class="price">£8.00</span><a class="enquire" href="#contact" onclick="document.getElementById('message').value='I\u2019d like to order: Natural Skin Care Oil. ';">Enquire &rarr;</a></div>
+      </div>
+      <div class="card">
+        <div class="ph"><img src="images/soothing-almond.jpeg" alt="Soothing Skin Care Oil" onerror="this.style.display='none';this.parentNode.insertAdjacentHTML('beforeend','<span class=\'placeholder\'>Soothing Skin Care Oil<br>(add photo: images/soothing-almond.jpeg)</span>')"></div>
+        <h3>Soothing Skin Care Oil</h3>
+        <p class="desc">20ml sweet almond blend. Highly emollient and soothing for dry, sensitive skin.</p>
+        <div class="foot"><span class="price">£8.00</span><a class="enquire" href="#contact" onclick="document.getElementById('message').value='I\u2019d like to order: Soothing Skin Care Oil. ';">Enquire &rarr;</a></div>
+      </div>
+      <div class="card">
+        <div class="ph"><img src="images/dried-lavender-pouches.jpeg" alt="Dried Lavender Pouches" onerror="this.style.display='none';this.parentNode.insertAdjacentHTML('beforeend','<span class=\'placeholder\'>Dried Lavender Pouches<br>(add photo: images/dried-lavender-pouches.jpeg)</span>')"></div>
+        <h3>Dried Lavender Pouches</h3>
+        <p class="desc">Approx. 10g in organza. A natural sleep aid, drawer freshener and moth repellent.</p>
+        <div class="foot"><span class="price">£1.50</span><a class="enquire" href="#contact" onclick="document.getElementById('message').value='I\u2019d like to order: Dried Lavender Pouches. ';">Enquire &rarr;</a></div>
+      </div>
+      <div class="card">
+        <div class="ph"><span class="tag out">Sold out</span><img src="images/honey.jpeg" alt="Pure Wildflower Honey" onerror="this.style.display='none';this.parentNode.insertAdjacentHTML('beforeend','<span class=\'placeholder\'>Pure Wildflower Honey<br>(add photo: images/honey.jpeg)</span>')"></div>
+        <h3>Pure Wildflower Honey</h3>
+        <p class="desc">400g, straight from our beehives. Nectar of Nene Valley &amp; Rockingham Forest wildflowers.</p>
+        <div class="foot"><span class="price">£6.00</span><span class="soldout">Sold out</span></div>
+      </div>
+      <div class="card">
+        <div class="ph"><img src="images/beeswax.jpeg" alt="Beeswax" onerror="this.style.display='none';this.parentNode.insertAdjacentHTML('beforeend','<span class=\'placeholder\'>Beeswax<br>(add photo: images/beeswax.jpeg)</span>')"></div>
+        <h3>Beeswax</h3>
+        <p class="desc">Natural beeswax from our hives — for polish, candles, cosmetics. 50g / 100g / 200g.</p>
+        <div class="foot"><span class="price">from £2.50</span><a class="enquire" href="#contact" onclick="document.getElementById('message').value='I\u2019d like to order: Beeswax. ';">Enquire &rarr;</a></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="visit" id="visit">
+  <div class="wash"></div>
+  <div class="sprig s3" aria-hidden="true">
+    <svg viewBox="0 0 60 120"><path d="M30 118 V52"/><path d="M30 70 C18 66 14 56 16 48 C24 50 30 58 30 64"/><path d="M30 64 C42 60 46 50 44 42 C36 44 30 52 30 58"/><path d="M30 56 C20 52 17 44 19 37 C26 39 30 46 30 51"/><ellipse class="bud" cx="30" cy="20" rx="9" ry="15"/><circle class="bud" cx="24" cy="14" r="3.5"/><circle class="bud" cx="36" cy="16" r="3.5"/><circle class="bud" cx="30" cy="8" r="3.5"/></svg>
+  </div>
+  <div class="wrap visit-grid">
+    <div>
+      <div class="section-label">Visit Us</div>
+      <h2>Wander the <em>lavender fields</em></h2>
+      <p>Come and wander around our lavender fields and enjoy the peace and tranquillity. Bring a picnic and make an afternoon of it.</p>
+      <p style="margin-bottom:30px;">To book a visit, drop us a message &mdash; we&rsquo;d love to welcome you to the farm.</p>
+      <a class="btn solid" href="#contact">Book a visit</a>
+    </div>
+    <div class="info-card">
+      <div class="info-block">
+        <h3>Find us</h3>
+        Nene Valley Lavender<br>
+        Old Dry Lane (North), Brigstock<br>
+        Kettering, NN14 3HY<br>
+        <a href="tel:07886171356">07886 171356</a><br>
+        <a href="mailto:nenevalleylavender@mail.com">nenevalleylavender@mail.com</a><br>
+        <a href="https://maps.google.com/?q=Nene+Valley+Lavender+Brigstock+NN14+3HY" target="_blank" rel="noopener">Get directions &rarr;</a>
+      </div>
+      <h3 style="margin-bottom:8px;">Opening hours</h3>
+      <div class="info-row"><span class="day">Monday &ndash; Friday</span><span>Closed</span></div>
+      <div class="info-row"><span class="day">Saturday</span><span>09:00 &ndash; 17:00</span></div>
+      <div class="info-row"><span class="day">Sunday</span><span>09:00 &ndash; 17:00</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="wrap contact-grid">
+    <div>
+      <div class="section-label">Get in touch</div>
+      <h2>Send us a <em>note</em></h2>
+      <p class="sub">Questions, orders or just to say hello &mdash; let us know if there&rsquo;s anything we can do for you.</p>
+    </div>
+    <div>
+      <div class="field"><input type="text" id="name" placeholder="Your name"></div>
+      <div class="field"><input type="email" id="email" placeholder="Email address"></div>
+      <div class="field"><textarea id="message" placeholder="Your message"></textarea></div>
+      <button class="btn" style="border-color:var(--lilac); color:var(--paper);" onclick="sendContact()">Send message</button>
+      <div id="formMsg"></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <img src="images/logo_1701860470.webp" alt="Nene Valley Lavender">
+        <p>Organic English lavender, honey and skincare, grown by hand at Drumbledrone Eden in the Nene Valley.</p>
+      </div>
+      <div class="foot-nav">
+        <div class="foot-col">
+          <h4>Explore</h4>
+          <a href="#shop">Shop</a>
+          <a href="#story">Our Story</a>
+          <a href="#visit">Visit</a>
+          <a href="#contact">Contact</a>
+        </div>
+        <div class="foot-col">
+          <h4>Follow</h4>
+          <div class="socials">
+            <!-- EDIT: replace href="#" with your real profile links -->
+            <a href="#" aria-label="TikTok"><svg viewBox="0 0 24 24"><path d="M16.6 5.82A4.28 4.28 0 0 1 15.54 3h-3.09v12.4a2.59 2.59 0 0 1-2.59 2.5c-1.42 0-2.6-1.16-2.6-2.6 0-1.72 1.66-3.01 3.37-2.48V9.66c-3.45-.46-6.47 2.22-6.47 5.64 0 3.33 2.76 5.7 5.69 5.7 3.14 0 5.69-2.55 5.69-5.7V9.01a7.35 7.35 0 0 0 4.3 1.38V7.3s-1.88.09-3.24-1.48z"/></svg></a>
+            <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41-.56-.22-.96-.48-1.38-.9-.42-.42-.68-.82-.9-1.38-.16-.42-.36-1.06-.41-2.23C2.17 15.58 2.16 15.2 2.16 12s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41C8.42 2.17 8.8 2.16 12 2.16zm0 1.62c-3.15 0-3.52.01-4.76.07-.92.04-1.42.2-1.75.33-.44.17-.75.37-1.08.7-.33.33-.53.64-.7 1.08-.13.33-.29.83-.33 1.75-.06 1.24-.07 1.61-.07 4.76s.01 3.52.07 4.76c.04.92.2 1.42.33 1.75.17.44.37.75.7 1.08.33.33.64.53 1.08.7.33.13.83.29 1.75.33 1.24.06 1.61.07 4.76.07s3.52-.01 4.76-.07c.92-.04 1.42-.2 1.75-.33.44-.17.75-.37 1.08-.7.33-.33.53-.64.7-1.08.13-.33.29-.83.33-1.75.06-1.24.07-1.61.07-4.76s-.01-3.52-.07-4.76c-.04-.92-.2-1.42-.33-1.75a2.9 2.9 0 0 0-.7-1.08 2.9 2.9 0 0 0-1.08-.7c-.33-.13-.83-.29-1.75-.33-1.24-.06-1.61-.07-4.76-.07zm0 2.76a5.3 5.3 0 1 1 0 10.6 5.3 5.3 0 0 1 0-10.6zm0 1.62a3.68 3.68 0 1 0 0 7.36 3.68 3.68 0 0 0 0-7.36zm5.5-2.9a1.24 1.24 0 1 1 0 2.48 1.24 1.24 0 0 1 0-2.48z"/></svg></a>
+            <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.99 3.66 9.13 8.44 9.88v-6.99H7.9V12h2.54V9.8c0-2.5 1.49-3.89 3.78-3.89 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56V12h2.78l-.44 2.89h-2.34v6.99C18.34 21.13 22 16.99 22 12z"/></svg></a>
+            <a href="mailto:nenevalleylavender@mail.com" aria-label="Email"><svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="foot-base">
+      <span>&copy; 2026 Nene Valley Lavender. All rights reserved.</span>
+      <span>Drumbledrone Eden &middot; Brigstock &middot; NN14 3HY</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Optional hero background: only show images/hero.jpeg if it actually loads.
+  (function(){
+    var probe = new Image();
+    probe.onload = function(){
+      document.getElementById('heroBg').style.display = 'block';
+      document.getElementById('hero').classList.add('has-bg');
+    };
+    probe.onerror = function(){ /* no hero photo yet — keep watercolour washes */ };
+    probe.src = 'images/hero.jpeg';
+  })();
+
+  // Photo band: if images/field.jpeg is missing, soften the band into a lilac panel
+  // and show a gentle note instead of dark-overlay white text.
+  (function(){
+    var band = document.getElementById('band');
+    var probe = new Image();
+    probe.onload = function(){ band.classList.add('has-photo'); };
+    probe.onerror = function(){
+      band.classList.add('no-photo');
+      document.getElementById('bandText').classList.add('band-fallback');
+      var sub = document.getElementById('bandSub');
+      sub.classList.add('band-fallback');
+      sub.innerHTML = '<span style="opacity:.8">(Add a wide field photo at <strong>images/field.jpeg</strong> to fill this band)</span>';
+    };
+    probe.src = 'images/field.jpeg';
+  })();
+  // mobile nav
+  document.getElementById('navToggle').addEventListener('click', function(){
+    document.getElementById('nav').classList.toggle('open');
+  });
+  // scroll reveal for sections below the fold (progressive enhancement — content
+  // is visible by default in CSS; we only add the hidden state if JS + IO are supported)
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{ if(e.isIntersecting){ e.target.style.opacity='1'; e.target.style.transform='none'; io.unobserve(e.target);} });
+    },{threshold:0.12});
+    document.querySelectorAll('.intro .body, .intro h2, .card, .info-card, .visit-grid > div, .contact-grid > div').forEach(el=>{
+      el.style.transition='opacity .9s cubic-bezier(.2,.7,.3,1), transform .9s cubic-bezier(.2,.7,.3,1)';
+      el.style.opacity='0'; el.style.transform='translateY(26px)';
+      io.observe(el);
+    });
+    // safety net: if anything is still hidden after 3s, reveal it
+    setTimeout(()=>{ document.querySelectorAll('.card,.info-card,.intro .body,.intro h2,.visit-grid > div,.contact-grid > div').forEach(el=>{ el.style.opacity='1'; el.style.transform='none'; }); }, 3000);
+  }
+
+  // ====================================================================
+  // CONTACT FORM — uses Formspree (works on static hosting like GitHub Pages).
+  // SET UP: 1) sign up free at https://formspree.io  2) create a form, point it
+  // at your email  3) copy its endpoint (looks like https://formspree.io/f/abcdwxyz)
+  // 4) paste the form ID below, replacing YOUR_FORM_ID.
+  // ====================================================================
+  const FORMSPREE_ENDPOINT = "https://formspree.io/f/YOUR_FORM_ID";
+
+  async function sendContact() {
+    const msgEl = document.getElementById('formMsg');
+    const payload = {
+      name: document.getElementById('name').value,
+      email: document.getElementById('email').value,
+      message: document.getElementById('message').value
+    };
+    if (!payload.name || !payload.email || !payload.message) {
+      msgEl.style.color = '#e7b6b6'; msgEl.textContent = 'Please fill in all fields.'; return;
+    }
+    if (FORMSPREE_ENDPOINT.indexOf('YOUR_FORM_ID') !== -1) {
+      msgEl.style.color = '#e7b6b6';
+      msgEl.textContent = 'The contact form is not set up yet. Please email nenevalleylavender@mail.com directly.';
+      return;
+    }
+    msgEl.style.color = '#cdbfdf'; msgEl.textContent = 'Sending...';
+    try {
+      const res = await fetch(FORMSPREE_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+      if (res.ok) {
+        msgEl.style.color = '#cde7c6';
+        msgEl.textContent = "Thank you — your message has been sent. We'll be in touch soon.";
+        document.getElementById('name').value=''; document.getElementById('email').value=''; document.getElementById('message').value='';
+      } else {
+        msgEl.style.color = '#e7b6b6';
+        msgEl.textContent = 'Sorry, something went wrong. Please email us directly at nenevalleylavender@mail.com.';
+      }
+    } catch(e) {
+      msgEl.style.color = '#e7b6b6';
+      msgEl.textContent = 'Sorry, something went wrong. Please email us directly at nenevalleylavender@mail.com.';
+    }
+  }
+</script>
+</body>
+</html>
