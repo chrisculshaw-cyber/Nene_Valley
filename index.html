@@ -122,6 +122,22 @@
   .hero-bg img { width:100%; height:100%; object-fit:cover; }
   .hero-bg::after { content:""; position:absolute; inset:0; background:linear-gradient(rgba(46,33,64,0.4),rgba(46,33,64,0.5)); }
 
+  /* ---------- Gallery ---------- */
+  .gallery { padding: clamp(60px,9vh,110px) 0; background: var(--paper); }
+  .gallery-grid { display:grid; grid-template-columns: repeat(3,1fr); gap: 14px; }
+  .g-item { position:relative; margin:0; overflow:hidden; aspect-ratio: 4/3; background: var(--lilac-pale); }
+  .g-item img { width:100%; height:100%; object-fit:cover; transition: transform .9s cubic-bezier(.2,.7,.3,1); }
+  .g-item:hover img { transform: scale(1.06); }
+  .g-item figcaption {
+    position:absolute; left:0; right:0; bottom:0; z-index:2;
+    background: linear-gradient(transparent, rgba(46,33,64,0.75));
+    color:#fff; font-family:'Fraunces',serif; font-style:italic; font-size:1.02rem;
+    padding: 40px 20px 18px;
+  }
+  .g-item.g-empty { display:flex; align-items:center; justify-content:center; }
+  .g-item.g-empty figcaption { position:static; background:none; color:var(--violet); padding:0; text-align:center; }
+  @media (max-width:760px){ .gallery-grid { grid-template-columns:1fr; } .g-item{ aspect-ratio:16/9; } }
+
   /* ---------- Marquee strip ---------- */
   .strip { background: var(--ink); color: var(--paper); padding: 16px 0; overflow:hidden; white-space:nowrap; }
   .strip .track { display:inline-block; animation: slide 28s linear infinite; }
@@ -290,14 +306,13 @@
   </div>
 </section>
 
-<!-- FULL-WIDTH PHOTO BAND: drop a wide lavender photo at images/field.jpeg and it
-     appears here. Until then a soft lilac gradient with a note is shown. -->
+<!-- FULL-WIDTH PHOTO BAND -->
 <section class="band" id="band">
-  <img src="images/field.jpeg" alt="Lavender fields at Nene Valley Lavender" id="bandImg"
+  <img src="images/bee.jpeg" alt="A bee on Nene Valley lavender" id="bandImg"
     onerror="this.style.display='none'; document.getElementById('band').classList.add('no-photo');">
   <div class="band-inner">
-    <h2 id="bandText">Rows of English lavender, <em>on the edge of the Nene Valley</em></h2>
-    <p id="bandSub">Come and see it for yourself &mdash; the farm is open weekends through the season.</p>
+    <h2 id="bandText">Grown for the bees, <em>and for you</em></h2>
+    <p id="bandSub">100% organic lavender, hand-tended on the edge of the Nene Valley.</p>
   </div>
 </section>
 
@@ -396,6 +411,30 @@
   </div>
 </section>
 
+<!-- GALLERY: three farm images (animals, honey, sign) -->
+<section class="gallery">
+  <div class="wrap">
+    <div class="section-label" style="text-align:center; margin-bottom:32px;">Life on the farm</div>
+    <div class="gallery-grid">
+      <figure class="g-item">
+        <img src="images/animals.jpeg" alt="Goat, ducks and hens among the lavender"
+          onerror="this.closest('.g-item').classList.add('g-empty'); this.style.display='none';">
+        <figcaption>Our goat, ducks &amp; hens</figcaption>
+      </figure>
+      <figure class="g-item">
+        <img src="images/honey-jar.jpeg" alt="Pure local honey from our hives"
+          onerror="this.closest('.g-item').classList.add('g-empty'); this.style.display='none';">
+        <figcaption>Pure honey from our hives</figcaption>
+      </figure>
+      <figure class="g-item">
+        <img src="images/sign.jpeg" alt="The Nene Valley Lavender sign at the farm gate"
+          onerror="this.closest('.g-item').classList.add('g-empty'); this.style.display='none';">
+        <figcaption>Find us at the farm gate</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
 <section class="contact" id="contact">
   <div class="wrap contact-grid">
     <div>
@@ -470,9 +509,9 @@
       document.getElementById('bandText').classList.add('band-fallback');
       var sub = document.getElementById('bandSub');
       sub.classList.add('band-fallback');
-      sub.innerHTML = '<span style="opacity:.8">(Add a wide field photo at <strong>images/field.jpeg</strong> to fill this band)</span>';
+      sub.innerHTML = '<span style="opacity:.8">(Add a photo at <strong>images/bee.jpeg</strong> to fill this band)</span>';
     };
-    probe.src = 'images/field.jpeg';
+    probe.src = 'images/bee.jpeg';
   })();
   // mobile nav
   document.getElementById('navToggle').addEventListener('click', function(){
