@@ -408,8 +408,8 @@
         <li>Parking on site &middot; dogs welcome on leads</li>
       </ul>
       <div class="event-cta">
-        <span class="ticket">Tickets £1 &middot; available on the day</span>
-        <a class="btn solid" href="#book">Book your visit</a>
+        <span class="ticket">Tickets £1 per person &middot; please book ahead</span>
+        <a class="btn solid" href="#book" id="revealBook">Book your visit</a>
       </div>
       <p class="event-find">Old Dry Ln N, Brigstock, North Northants, NN14 3HY &middot; what3words: <strong>nuzzling.plant.patch</strong></p>
     </div>
@@ -421,9 +421,13 @@
   <div class="wrap book-inner">
     <div class="section-label">Book Your Visit</div>
     <h2>Reserve your <em>spot</em></h2>
-    <p class="book-intro">Choose a date, tell us how many are coming, and book in seconds. £1 per person, plus £1 if you&rsquo;re bringing a car. Payment is handled securely by SumUp.</p>
+    <p class="book-intro">We&rsquo;re a small farm with limited space &mdash; just 50 visitors a day &mdash; so please <strong>book in advance</strong> to be sure of your spot. Tickets are £1 per person, plus £1 if you&rsquo;re bringing a car. Payment is handled securely by SumUp.</p>
 
-    <div class="book-card">
+    <div id="bk-prompt" style="text-align:center;">
+      <button class="btn solid" id="showBookForm" onclick="showBookingForm()">Book your visit</button>
+    </div>
+
+    <div class="book-card" id="bookCard" style="display:none;">
       <label class="bk-field">
         <span>Choose a date</span>
         <select id="bk-date"><option value="">Loading dates…</option></select>
@@ -450,6 +454,10 @@
       <label class="bk-field">
         <span>Email</span>
         <input type="email" id="bk-email" autocomplete="email">
+      </label>
+      <label class="bk-field">
+        <span>Phone number</span>
+        <input type="tel" id="bk-phone" autocomplete="tel" placeholder="In case we need to reach you">
       </label>
       <div class="bk-total"><span>Total</span><span id="bk-total">£2.00</span></div>
       <button class="btn solid" id="bk-pay" onclick="bookVisit()">Book &amp; pay with SumUp</button>
@@ -904,6 +912,19 @@
   const API = (location.hostname.endsWith("workers.dev")) ? "" : WORKER;
   let days = [];
 
+  // Reveal the booking form (hidden by default). Used by both the event
+  // "Book your visit" button and the prompt button in the booking section.
+  window.showBookingForm = function(){
+    const card = document.getElementById('bookCard');
+    const prompt = document.getElementById('bk-prompt');
+    if (card) card.style.display = 'block';
+    if (prompt) prompt.style.display = 'none';
+    document.getElementById('book').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  };
+  // The event section's "Book your visit" link also reveals the form.
+  const eventBtn = document.getElementById('revealBook');
+  if (eventBtn) eventBtn.addEventListener('click', function(e){ e.preventDefault(); window.showBookingForm(); });
+
   const fmt = iso => { try { return new Date(iso+"T00:00:00Z").toLocaleDateString("en-GB",{weekday:"long",day:"numeric",month:"long"}); } catch(_){ return iso; } };
 
   function recalcTotal(){
@@ -952,6 +973,7 @@
     const carReg = document.getElementById('bk-reg').value.trim();
     const name = document.getElementById('bk-name').value.trim();
     const email = document.getElementById('bk-email').value.trim();
+    const phone = document.getElementById('bk-phone').value.trim();
 
     if (!date){ msg.style.color='#b23'; msg.textContent='Please choose a date.'; return; }
     if (!name || !email){ msg.style.color='#b23'; msg.textContent='Please enter your name and email.'; return; }
@@ -973,7 +995,7 @@
     try {
       const res = await fetch(API + "/api/booking/checkout", {
         method:'POST', headers:{'Content-Type':'application/json'},
-        body: JSON.stringify({ date, people, has_car:hasCar, car_reg:carReg, name, email })
+        body: JSON.stringify({ date, people, has_car:hasCar, car_reg:carReg, name, email, phone })
       });
       const data = await res.json();
       if (res.ok && data.url){ window.location.href = data.url; }
