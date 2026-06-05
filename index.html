@@ -145,7 +145,7 @@
 
   /* ---------- Add-to-basket button ---------- */
   .addbtn { background: var(--lav-deep, #5a4a7a); color:#fff; border:none; font-family:'Jost',sans-serif;
-    font-size:0.74rem; letter-spacing:0.12em; text-transform:uppercase; padding:9px 16px; border-radius:3px;
+    font-size:0.66rem; letter-spacing:0.1em; text-transform:uppercase; padding:8px 12px; border-radius:3px;
     cursor:pointer; transition: background .25s; }
   .addbtn:hover { background:#8a73b0; }
   .addbtn:disabled { background:#bcaecc; cursor:default; }
@@ -210,25 +210,39 @@
   .shop-head { display:flex; align-items:flex-end; justify-content:space-between; flex-wrap:wrap; gap:18px; margin-bottom: 54px; }
   .shop-head h2 { font-size: clamp(2rem,4vw,3rem); font-weight:300; }
   .shop-head h2 em { font-style:italic; color:var(--violet); }
-  .products { display:grid; grid-template-columns: repeat(auto-fill, minmax(280px,1fr)); gap: 4px; background: var(--line); border:1px solid var(--line); }
-  .card { background: var(--paper); padding: 30px; display:flex; flex-direction:column; transition: background .4s; }
+  .products { display:grid; grid-template-columns: repeat(auto-fill, minmax(200px,1fr)); gap: 4px; background: var(--line); border:1px solid var(--line); }
+  .card { background: var(--paper); padding: 20px; display:flex; flex-direction:column; transition: background .4s; }
   .card:hover { background: #fff; }
   .card .ph {
-    aspect-ratio: 4/5; margin: -30px -30px 26px; background: var(--lilac-pale);
+    aspect-ratio: 1/1; margin: -20px -20px 18px; background: var(--lilac-pale);
     display:flex; align-items:center; justify-content:center; overflow:hidden; position:relative;
   }
   .card .ph img { width:100%; height:100%; object-fit:cover; transition: transform .8s cubic-bezier(.2,.7,.3,1); }
   .card:hover .ph img { transform: scale(1.05); }
-  .card .ph .placeholder { font-family:'Fraunces',serif; font-style:italic; color:var(--lilac); font-size:0.95rem; text-align:center; padding:20px; }
-  .card .tag { position:absolute; top:14px; left:14px; background:var(--ink); color:var(--paper); font-size:0.66rem; letter-spacing:0.16em; text-transform:uppercase; padding:5px 11px; }
+  .card .ph .placeholder { font-family:'Fraunces',serif; font-style:italic; color:var(--lilac); font-size:0.85rem; text-align:center; padding:16px; }
+  .card .tag { position:absolute; top:12px; left:12px; background:var(--ink); color:var(--paper); font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; padding:4px 9px; }
   .card .tag.out { background: var(--gold); }
-  .card h3 { font-size:1.32rem; font-weight:400; }
-  .card .desc { font-size:0.92rem; color:#5d5070; margin:10px 0 20px; flex:1; }
-  .card .foot { display:flex; align-items:center; justify-content:space-between; border-top:1px solid var(--line); padding-top:18px; }
-  .card .price { font-family:'Fraunces',serif; font-size:1.3rem; }
-  .card .enquire { font-size:0.74rem; letter-spacing:0.14em; text-transform:uppercase; border-bottom:1px solid var(--violet); color:var(--violet); padding-bottom:2px; transition: opacity .3s; }
-  .card .enquire:hover { opacity:0.6; }
-  .card .soldout { font-size:0.74rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--gold); }
+  .card h3 { font-size:1.12rem; font-weight:400; }
+  .card .desc { font-size:0.85rem; color:#5d5070; margin:8px 0 16px; flex:1; }
+  .card .foot { display:flex; align-items:center; justify-content:space-between; border-top:1px solid var(--line); padding-top:14px; gap:8px; }
+  .card .price { font-family:'Fraunces',serif; font-size:1.15rem; }
+  .card .soldout { font-size:0.68rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--gold); }
+
+  /* ---------- Event ---------- */
+  .event { background: linear-gradient(180deg, var(--lilac-pale, #ece3f7), var(--paper)); padding: clamp(50px,8vh,90px) 0; }
+  .event-grid { display:grid; grid-template-columns: 0.9fr 1.1fr; gap:48px; align-items:center; }
+  .event-img img { width:100%; border-radius:8px; box-shadow:0 12px 40px rgba(46,33,64,0.18); display:block; }
+  .event-copy h2 { font-size:clamp(2rem,4vw,3rem); font-weight:300; margin:6px 0 4px; }
+  .event-copy h2 em { font-style:italic; color:var(--violet); }
+  .event-dates { font-family:'Fraunces',serif; font-size:1.25rem; color:var(--violet); margin-bottom:16px; }
+  .event-copy > p { color:#4a3d5c; margin-bottom:18px; max-width:42ch; }
+  .event-list { list-style:none; padding:0; margin:0 0 24px; }
+  .event-list li { padding:6px 0 6px 26px; position:relative; color:#3d3450; }
+  .event-list li::before { content:"\2767"; position:absolute; left:0; color:var(--lilac); }
+  .event-cta { display:flex; align-items:center; gap:20px; flex-wrap:wrap; margin-bottom:18px; }
+  .event-cta .ticket { font-family:'Fraunces',serif; font-style:italic; font-size:1.1rem; color:var(--ink); }
+  .event-find { font-size:0.85rem; color:#6d6178; }
+  @media (max-width:760px){ .event-grid { grid-template-columns:1fr; gap:28px; } .event-img { max-width:420px; margin:0 auto; } }
 
   /* ---------- Visit ---------- */
   .visit { padding: clamp(80px,12vh,140px) 0; position:relative; overflow:hidden; }
@@ -301,9 +315,9 @@
     <nav id="nav">
       <button class="nav-toggle" id="navToggle" aria-label="Menu">&#9776;</button>
       <ul>
+        <li><a href="#event">Visit Us</a></li>
         <li><a href="#shop">Shop</a></li>
         <li><a href="#story">Our Story</a></li>
-        <li><a href="#visit">Visit</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
     </nav>
@@ -343,6 +357,33 @@
     <span>100% organic essential oil</span><span>Hand-grown &amp; distilled on the farm</span><span>Honey from our own hives</span><span>Wander the lavender fields</span>
   </div>
 </div>
+
+<!-- EVENT: Opening Weekends -->
+<section class="event" id="event">
+  <div class="wrap event-grid">
+    <div class="event-img">
+      <img src="images/event.jpeg" alt="Nene Valley Lavender Opening Weekends, 20th June to 2nd August"
+        onerror="this.closest('.event-img').style.display='none'">
+    </div>
+    <div class="event-copy">
+      <div class="section-label">This Summer</div>
+      <h2>Opening <em>Weekends</em></h2>
+      <p class="event-dates">20th June &ndash; 2nd August &middot; weekends only</p>
+      <p>Come and wander our lavender fields in full bloom. Meet our goats, ducks, chickens and bees, shop our lavender products and honey on site, and enjoy the peace of the farm.</p>
+      <ul class="event-list">
+        <li>Walk through the lavender fields</li>
+        <li>Meet our animals &mdash; goats, ducks, chickens &amp; bees</li>
+        <li>Shop lavender products &amp; honey on site</li>
+        <li>Parking on site &middot; dogs welcome on leads</li>
+      </ul>
+      <div class="event-cta">
+        <span class="ticket">Tickets £1 &middot; available on the day</span>
+        <a class="btn solid" href="#contact">Enquire about visiting</a>
+      </div>
+      <p class="event-find">Old Dry Ln N, Brigstock, North Northants, NN14 3HY &middot; what3words: <strong>nuzzling.plant.patch</strong></p>
+    </div>
+  </div>
+</section>
 
 <section class="intro" id="story">
   <div class="sprig s2" aria-hidden="true">
@@ -483,9 +524,9 @@
     <div class="section-label" style="text-align:center; margin-bottom:32px;">Life on the farm</div>
     <div class="gallery-grid">
       <figure class="g-item">
-        <img src="images/animals.jpeg" alt="Goats, ducks and hens among the lavender"
+        <img src="images/animals.jpeg" alt="Goats, ducks, chickens and hens among the lavender"
           onerror="this.closest('.g-item').classList.add('g-empty'); this.style.display='none';">
-        <figcaption>Our goats, ducks &amp; hens</figcaption>
+        <figcaption>Our goats, ducks, chickens &amp; bees</figcaption>
       </figure>
       <figure class="g-item">
         <img src="images/honey-jar.jpeg" alt="Pure local honey from our hives"
