@@ -275,10 +275,9 @@
   .bk-check { display:flex; align-items:center; gap:8px; font-size:0.95rem; padding:11px 0; text-transform:none; letter-spacing:0; color:var(--ink); }
   .bk-check input { width:auto; }
   .bk-total { display:flex; justify-content:space-between; font-family:'Fraunces',serif; font-size:1.4rem; margin:8px 0 20px; padding-top:16px; border-top:1px solid var(--line); }
-  .bk-row-3 { gap:12px; align-items:end; }
-  .bk-row-3 .bk-field { flex:1; min-width:0; display:flex; flex-direction:column; margin-bottom:18px; }
-  .bk-row-3 .bk-field > span { min-height:2.4em; display:flex; align-items:flex-end; }
-  .bk-row-3 .bk-field input { margin-top:auto; }
+  .bk-row-3 { gap:12px; }
+  .bk-row-3 .bk-field { flex:1; min-width:0; }
+  .bk-row-3 .bk-field small { display:block; color:#6d6178; font-size:0.78rem; margin-top:4px; }
   .bk-disclaimer { background:#f3eef9; border:1px solid #d9cdeb; border-radius:8px; padding:16px 18px; margin:6px 0 4px; }
   .bk-disclaimer > strong { display:block; color:var(--violet); margin-bottom:8px; font-size:0.92rem; letter-spacing:0.04em; text-transform:uppercase; }
   .bk-disclaimer p strong { color:var(--ink); }
@@ -351,6 +350,7 @@
   .credit-links a{ color:#9a8bb8; border-bottom:1px solid #4a3d63; transition:color .25s; }
   .credit-links a:hover{ color:var(--lilac); }
   @media (max-width:520px){ .foot-credit{ flex-direction:column; } .credit-text{ text-align:center; align-items:center; } }
+  .foot-version{ text-align:center; margin-top:22px; color:#5a4d70; font-size:0.72rem; letter-spacing:0.05em; }
 
   @media (max-width: 860px) {
     nav ul { display:none; }
@@ -467,14 +467,17 @@
         <label class="bk-field">
           <span>Adults</span>
           <input type="number" id="bk-adults" min="0" value="2">
+          <small>16+</small>
         </label>
         <label class="bk-field">
-          <span>Children (under 16)</span>
+          <span>Children</span>
           <input type="number" id="bk-children" min="0" value="0">
+          <small>under 16</small>
         </label>
         <label class="bk-field">
           <span>Infants</span>
           <input type="number" id="bk-infants" min="0" value="0">
+          <small>under 2</small>
         </label>
       </div>
       <label class="bk-field">
@@ -766,6 +769,7 @@
         </span>
       </div>
     </div>
+    <div class="foot-version">Version: 6 June 2026, 11:13</div>
   </div>
 </footer>
 
