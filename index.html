@@ -275,6 +275,14 @@
   .bk-check { display:flex; align-items:center; gap:8px; font-size:0.95rem; padding:11px 0; text-transform:none; letter-spacing:0; color:var(--ink); }
   .bk-check input { width:auto; }
   .bk-total { display:flex; justify-content:space-between; font-family:'Fraunces',serif; font-size:1.4rem; margin:8px 0 20px; padding-top:16px; border-top:1px solid var(--line); }
+  .bk-row-3 { gap:12px; }
+  .bk-row-3 .bk-field { flex:1; min-width:0; }
+  .bk-disclaimer { background:#f3eef9; border:1px solid #d9cdeb; border-radius:8px; padding:16px 18px; margin:6px 0 4px; }
+  .bk-disclaimer > strong { display:block; color:var(--violet); margin-bottom:8px; font-size:0.92rem; letter-spacing:0.04em; text-transform:uppercase; }
+  .bk-disclaimer p strong { color:var(--ink); }
+  .bk-disclaimer p { font-size:0.88rem; line-height:1.55; color:#4a3d5c; margin:0 0 12px; }
+  .bk-agree { font-size:0.9rem; align-items:flex-start; gap:10px; line-height:1.4; }
+  .bk-agree input { margin-top:3px; flex:none; }
   #bk-pay { width:100%; }
   #bk-pay:disabled { opacity:0.5; cursor:default; }
   #bk-msg { margin-top:12px; font-size:0.95rem; min-height:1.2em; }
@@ -423,7 +431,7 @@
         <li>Parking on site &middot; dogs welcome on leads</li>
       </ul>
       <div class="event-cta">
-        <span class="ticket">Tickets £1 per person &middot; please book ahead</span>
+        <span class="ticket">£1 per car &middot; please book ahead</span>
         <a class="btn solid" href="#book" id="revealBook">Book your visit</a>
       </div>
       <p class="event-find">Old Dry Ln N, Brigstock, North Northants, NN14 3HY &middot; what3words: <strong>nuzzling.plant.patch</strong></p>
@@ -436,7 +444,7 @@
   <div class="wrap book-inner">
     <div class="section-label">Book Your Visit</div>
     <h2>Reserve your <em>spot</em></h2>
-    <p class="book-intro">We&rsquo;re a small farm with limited space &mdash; just 50 visitors a day &mdash; so please <strong>book in advance</strong> to be sure of your spot. Tickets are £1 per person, plus £1 if you&rsquo;re bringing a car. Payment is handled securely by SumUp.</p>
+    <p class="book-intro">We&rsquo;re a small farm with limited parking &mdash; just 50 cars a day &mdash; so please <strong>book in advance</strong> to be sure of your spot. It&rsquo;s just <strong>£1 per car</strong> and everyone in the car is free. Payment is handled securely by SumUp.</p>
 
     <div id="bk-prompt" style="text-align:center;">
       <button class="btn solid" id="showBookForm" onclick="showBookingForm()">Book your visit</button>
@@ -448,20 +456,25 @@
         <select id="bk-date"><option value="">Loading dates…</option></select>
         <small id="bk-dateinfo"></small>
       </label>
-      <div class="bk-row">
-        <label class="bk-field">
-          <span>How many people?</span>
-          <input type="number" id="bk-people" min="1" value="2">
-        </label>
-        <label class="bk-field bk-car">
-          <span>Bringing a car?</span>
-          <label class="bk-check"><input type="checkbox" id="bk-hascar"> Yes (+£1)</label>
-        </label>
-      </div>
-      <label class="bk-field" id="bk-regwrap" style="display:none">
+      <label class="bk-field">
         <span>Car registration</span>
         <input type="text" id="bk-reg" placeholder="e.g. AB12 CDE" maxlength="12">
+        <small>Booking is £1 per car. Everyone in the car is free.</small>
       </label>
+      <div class="bk-row bk-row-3">
+        <label class="bk-field">
+          <span>Adults</span>
+          <input type="number" id="bk-adults" min="0" value="2">
+        </label>
+        <label class="bk-field">
+          <span>Children (under 16)</span>
+          <input type="number" id="bk-children" min="0" value="0">
+        </label>
+        <label class="bk-field">
+          <span>Infants</span>
+          <input type="number" id="bk-infants" min="0" value="0">
+        </label>
+      </div>
       <label class="bk-field">
         <span>Your name</span>
         <input type="text" id="bk-name" autocomplete="name">
@@ -474,7 +487,16 @@
         <span>Phone number</span>
         <input type="tel" id="bk-phone" autocomplete="tel" placeholder="In case we need to reach you">
       </label>
-      <div class="bk-total"><span>Total</span><span id="bk-total">£2.00</span></div>
+
+      <div class="bk-disclaimer">
+        <strong>Before you visit — please read</strong>
+        <p>Nene Valley Lavender is a <strong>working farm</strong>. The ground is uneven and there may be holes, ditches, mud, slopes, water, farm machinery and animals. Sturdy footwear is strongly advised and suitable clothing for the weather. Please supervise children at all times and keep dogs on leads. Visitors enter and explore the farm <strong>at their own risk</strong>; please take care and follow any signs or instructions from staff on the day.</p>
+        <label class="bk-check bk-agree">
+          <input type="checkbox" id="bk-disclaimer"> I have read and understood the visitor safety notice above.
+        </label>
+      </div>
+
+      <div class="bk-total"><span>Total</span><span id="bk-total">£1.00</span></div>
       <button class="btn solid" id="bk-pay" onclick="bookVisit()">Book &amp; pay with SumUp</button>
       <div id="bk-msg"></div>
       <div id="bk-suggest"></div>
@@ -985,21 +1007,14 @@
 
   const fmt = iso => { try { return new Date(iso+"T00:00:00Z").toLocaleDateString("en-GB",{weekday:"long",day:"numeric",month:"long"}); } catch(_){ return iso; } };
 
-  function recalcTotal(){
-    const people = Math.max(1, parseInt(document.getElementById('bk-people').value,10)||1);
-    const car = document.getElementById('bk-hascar').checked ? 1 : 0;
-    const total = people + car;
-    document.getElementById('bk-total').textContent = '£' + total + '.00';
-  }
-
   function dateInfo(){
     const sel = document.getElementById('bk-date').value;
     const info = document.getElementById('bk-dateinfo');
     const d = days.find(x => x.date === sel);
     if (!d){ info.textContent=''; return; }
     if (d.spaces_left <= 0){ info.innerHTML = '<span style="color:#9b2c2c">This date is fully booked — please choose another.</span>'; }
-    else if (d.spaces_left <= 10){ info.textContent = `Only ${d.spaces_left} spaces left on this date.`; }
-    else { info.textContent = `${d.spaces_left} spaces available.`; }
+    else if (d.spaces_left <= 10){ info.textContent = `Only ${d.spaces_left} car spaces left on this date.`; }
+    else { info.textContent = `${d.spaces_left} car spaces available.`; }
   }
 
   fetch(API + "/api/booking/dates").then(r=>r.json()).then(list=>{
@@ -1013,35 +1028,33 @@
     dateInfo();
   }).catch(()=>{ document.getElementById('bk-date').innerHTML = '<option value="">Could not load dates</option>'; });
 
-  document.getElementById('bk-people').addEventListener('input', recalcTotal);
-  document.getElementById('bk-hascar').addEventListener('change', function(){
-    document.getElementById('bk-regwrap').style.display = this.checked ? 'block' : 'none';
-    recalcTotal();
-  });
   document.getElementById('bk-date').addEventListener('change', dateInfo);
-  recalcTotal();
 
   window.bookVisit = async function(){
     const msg = document.getElementById('bk-msg');
     const suggest = document.getElementById('bk-suggest');
     suggest.innerHTML = '';
     const date = document.getElementById('bk-date').value;
-    const people = Math.max(1, parseInt(document.getElementById('bk-people').value,10)||0);
-    const hasCar = document.getElementById('bk-hascar').checked;
     const carReg = document.getElementById('bk-reg').value.trim();
+    const adults = Math.max(0, parseInt(document.getElementById('bk-adults').value,10)||0);
+    const children = Math.max(0, parseInt(document.getElementById('bk-children').value,10)||0);
+    const infants = Math.max(0, parseInt(document.getElementById('bk-infants').value,10)||0);
     const name = document.getElementById('bk-name').value.trim();
     const email = document.getElementById('bk-email').value.trim();
     const phone = document.getElementById('bk-phone').value.trim();
+    const disclaimer = document.getElementById('bk-disclaimer').checked;
 
     if (!date){ msg.style.color='#b23'; msg.textContent='Please choose a date.'; return; }
+    if (!carReg){ msg.style.color='#b23'; msg.textContent='Please enter your car registration — booking is per car.'; return; }
+    if ((adults+children+infants) < 1){ msg.style.color='#b23'; msg.textContent='Please tell us how many people are coming.'; return; }
     if (!name || !email){ msg.style.color='#b23'; msg.textContent='Please enter your name and email.'; return; }
-    if (people < 1){ msg.style.color='#b23'; msg.textContent='Please enter how many people are coming.'; return; }
+    if (!disclaimer){ msg.style.color='#b23'; msg.textContent='Please tick the box to confirm you have read the visitor safety notice.'; return; }
 
     // If chosen date is full, suggest alternatives with space.
     const chosen = days.find(d=>d.date===date);
     if (chosen && chosen.spaces_left <= 0){
       const alt = days.filter(d=>d.spaces_left > 0).slice(0,4);
-      msg.style.color='#b23'; msg.textContent='That date is fully booked.';
+      msg.style.color='#b23'; msg.textContent='That date is fully booked (50 cars).';
       if (alt.length){
         suggest.innerHTML = 'Try: ' + alt.map(d=>`<button onclick="document.getElementById('bk-date').value='${d.date}';document.getElementById('bk-date').dispatchEvent(new Event('change'));document.getElementById('bk-msg').textContent='';this.parentNode.innerHTML='';">${fmt(d.date)}</button>`).join(' ');
       }
@@ -1053,7 +1066,7 @@
     try {
       const res = await fetch(API + "/api/booking/checkout", {
         method:'POST', headers:{'Content-Type':'application/json'},
-        body: JSON.stringify({ date, people, has_car:hasCar, car_reg:carReg, name, email, phone })
+        body: JSON.stringify({ date, car_reg:carReg, adults, children, infants, name, email, phone, disclaimer_agreed:disclaimer })
       });
       const data = await res.json();
       if (res.ok && data.url){ window.location.href = data.url; }
