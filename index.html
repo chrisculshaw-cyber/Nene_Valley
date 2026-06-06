@@ -9,6 +9,10 @@
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <meta name="theme-color" content="#5a4a7a">
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="NV Lavender">
 <meta name="description" content="A little farm at Drumbledrone Eden in Brigstock, North Northamptonshire, on the edge of the Nene Valley, growing English Lavender and producing 100% organic essential oil, honey and skincare.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -139,6 +143,8 @@
   .social-embed iframe { max-width:100% !important; }
   @media (max-width:720px){ .social-grid { grid-template-columns:1fr; } .social-embed { max-width:330px; } }
   .social-follow { display:flex; gap:16px; justify-content:center; flex-wrap:wrap; margin-top:40px; }
+  .social-install { text-align:center; margin-top:20px; }
+  .install-hint { font-size:0.85rem; color:#6d6178; margin-top:10px; max-width:42ch; margin-left:auto; margin-right:auto; }
   .btn.ghost { background:transparent; border:1px solid var(--violet); color:var(--violet); }
   .btn.ghost:hover { background:var(--violet); color:#fff; }
 
@@ -674,10 +680,11 @@
 <section class="social" id="social">
   <div class="wrap">
     <div class="section-label" style="text-align:center;">Follow Along</div>
-    <h2 class="social-title">From our <em>Instagram &amp; TikTok</em></h2>
-    <p class="social-intro">A little of farm life, lavender and the bees. Follow us
-      <a href="https://www.instagram.com/nenevalleylavender" target="_blank" rel="noopener">@nenevalleylavender</a> and
-      <a href="https://www.tiktok.com/@nene.valley.laven" target="_blank" rel="noopener">@nene.valley.laven</a>.</p>
+    <h2 class="social-title">Follow us on <em>Instagram, TikTok &amp; Facebook</em></h2>
+    <p class="social-intro">A little of farm life, lavender and the bees. Find us
+      <a href="https://www.instagram.com/nenevalleylavender" target="_blank" rel="noopener">@nenevalleylavender</a>,
+      <a href="https://www.tiktok.com/@nene.valley.laven" target="_blank" rel="noopener">@nene.valley.laven</a> on TikTok, and on
+      <a href="https://www.facebook.com/profile.php?id=61553958877640" target="_blank" rel="noopener">Facebook</a>.</p>
 
     <div class="social-grid">
 
@@ -702,6 +709,10 @@
       <a class="btn solid" href="https://www.instagram.com/nenevalleylavender" target="_blank" rel="noopener">Follow on Instagram</a>
       <a class="btn ghost" href="https://www.tiktok.com/@nene.valley.laven" target="_blank" rel="noopener">Follow on TikTok</a>
       <a class="btn ghost" href="https://www.facebook.com/profile.php?id=61553958877640" target="_blank" rel="noopener">Follow on Facebook</a>
+    </div>
+    <div class="social-install" id="installWrap" style="display:none;">
+      <button class="btn ghost" id="installBtn" onclick="installApp()">📲 Add to home screen</button>
+      <p class="install-hint" id="installHint"></p>
     </div>
   </div>
 </section>
@@ -769,7 +780,7 @@
         </span>
       </div>
     </div>
-    <div class="foot-version">Version: 6 June 2026, 11:13</div>
+    <div class="foot-version">Version: 6 June 2026, 11:25</div>
   </div>
 </footer>
 
@@ -1081,6 +1092,57 @@
       msg.style.color='#b23'; msg.textContent='Something went wrong. Please try again.'; payBtn.disabled=false;
     }
   };
+})();
+</script>
+<script>
+(function(){
+  const wrap = document.getElementById('installWrap');
+  const btn = document.getElementById('installBtn');
+  const hint = document.getElementById('installHint');
+  if (!wrap) return;
+
+  // Detect if already running as an installed app — hide the prompt if so.
+  const standalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
+  if (standalone) return;
+
+  const ua = navigator.userAgent || '';
+  const isIOS = /iPad|iPhone|iPod/.test(ua) && !window.MSStream;
+  const isAndroid = /Android/.test(ua);
+  let deferredPrompt = null;
+
+  // Android/Chrome: capture the install prompt so our button can trigger it.
+  window.addEventListener('beforeinstallprompt', function(e){
+    e.preventDefault();
+    deferredPrompt = e;
+    wrap.style.display = 'block';
+    btn.style.display = '';
+  });
+
+  window.installApp = async function(){
+    if (deferredPrompt){
+      deferredPrompt.prompt();
+      await deferredPrompt.userChoice;
+      deferredPrompt = null;
+      wrap.style.display = 'none';
+    }
+  };
+
+  // iOS: no automatic prompt is possible — show instructions instead.
+  if (isIOS){
+    wrap.style.display = 'block';
+    btn.style.display = 'none';
+    hint.innerHTML = '📲 To add Nene Valley Lavender to your home screen: tap the <strong>Share</strong> button, then <strong>“Add to Home Screen”</strong>.';
+  } else if (isAndroid){
+    // Button appears via beforeinstallprompt; if that doesn't fire, give a gentle hint.
+    setTimeout(function(){
+      if (!deferredPrompt && wrap.style.display === 'none'){
+        wrap.style.display = 'block';
+        btn.style.display = 'none';
+        hint.innerHTML = '📲 To add us to your home screen, open your browser menu and choose <strong>“Add to Home screen”</strong>.';
+      }
+    }, 3000);
+  }
+  // On desktop we leave it hidden — home-screen tiles are a mobile thing.
 })();
 </script>
 </body>
