@@ -780,7 +780,7 @@
         </span>
       </div>
     </div>
-    <div class="foot-version">Version: 6 June 2026, 14:24</div>
+    <div class="foot-version">Version: 6 June 2026, 15:25</div>
   </div>
 </footer>
 
@@ -920,6 +920,23 @@
         // update price
         const priceEl = card.querySelector('.price');
         if (priceEl) priceEl.textContent = '£' + (p.price_pence/100).toFixed(2);
+        // update image from the database (supports full URLs from uploads,
+        // or bare filenames served from the images/ folder)
+        if (p.image) {
+          const img = card.querySelector('.ph img');
+          if (img) {
+            let src;
+            if (/^https?:\/\//i.test(p.image)) {
+              src = p.image;                       // full URL (uploaded photo)
+            } else {
+              // bare filename or one already prefixed with images/
+              src = p.image.replace(/^images\//, '');
+              src = 'images/' + src;
+            }
+            img.src = src;
+            img.style.display = '';
+          }
+        }
         const btn = card.querySelector('.addbtn');
         // out of stock?
         if (p.stock <= 0) {
