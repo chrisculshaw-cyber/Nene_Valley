@@ -590,10 +590,10 @@
         <div class="foot"><span class="price">£1.50</span><button class="addbtn" data-add="dried-lavender-pouches">Add to basket</button></div>
       </div>
       <div class="card" data-id="honey">
-        <div class="ph"><span class="tag out">Sold out</span><img src="images/honey.jpeg" alt="Pure Wildflower Honey" onerror="this.style.display='none';this.parentNode.insertAdjacentHTML('beforeend','<span class=\'placeholder\'>Pure Wildflower Honey<br>(add photo: images/honey.jpeg)</span>')"></div>
+        <div class="ph"><img src="images/honey.jpeg" alt="Pure Wildflower Honey" onerror="this.style.display='none';this.parentNode.insertAdjacentHTML('beforeend','<span class=\'placeholder\'>Pure Wildflower Honey<br>(add photo: images/honey.jpeg)</span>')"></div>
         <h3>Pure Wildflower Honey</h3>
         <p class="desc">400g, straight from our beehives. Nectar of Nene Valley &amp; Rockingham Forest wildflowers.</p>
-        <div class="foot"><span class="price">£6.00</span><span class="soldout">Sold out</span></div>
+        <div class="foot"><span class="price">£6.00</span><button class="addbtn" data-add="honey">Add to basket</button></div>
       </div>
       <div class="card" data-id="beeswax">
         <div class="ph"><img src="images/beeswax.jpeg" alt="Beeswax" onerror="this.style.display='none';this.parentNode.insertAdjacentHTML('beforeend','<span class=\'placeholder\'>Beeswax<br>(add photo: images/beeswax.jpeg)</span>')"></div>
@@ -780,7 +780,7 @@
         </span>
       </div>
     </div>
-    <div class="foot-version">Version: 6 June 2026, 15:38</div>
+    <div class="foot-version">Version: 6 June 2026, 16:05</div>
   </div>
 </footer>
 
@@ -937,10 +937,20 @@
             img.style.display = '';
           }
         }
-        const btn = card.querySelector('.addbtn');
-        // out of stock?
+        // Stock state — handle BOTH directions so restocking restores the card.
+        const foot = card.querySelector('.foot');
+        const outTag = card.querySelector('.ph .tag.out');
         if (p.stock <= 0) {
-          if (btn) { btn.disabled = true; btn.textContent = 'Sold out'; }
+          // Out of stock: show sold-out badge + label, no add button.
+          if (foot) foot.innerHTML = '<span class="price">£' + (p.price_pence/100).toFixed(2) + '</span><span class="soldout">Sold out</span>';
+          if (!outTag) {
+            const ph = card.querySelector('.ph');
+            if (ph) ph.insertAdjacentHTML('afterbegin', '<span class="tag out">Sold out</span>');
+          }
+        } else {
+          // In stock: ensure an Add to basket button exists and any sold-out marks are gone.
+          if (outTag) outTag.remove();
+          if (foot) foot.innerHTML = '<span class="price">£' + (p.price_pence/100).toFixed(2) + '</span><button class="addbtn" data-add="' + id + '">Add to basket</button>';
         }
       });
     })
@@ -956,8 +966,11 @@
     const btn = document.querySelector('.addbtn[data-add="'+id+'"]');
     if (btn){ const t = btn.textContent; btn.textContent='Added ✓'; setTimeout(()=>{ btn.textContent=t; }, 900); }
   };
-  document.querySelectorAll('.addbtn[data-add]').forEach(b => {
-    b.addEventListener('click', () => window.addToBasket(b.getAttribute('data-add')));
+  // Event delegation: works for buttons present at load AND any recreated
+  // later when stock changes (e.g. a product going from sold-out to in-stock).
+  document.addEventListener('click', function(e){
+    const b = e.target.closest('.addbtn[data-add]');
+    if (b) window.addToBasket(b.getAttribute('data-add'));
   });
 
   function renderBasket(){
