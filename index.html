@@ -379,6 +379,7 @@
       <ul>
         <li><a href="#event">Visit Us</a></li>
         <li><a href="#shop">Shop</a></li>
+        <li><a href="#track">Track Order</a></li>
         <li><a href="#story">Our Story</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
@@ -647,6 +648,149 @@
     </div>
   </div>
 </section>
+
+<section class="book" id="track">
+  <div class="wrap">
+    <div class="book-inner">
+      <div class="section-label" style="justify-content:center;">Track Your Order</div>
+      <h2>Check on <em>your order</em></h2>
+      <p class="book-intro">Enter your reference and the email you used at checkout. This works for shop orders (NVL&hellip;) and visit bookings (NVB&hellip;).</p>
+
+      <div class="book-card">
+        <label class="bk-field">
+          <span>Reference</span>
+          <input type="text" id="tr-ref" placeholder="NVL-XXXXXX or NVB-XXXXXX" autocomplete="off" spellcheck="false">
+        </label>
+        <label class="bk-field">
+          <span>Email</span>
+          <input type="email" id="tr-email" placeholder="The email you used at checkout" autocomplete="email">
+        </label>
+        <button class="btn solid" id="tr-btn" onclick="trackOrder()" style="width:100%;justify-content:center;">Look up</button>
+        <div id="tr-msg"></div>
+        <div id="tr-result" class="tr-result" style="display:none;"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Result panel — reuses palette vars already defined in the page head. */
+  #tr-msg { margin-top:12px; font-size:0.95rem; min-height:1.2em; color:#9b2c2c; }
+  .tr-result { margin-top:22px; padding-top:22px; border-top:1px solid var(--line); text-align:left; }
+  .tr-result h3 { font-family:'Fraunces',serif; font-weight:400; font-size:1.5rem; color:var(--violet); margin:0 0 6px; }
+  .tr-ref { display:inline-block; font-family:monospace; background:var(--lilac-pale); color:var(--violet); padding:5px 12px; border-radius:5px; margin-bottom:18px; font-size:0.9rem; }
+  .tr-result table { width:100%; border-collapse:collapse; }
+  .tr-result td { padding:9px 0; border-bottom:1px solid #f0ebf7; vertical-align:top; font-size:0.98rem; color:#4a3d5c; }
+  .tr-result td:last-child { text-align:right; }
+  .tr-result tr:last-child td { border-bottom:none; }
+  .tr-status { display:inline-block; padding:4px 13px; border-radius:14px; font-size:0.8rem; text-transform:capitalize; font-weight:500; }
+  .tr-status.paid, .tr-status.dispatched { background:#d9efd6; color:#2c6e2c; }
+  .tr-status.pending { background:#fdf3d6; color:#8a6d1f; }
+  .tr-status.failed, .tr-status.cancelled { background:#f6d9d9; color:#9b2c2c; }
+  .tr-status.refunded, .tr-status.new { background:var(--lilac-pale); color:var(--violet); }
+  .tr-note { color:#6d6178; font-size:0.88rem; margin-top:18px; line-height:1.5; }
+</style>
+
+<script>
+(function(){
+  // Worker origin. If this page is served through the Worker / your live
+  // domain, "" (same-origin) also works; the explicit URL is safe either way.
+  var TR_WORKER = "https://nenevalley.chris-culshaw.workers.dev";
+
+  function trMoney(p){ return "£" + (Number(p||0)/100).toFixed(2); }
+  function trEsc(s){ return String(s==null?"":s).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c];}); }
+  function trDay(s){ try { return new Date(s+"T00:00:00Z").toLocaleDateString("en-GB",{weekday:"long",day:"numeric",month:"long"}); } catch(e){ return trEsc(s); } }
+  function trDt(s){ try { return new Date(s).toLocaleDateString("en-GB",{day:"numeric",month:"long",year:"numeric"}); } catch(e){ return trEsc(s); } }
+
+  function trShow(html){
+    var r = document.getElementById('tr-result');
+    r.innerHTML = html; r.style.display = "block";
+  }
+  function trMsg(text){
+    document.getElementById('tr-msg').textContent = text || "";
+    document.getElementById('tr-result').style.display = "none";
+  }
+
+  function trRenderOrder(d){
+    var fulfil = d.fulfilment_status || "new";
+    var rows = (d.items||[]).map(function(i){
+      return "<tr><td>"+trEsc(i.quantity)+"× "+trEsc(i.name)+"</td><td></td></tr>";
+    }).join("");
+    var fulfilLine = "";
+    if (d.status === "paid") {
+      if (fulfil === "dispatched") {
+        fulfilLine = "<tr><td>Dispatch</td><td><span class='tr-status dispatched'>Dispatched</span></td></tr>";
+        if (d.tracking_note) fulfilLine += "<tr><td>Tracking</td><td>"+trEsc(d.tracking_note)+"</td></tr>";
+      } else if (fulfil === "cancelled") {
+        fulfilLine = "<tr><td>Fulfilment</td><td><span class='tr-status cancelled'>Cancelled</span></td></tr>";
+      } else if (fulfil === "refunded") {
+        fulfilLine = "<tr><td>Fulfilment</td><td><span class='tr-status refunded'>Refunded</span></td></tr>";
+      } else {
+        fulfilLine = "<tr><td>Fulfilment</td><td><span class='tr-status new'>Preparing your order</span></td></tr>";
+      }
+    }
+    trMsg("");
+    trShow(
+      "<h3>Your order</h3>"+
+      "<span class='tr-ref'>"+trEsc(d.reference)+"</span>"+
+      "<table>"+
+        "<tr><td>Placed</td><td>"+trDt(d.created_at)+"</td></tr>"+
+        "<tr><td>Payment</td><td><span class='tr-status "+trEsc(d.status)+"'>"+trEsc(d.status)+"</span></td></tr>"+
+        fulfilLine+
+        rows+
+        "<tr><td><strong>Total</strong></td><td><strong>"+trMoney(d.total_pence)+"</strong></td></tr>"+
+      "</table>"+
+      "<p class='tr-note'>Questions? Email <a href='mailto:nenevalleylavender@mail.com'>nenevalleylavender@mail.com</a> with your reference.</p>"
+    );
+  }
+
+  function trRenderBooking(d){
+    trMsg("");
+    trShow(
+      "<h3>Your visit booking</h3>"+
+      "<span class='tr-ref'>"+trEsc(d.reference)+"</span>"+
+      "<table>"+
+        "<tr><td>Visit date</td><td>"+trDay(d.visit_date)+"</td></tr>"+
+        "<tr><td>Status</td><td><span class='tr-status "+trEsc(d.status)+"'>"+trEsc(d.status)+"</span></td></tr>"+
+        "<tr><td>Car registration</td><td>"+trEsc(d.car_reg||"—")+"</td></tr>"+
+        "<tr><td>Party</td><td>"+trEsc(d.adults)+" adult(s), "+trEsc(d.children)+" child(ren), "+trEsc(d.infants)+" infant(s)</td></tr>"+
+        "<tr><td><strong>Paid</strong></td><td><strong>"+trMoney(d.total_pence)+"</strong></td></tr>"+
+      "</table>"+
+      "<p class='tr-note'>Finding us: Old Dry Ln N, Brigstock, NN14 3HY &middot; what3words <strong>nuzzling.plant.patch</strong></p>"
+    );
+  }
+
+  window.trackOrder = function(){
+    var reference = (document.getElementById('tr-ref').value||"").trim();
+    var email = (document.getElementById('tr-email').value||"").trim();
+    var btn = document.getElementById('tr-btn');
+    if (!reference || !email) { trMsg("Please enter both your reference and email."); return; }
+    btn.disabled = true; var label = btn.textContent; btn.textContent = "Looking…";
+    fetch(TR_WORKER + "/api/order-status", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ reference: reference, email: email })
+    })
+    .then(function(r){ return r.json(); })
+    .then(function(d){
+      if (!d || !d.found) {
+        trMsg("We couldn't find an order or booking matching that reference and email. Please check both and try again.");
+        return;
+      }
+      if (d.type === "booking") trRenderBooking(d); else trRenderOrder(d);
+    })
+    .catch(function(){ trMsg("Something went wrong looking that up. Please try again in a moment."); })
+    .finally(function(){ btn.disabled = false; btn.textContent = label; });
+  };
+
+  // Enter key submits from either field.
+  ['tr-ref','tr-email'].forEach(function(id){
+    var el = document.getElementById(id);
+    if (el) el.addEventListener('keydown', function(e){ if (e.key === 'Enter') window.trackOrder(); });
+  });
+})();
+</script>
+
 
 <!-- GALLERY: three farm images (animals, honey, sign) -->
 <section class="gallery">
