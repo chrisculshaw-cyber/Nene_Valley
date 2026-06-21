@@ -1,0 +1,181 @@
+<!-- ============================================================= -->
+<!--  NENE VALLEY LAVENDER — REVIEWS SECTION                        -->
+<!--  Paste this whole block into index.html where you'd like       -->
+<!--  reviews to appear (e.g. near the bottom, before the footer).  -->
+<!--  It talks to your Worker's /api/reviews endpoint, which is     -->
+<!--  already live. Nothing shows until you approve it in admin.    -->
+<!-- ============================================================= -->
+<section id="reviews" class="nvl-reviews">
+  <div class="nvl-rv-wrap">
+    <h2 class="nvl-rv-title">What our visitors say</h2>
+
+    <!-- Summary (average stars + count) -->
+    <div id="nvlRvSummary" class="nvl-rv-summary" style="display:none">
+      <span id="nvlRvStars" class="nvl-rv-bigstars"></span>
+      <span id="nvlRvAvg" class="nvl-rv-avg"></span>
+      <span id="nvlRvCount" class="nvl-rv-count"></span>
+    </div>
+
+    <!-- The list of approved reviews -->
+    <div id="nvlRvList" class="nvl-rv-list">
+      <p class="nvl-rv-loading">Loading reviews…</p>
+    </div>
+
+    <!-- Leave-a-review form -->
+    <div class="nvl-rv-formwrap">
+      <h3 class="nvl-rv-subtitle">Leave a review</h3>
+      <p class="nvl-rv-note">We read every review before it appears, so it may take a little while to show up. Thank you for taking the time!</p>
+      <form id="nvlRvForm" class="nvl-rv-form">
+        <label class="nvl-rv-label">Your name
+          <input type="text" name="name" maxlength="60" required placeholder="e.g. Emma T">
+        </label>
+
+        <div class="nvl-rv-label">Your rating
+          <div id="nvlRvPicker" class="nvl-rv-picker" role="radiogroup" aria-label="Star rating">
+            <button type="button" data-v="1" aria-label="1 star">☆</button>
+            <button type="button" data-v="2" aria-label="2 stars">☆</button>
+            <button type="button" data-v="3" aria-label="3 stars">☆</button>
+            <button type="button" data-v="4" aria-label="4 stars">☆</button>
+            <button type="button" data-v="5" aria-label="5 stars">☆</button>
+          </div>
+          <input type="hidden" name="rating" id="nvlRvRating" value="0">
+        </div>
+
+        <label class="nvl-rv-label">Your review
+          <textarea name="body" rows="4" maxlength="1500" required placeholder="Tell us about your visit…"></textarea>
+        </label>
+
+        <label class="nvl-rv-label">Add a photo (optional)
+          <input type="file" name="photo" accept="image/*">
+          <small>JPEG or PNG, up to 8MB. By uploading, you're happy for us to show it alongside your review.</small>
+        </label>
+
+        <button type="submit" class="nvl-rv-submit">Submit review</button>
+        <p id="nvlRvMsg" class="nvl-rv-msg" style="display:none"></p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<style>
+  .nvl-reviews{background:#f3eef9;padding:60px 20px}
+  .nvl-rv-wrap{max-width:760px;margin:0 auto}
+  .nvl-rv-title{font-family:'Fraunces',Georgia,serif;color:#5a4a7a;font-size:2rem;font-weight:400;text-align:center;margin:0 0 18px}
+  .nvl-rv-subtitle{font-family:'Fraunces',Georgia,serif;color:#5a4a7a;font-size:1.4rem;font-weight:400;margin:0 0 6px}
+  .nvl-rv-summary{text-align:center;margin-bottom:26px}
+  .nvl-rv-bigstars{color:#e0a500;font-size:1.5rem;letter-spacing:3px;vertical-align:middle}
+  .nvl-rv-avg{font-weight:700;color:#2e2140;margin-left:10px;font-size:1.1rem}
+  .nvl-rv-count{color:#6d6178;margin-left:6px;font-size:0.95rem}
+  .nvl-rv-list{display:flex;flex-direction:column;gap:14px;margin-bottom:40px}
+  .nvl-rv-card{background:#fff;border-radius:12px;padding:18px 20px;box-shadow:0 1px 5px rgba(90,74,122,0.08);display:flex;gap:16px}
+  .nvl-rv-card .ph{flex:none}
+  .nvl-rv-card .ph img{width:84px;height:84px;object-fit:cover;border-radius:10px}
+  .nvl-rv-card .bd{flex:1;min-width:0}
+  .nvl-rv-card .st{color:#e0a500;letter-spacing:2px;font-size:1.05rem}
+  .nvl-rv-card .nm{font-weight:600;color:#2e2140;margin:2px 0}
+  .nvl-rv-card .tx{color:#4a3d5c;line-height:1.6;white-space:pre-wrap}
+  .nvl-rv-loading,.nvl-rv-none{color:#8c7da5;font-style:italic;text-align:center}
+  .nvl-rv-formwrap{background:#fff;border-radius:14px;padding:26px 24px;box-shadow:0 1px 5px rgba(90,74,122,0.08)}
+  .nvl-rv-note{color:#6d6178;font-size:0.9rem;line-height:1.5;margin:0 0 18px}
+  .nvl-rv-form{display:flex;flex-direction:column;gap:16px}
+  .nvl-rv-label{display:block;font-size:0.85rem;font-weight:600;color:#5a4a7a}
+  .nvl-rv-label input[type=text],.nvl-rv-label textarea{width:100%;margin-top:6px;padding:11px 13px;border:1px solid #cdbfe0;border-radius:7px;font-size:1rem;font-family:inherit;font-weight:400}
+  .nvl-rv-label input[type=file]{margin-top:8px;font-weight:400}
+  .nvl-rv-label small{display:block;font-weight:400;color:#8c7da5;margin-top:6px;line-height:1.4}
+  .nvl-rv-picker{margin-top:8px;display:flex;gap:4px}
+  .nvl-rv-picker button{background:none;border:none;font-size:2rem;line-height:1;color:#e0a500;cursor:pointer;padding:0 2px}
+  .nvl-rv-submit{background:#5a4a7a;color:#fff;border:none;border-radius:6px;padding:14px;font-size:1rem;font-weight:600;cursor:pointer}
+  .nvl-rv-submit:hover{background:#7a64a0}
+  .nvl-rv-submit:disabled{opacity:0.6;cursor:default}
+  .nvl-rv-msg{margin:0;padding:12px;border-radius:7px;font-size:0.95rem}
+  .nvl-rv-msg.ok{background:#d9efd6;color:#2c6e2c}
+  .nvl-rv-msg.err{background:#f6d9d9;color:#9b2c2c}
+</style>
+
+<script>
+(function(){
+  // IMPORTANT: if your static site is on a different domain to the Worker,
+  // set this to "https://nenevalleylavender.co.uk". If they're the same
+  // domain (served through the Worker), you can leave it as "".
+  var API_BASE = "";
+
+  var listEl = document.getElementById('nvlRvList');
+  var sumEl  = document.getElementById('nvlRvSummary');
+
+  function starStr(n){
+    n = Math.max(0, Math.min(5, Math.round(Number(n)||0)));
+    return '★★★★★'.slice(0, n) + '☆☆☆☆☆'.slice(0, 5 - n);
+  }
+  function esc(s){ return String(s==null?'':s).replace(/[&<>"']/g, function(c){
+    return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
+
+  function loadReviews(){
+    fetch(API_BASE + '/api/reviews')
+      .then(function(r){ return r.json(); })
+      .then(function(data){
+        var list = (data && data.reviews) || [];
+        if (data && data.count > 0){
+          sumEl.style.display = '';
+          document.getElementById('nvlRvStars').textContent = starStr(data.average);
+          document.getElementById('nvlRvAvg').textContent = Number(data.average).toFixed(1);
+          document.getElementById('nvlRvCount').textContent = '(' + data.count + ' review' + (data.count===1?'':'s') + ')';
+        }
+        if (!list.length){
+          listEl.innerHTML = '<p class="nvl-rv-none">No reviews yet — be the first to leave one!</p>';
+          return;
+        }
+        listEl.innerHTML = list.map(function(r){
+          var photo = r.photo ? '<div class="ph"><img src="'+esc(r.photo)+'" alt="" loading="lazy"></div>' : '';
+          return '<div class="nvl-rv-card">'+photo+
+            '<div class="bd"><div class="st">'+starStr(r.rating)+'</div>'+
+            '<div class="nm">'+esc(r.author_name)+'</div>'+
+            '<div class="tx">'+esc(r.body)+'</div></div></div>';
+        }).join('');
+      })
+      .catch(function(){
+        listEl.innerHTML = '<p class="nvl-rv-none">Couldn\u2019t load reviews just now.</p>';
+      });
+  }
+
+  // Star picker
+  var rating = 0;
+  var picker = document.getElementById('nvlRvPicker');
+  picker.addEventListener('click', function(e){
+    var b = e.target.closest('button[data-v]'); if(!b) return;
+    rating = parseInt(b.getAttribute('data-v'),10);
+    document.getElementById('nvlRvRating').value = rating;
+    Array.prototype.forEach.call(picker.children, function(btn){
+      btn.textContent = (parseInt(btn.getAttribute('data-v'),10) <= rating) ? '★' : '☆';
+    });
+  });
+
+  // Submit
+  var form = document.getElementById('nvlRvForm');
+  var msg = document.getElementById('nvlRvMsg');
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    msg.style.display='none';
+    if (!rating){ showMsg('err','Please choose a star rating.'); return; }
+    var btn = form.querySelector('.nvl-rv-submit');
+    btn.disabled = true; btn.textContent = 'Sending…';
+    var fd = new FormData(form);
+    fetch(API_BASE + '/api/reviews', { method:'POST', body: fd })
+      .then(function(r){ return r.json().then(function(j){ return {ok:r.ok, j:j}; }); })
+      .then(function(res){
+        if (res.ok && res.j && res.j.ok){
+          form.reset(); rating=0;
+          Array.prototype.forEach.call(picker.children, function(btn){ btn.textContent='☆'; });
+          showMsg('ok', res.j.message || 'Thank you! Your review will appear once approved.');
+        } else {
+          showMsg('err', (res.j && res.j.error) || 'Sorry, something went wrong — please try again.');
+        }
+      })
+      .catch(function(){ showMsg('err','Sorry, something went wrong — please try again.'); })
+      .finally(function(){ btn.disabled=false; btn.textContent='Submit review'; });
+  });
+  function showMsg(kind, text){ msg.className='nvl-rv-msg '+kind; msg.textContent=text; msg.style.display=''; }
+
+  loadReviews();
+})();
+</script>
+<!-- ============== END REVIEWS SECTION ============== -->
