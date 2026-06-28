@@ -582,56 +582,7 @@
       <p style="max-width:24em; color:#5d5070; font-size:0.98rem;">Browse our range and buy securely through our shop &mdash; checkout, payment and delivery are handled by SumUp.</p>
     </div>
     <div class="products" id="products">
-
-      <div class="card" data-id="lavender-essential-oil">
-        <div class="ph"><span class="tag">Bestseller</span><img src="images/lavender-essential-oil.jpeg" alt="Lavender Essential Oil" onerror="this.style.display='none';this.parentNode.insertAdjacentHTML('beforeend','<span class=\'placeholder\'>Lavender Essential Oil<br>(add photo: images/lavender-essential-oil.jpeg)</span>')"></div>
-        <h3>Lavender Essential Oil</h3>
-        <p class="desc">10ml · grown &amp; distilled on the farm, 100% organic. Promotes relaxation and calm.</p>
-        <div class="foot"><span class="price">£8.00</span><button class="addbtn" data-add="lavender-essential-oil">Add to basket</button></div>
-      </div>
-      <div class="card" data-id="lavender-hydrosol">
-        <div class="ph"><img src="images/lavender-hydrosol.jpeg" alt="Lavender Hydrosol" onerror="this.style.display='none';this.parentNode.insertAdjacentHTML('beforeend','<span class=\'placeholder\'>Lavender Hydrosol<br>(add photo: images/lavender-hydrosol.jpeg)</span>')"></div>
-        <h3>Lavender Hydrosol</h3>
-        <p class="desc">250ml flower water spray. A soothing skincare toner, naturally antibacterial.</p>
-        <div class="foot"><span class="price">£6.00</span><button class="addbtn" data-add="lavender-hydrosol">Add to basket</button></div>
-      </div>
-      <div class="card" data-id="nourishing-argan">
-        <div class="ph"><img src="images/nourishing-argan.jpeg" alt="Nourishing Skin Care Oil" onerror="this.style.display='none';this.parentNode.insertAdjacentHTML('beforeend','<span class=\'placeholder\'>Nourishing Skin Care Oil<br>(add photo: images/nourishing-argan.jpeg)</span>')"></div>
-        <h3>Nourishing Skin Care Oil</h3>
-        <p class="desc">20ml argan blend with our lavender oil. Rich in vitamin E and antioxidants.</p>
-        <div class="foot"><span class="price">£8.00</span><button class="addbtn" data-add="nourishing-argan">Add to basket</button></div>
-      </div>
-      <div class="card" data-id="natural-jojoba">
-        <div class="ph"><img src="images/natural-jojoba.jpeg" alt="Natural Skin Care Oil" onerror="this.style.display='none';this.parentNode.insertAdjacentHTML('beforeend','<span class=\'placeholder\'>Natural Skin Care Oil<br>(add photo: images/natural-jojoba.jpeg)</span>')"></div>
-        <h3>Natural Skin Care Oil</h3>
-        <p class="desc">20ml jojoba blend. Non-greasy, suits all skin types, the perfect carrier oil.</p>
-        <div class="foot"><span class="price">£8.00</span><button class="addbtn" data-add="natural-jojoba">Add to basket</button></div>
-      </div>
-      <div class="card" data-id="soothing-almond">
-        <div class="ph"><img src="images/soothing-almond.jpeg" alt="Soothing Skin Care Oil" onerror="this.style.display='none';this.parentNode.insertAdjacentHTML('beforeend','<span class=\'placeholder\'>Soothing Skin Care Oil<br>(add photo: images/soothing-almond.jpeg)</span>')"></div>
-        <h3>Soothing Skin Care Oil</h3>
-        <p class="desc">20ml sweet almond blend. Highly emollient and soothing for dry, sensitive skin.</p>
-        <div class="foot"><span class="price">£8.00</span><button class="addbtn" data-add="soothing-almond">Add to basket</button></div>
-      </div>
-      <div class="card" data-id="dried-lavender-pouches">
-        <div class="ph"><img src="images/dried-lavender-pouches.jpeg" alt="Dried Lavender Pouches" onerror="this.style.display='none';this.parentNode.insertAdjacentHTML('beforeend','<span class=\'placeholder\'>Dried Lavender Pouches<br>(add photo: images/dried-lavender-pouches.jpeg)</span>')"></div>
-        <h3>Dried Lavender Pouches</h3>
-        <p class="desc">Approx. 10g in organza. A natural sleep aid, drawer freshener and moth repellent.</p>
-        <div class="foot"><span class="price">£1.50</span><button class="addbtn" data-add="dried-lavender-pouches">Add to basket</button></div>
-      </div>
-      <div class="card" data-id="honey">
-        <div class="ph"><img src="images/honey.jpeg" alt="Pure Wildflower Honey" onerror="this.style.display='none';this.parentNode.insertAdjacentHTML('beforeend','<span class=\'placeholder\'>Pure Wildflower Honey<br>(add photo: images/honey.jpeg)</span>')"></div>
-        <h3>Pure Wildflower Honey</h3>
-        <p class="desc">400g, straight from our beehives. Nectar of Nene Valley &amp; Rockingham Forest wildflowers.</p>
-        <div class="foot"><span class="price">£6.00</span><button class="addbtn" data-add="honey">Add to basket</button></div>
-      </div>
-      <div class="card" data-id="beeswax">
-        <div class="ph"><img src="images/beeswax.jpeg" alt="Beeswax" onerror="this.style.display='none';this.parentNode.insertAdjacentHTML('beforeend','<span class=\'placeholder\'>Beeswax<br>(add photo: images/beeswax.jpeg)</span>')"></div>
-        <h3>Beeswax</h3>
-        <p class="desc">Natural beeswax from our hives — for polish, candles, cosmetics. 50g default.</p>
-        <div class="foot"><span class="price">£2.50</span><button class="addbtn" data-add="beeswax">Add to basket</button></div>
-      </div>
-
+      <p id="products-loading" style="grid-column:1/-1; text-align:center; padding:50px 20px; color:#8c7da5; font-family:'Fraunces',serif; font-style:italic; background:var(--paper);">Loading our collection…</p>
     </div>
   </div>
 </section>
@@ -1261,53 +1212,74 @@
   let products = {};   // id -> {price_pence, stock, name}
   let basket = {};     // id -> quantity
 
-  // Fetch live product data (prices + stock) and enhance the cards.
+  // Fetch live products and BUILD the cards from the database. This means any
+  // product ticked "sell online" (active) in admin appears automatically — no
+  // need to hard-code cards in this page ever again.
+  function escHtml(s){ return String(s==null?'':s).replace(/[&<>"']/g, function(c){
+    return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
+
+  function productImageSrc(image){
+    if (!image) return '';
+    if (/^https?:\/\//i.test(image)) return image;        // full URL (uploaded photo)
+    return 'images/' + image.replace(/^images\//, '');     // bare filename in images/
+  }
+
+  function buildCard(p){
+    const id = escHtml(p.id);
+    const name = escHtml(p.name);
+    const price = '£' + (p.price_pence/100).toFixed(2);
+    const desc = escHtml(p.description || '');
+    const src = productImageSrc(p.image);
+    const soldOut = (p.stock <= 0);
+
+    // Image cell: real photo if we have one, otherwise a styled placeholder.
+    let phInner;
+    if (src) {
+      phInner = '<img src="' + escHtml(src) + '" alt="' + name + '" ' +
+        'onerror="this.style.display=\'none\';this.parentNode.insertAdjacentHTML(\'beforeend\',\'<span class=&quot;placeholder&quot;>' + name + '</span>\')">';
+    } else {
+      phInner = '<span class="placeholder">' + name + '</span>';
+    }
+    const outTag = soldOut ? '<span class="tag out">Sold out</span>' : '';
+
+    const foot = soldOut
+      ? '<span class="price">' + price + '</span><span class="soldout">Sold out</span>'
+      : '<span class="price">' + price + '</span><button class="addbtn" data-add="' + id + '">Add to basket</button>';
+
+    const card = document.createElement('div');
+    card.className = 'card';
+    card.setAttribute('data-id', id);
+    card.innerHTML =
+      '<div class="ph">' + outTag + phInner + '</div>' +
+      '<h3>' + name + '</h3>' +
+      (desc ? '<p class="desc">' + desc + '</p>' : '<p class="desc"></p>') +
+      '<div class="foot">' + foot + '</div>';
+    return card;
+  }
+
+  function renderProducts(list){
+    const grid = document.getElementById('products');
+    grid.innerHTML = '';
+    if (!list.length){
+      grid.innerHTML = '<p style="grid-column:1/-1; text-align:center; padding:50px 20px; color:#8c7da5; font-family:\'Fraunces\',serif; font-style:italic;">Our online shop is being stocked — please check back soon.</p>';
+      return;
+    }
+    list.forEach(p => { grid.appendChild(buildCard(p)); });
+  }
+
   fetch(API + "/api/products")
     .then(r => r.ok ? r.json() : Promise.reject())
     .then(list => {
+      list = Array.isArray(list) ? list : [];
+      // Keep a lookup for the basket logic, and build the visible cards.
+      products = {};
       list.forEach(p => { products[p.id] = p; });
-      document.querySelectorAll('.card[data-id]').forEach(card => {
-        const id = card.getAttribute('data-id');
-        const p = products[id];
-        if (!p) return;
-        // update price
-        const priceEl = card.querySelector('.price');
-        if (priceEl) priceEl.textContent = '£' + (p.price_pence/100).toFixed(2);
-        // update image from the database (supports full URLs from uploads,
-        // or bare filenames served from the images/ folder)
-        if (p.image) {
-          const img = card.querySelector('.ph img');
-          if (img) {
-            let src;
-            if (/^https?:\/\//i.test(p.image)) {
-              src = p.image;                       // full URL (uploaded photo)
-            } else {
-              // bare filename or one already prefixed with images/
-              src = p.image.replace(/^images\//, '');
-              src = 'images/' + src;
-            }
-            img.src = src;
-            img.style.display = '';
-          }
-        }
-        // Stock state — handle BOTH directions so restocking restores the card.
-        const foot = card.querySelector('.foot');
-        const outTag = card.querySelector('.ph .tag.out');
-        if (p.stock <= 0) {
-          // Out of stock: show sold-out badge + label, no add button.
-          if (foot) foot.innerHTML = '<span class="price">£' + (p.price_pence/100).toFixed(2) + '</span><span class="soldout">Sold out</span>';
-          if (!outTag) {
-            const ph = card.querySelector('.ph');
-            if (ph) ph.insertAdjacentHTML('afterbegin', '<span class="tag out">Sold out</span>');
-          }
-        } else {
-          // In stock: ensure an Add to basket button exists and any sold-out marks are gone.
-          if (outTag) outTag.remove();
-          if (foot) foot.innerHTML = '<span class="price">£' + (p.price_pence/100).toFixed(2) + '</span><button class="addbtn" data-add="' + id + '">Add to basket</button>';
-        }
-      });
+      renderProducts(list);
     })
-    .catch(() => { /* API unavailable — cards stay as static fallback */ });
+    .catch(() => {
+      const grid = document.getElementById('products');
+      grid.innerHTML = '<p style="grid-column:1/-1; text-align:center; padding:50px 20px; color:#8c7da5; font-family:\'Fraunces\',serif; font-style:italic;">We couldn\u2019t load the shop just now. Please refresh, or visit us at the farm.</p>';
+    });
 
   window.addToBasket = function(id){
     const p = products[id];
