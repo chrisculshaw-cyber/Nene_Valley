@@ -208,6 +208,13 @@
   .cf input, .cf textarea { width:100%; padding:12px; margin-bottom:10px; border:1px solid #b8a8a8; background:#fff;
     font-family:'Jost',sans-serif; font-size:0.95rem; border-radius:3px; }
   .cf textarea { min-height:70px; resize:vertical; }
+  .fulfil-choice { display:flex; gap:10px; margin-bottom:10px; }
+  .fulfil-opt { flex:1; display:flex; flex-direction:column; gap:2px; padding:12px 10px; border:1.5px solid #d8cce6;
+    border-radius:8px; cursor:pointer; background:#fff; transition:border-color .15s, background .15s; }
+  .fulfil-opt.selected { border-color:#5a4a7a; background:#f5f1fa; }
+  .fulfil-opt input { position:absolute; opacity:0; width:0; height:0; margin:0; }
+  .fulfil-opt .fulfil-t { font-weight:500; font-size:0.98rem; color:#2e2140; }
+  .fulfil-opt .fulfil-d { font-size:0.82rem; color:#6d6178; }
   #checkoutMsg { font-size:0.9rem; margin-top:8px; min-height:1.2em; }
 
   /* ---------- Marquee strip ---------- */
@@ -435,6 +442,7 @@
         <a class="btn solid" href="#shop">Explore the shop</a>
         <a class="btn" href="#book" onclick="if(window.showBookingForm){setTimeout(window.showBookingForm,400);}">Plan a visit</a>
       </div>
+      <p class="reveal d4" style="margin-top:14px; font-size:0.9rem; color:#6d6178;">🚚 UK delivery &middot; 🧺 collection from the farm on opening weekends</p>
     </div>
     <div class="hero-art reveal d3">
       <img src="images/logo_1701860470.webp" alt="Nene Valley Lavender">
@@ -444,8 +452,8 @@
 
 <div class="strip">
   <div class="track">
-    <span>100% organic essential oil</span><span>Hand-grown &amp; distilled on the farm</span><span>Honey from our own hives</span><span>Wander the lavender fields</span>
-    <span>100% organic essential oil</span><span>Hand-grown &amp; distilled on the farm</span><span>Honey from our own hives</span><span>Wander the lavender fields</span>
+    <span>100% organic essential oil</span><span>Hand-grown &amp; distilled on the farm</span><span>Honey from our own hives</span><span>Wander the lavender fields</span><span>Delivery &amp; collection available</span>
+    <span>100% organic essential oil</span><span>Hand-grown &amp; distilled on the farm</span><span>Honey from our own hives</span><span>Wander the lavender fields</span><span>Delivery &amp; collection available</span>
   </div>
 </div>
 
@@ -579,7 +587,7 @@
         <div class="section-label">The Collection</div>
         <h2>From our <em>fields &amp; hives</em></h2>
       </div>
-      <p style="max-width:24em; color:#5d5070; font-size:0.98rem;">Browse our range and buy securely through our shop &mdash; checkout, payment and delivery are handled by SumUp.</p>
+      <p style="max-width:26em; color:#5d5070; font-size:0.98rem;">Browse our range and buy securely through our shop. Choose <strong>delivery</strong> to your door or <strong>collection</strong> from the farm on our opening weekends &mdash; payment is handled securely by SumUp.</p>
     </div>
     <div class="products" id="products">
       <p id="products-loading" style="grid-column:1/-1; text-align:center; padding:50px 20px; color:#8c7da5; font-family:'Fraunces',serif; font-style:italic; background:var(--paper);">Loading our collection…</p>
@@ -1200,7 +1208,20 @@
     <div class="cf" id="checkoutForm">
       <input type="text" id="cf-name" placeholder="Full name" autocomplete="name">
       <input type="email" id="cf-email" placeholder="Email" autocomplete="email">
+      <div class="fulfil-choice" role="radiogroup" aria-label="Delivery or collection">
+        <label class="fulfil-opt selected" id="opt-delivery">
+          <input type="radio" name="fulfil" value="delivery" checked onchange="setFulfil('delivery')">
+          <span class="fulfil-t">🚚 Delivery</span>
+          <span class="fulfil-d">Posted from the farm</span>
+        </label>
+        <label class="fulfil-opt" id="opt-collection">
+          <input type="radio" name="fulfil" value="collection" onchange="setFulfil('collection')">
+          <span class="fulfil-t">🧺 Collection</span>
+          <span class="fulfil-d">Pick up at the farm</span>
+        </label>
+      </div>
       <textarea id="cf-address" placeholder="Delivery address" autocomplete="shipping street-address"></textarea>
+      <p id="cf-collect-note" style="display:none;font-size:0.9rem;color:#5d5070;margin:0 0 10px;line-height:1.5;">🧺 Collect from the farm on our opening weekends, <strong>10am&ndash;5pm</strong>. We&rsquo;ll email you once your order is ready.</p>
       <button class="checkout-btn" id="payBtn" onclick="pay()">Pay with SumUp</button>
       <div id="checkoutMsg"></div>
     </div>
@@ -1337,12 +1358,23 @@
   window.closeBasket = function(){ document.getElementById('drawer').classList.remove('open'); document.getElementById('overlay').classList.remove('open'); };
   window.showCheckoutForm = function(){ document.getElementById('checkoutForm').classList.add('show'); document.getElementById('toCheckout').style.display='none'; };
 
+  window.setFulfil = function(type){
+    var addr = document.getElementById('cf-address');
+    var note = document.getElementById('cf-collect-note');
+    document.getElementById('opt-delivery').classList.toggle('selected', type==='delivery');
+    document.getElementById('opt-collection').classList.toggle('selected', type==='collection');
+    if (type==='collection'){ addr.style.display='none'; note.style.display='block'; }
+    else { addr.style.display=''; note.style.display='none'; }
+  };
+
   window.pay = async function(){
     const msg = document.getElementById('checkoutMsg');
     const name = document.getElementById('cf-name').value.trim();
     const email = document.getElementById('cf-email').value.trim();
     const address = document.getElementById('cf-address').value.trim();
-    if (!name || !email || !address){ msg.style.color='#b23'; msg.textContent='Please fill in all delivery details.'; return; }
+    const fulfil = (document.querySelector('input[name="fulfil"]:checked')||{}).value || 'delivery';
+    if (!name || !email){ msg.style.color='#b23'; msg.textContent='Please fill in your name and email.'; return; }
+    if (fulfil==='delivery' && !address){ msg.style.color='#b23'; msg.textContent='Please enter your delivery address.'; return; }
     const items = Object.keys(basket).filter(id=>basket[id]>0).map(id=>({id, quantity:basket[id]}));
     if (!items.length){ msg.style.color='#b23'; msg.textContent='Your basket is empty.'; return; }
     const payBtn = document.getElementById('payBtn');
@@ -1350,7 +1382,7 @@
     try {
       const res = await fetch(API + "/api/checkout", {
         method:'POST', headers:{'Content-Type':'application/json'},
-        body: JSON.stringify({ items, customer:{ name, email, address } })
+        body: JSON.stringify({ items, customer:{ name, email, address }, fulfilment_type: fulfil })
       });
       const data = await res.json();
       if (res.ok && data.url){ window.location.href = data.url; }
