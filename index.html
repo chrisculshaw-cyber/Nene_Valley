@@ -263,6 +263,23 @@
   .event-copy h2 { font-size:clamp(2rem,4vw,3rem); font-weight:300; margin:6px 0 4px; }
   .event-copy h2 em { font-style:italic; color:var(--violet); }
   .event-dates { font-family:'Fraunces',serif; font-size:1.25rem; color:var(--violet); margin-bottom:16px; }
+
+  /* ---------- Eclipse event banner ---------- */
+  .eclipse { position:relative; overflow:hidden; background:linear-gradient(135deg,#1a1230 0%,#2e2140 45%,#4a3a6e 100%); color:#fff; }
+  .eclipse .wrap { position:relative; z-index:2; padding:54px 24px; text-align:center; }
+  .eclipse .ecl-badge { display:inline-block; background:rgba(255,255,255,0.12); border:1px solid rgba(255,255,255,0.35); color:#f3ecff; border-radius:999px; padding:6px 18px; font-size:0.82rem; letter-spacing:0.14em; text-transform:uppercase; margin-bottom:18px; }
+  .eclipse h2 { font-family:'Fraunces',serif; font-weight:300; font-size:clamp(2.2rem,6vw,3.6rem); margin:0 0 6px; color:#fff; }
+  .eclipse h2 em { font-style:italic; color:#c9b6f0; }
+  .eclipse .ecl-when { font-size:1.3rem; font-family:'Fraunces',serif; color:#e7dcf7; margin:0 0 18px; }
+  .eclipse .ecl-lead { max-width:34em; margin:0 auto 26px; color:#e4dcf2; font-size:1.05rem; line-height:1.65; }
+  .eclipse .ecl-facts { display:flex; gap:26px; flex-wrap:wrap; justify-content:center; margin:0 auto 30px; max-width:640px; }
+  .eclipse .ecl-fact { flex:1; min-width:130px; }
+  .eclipse .ecl-fact .n { font-family:'Fraunces',serif; font-size:1.5rem; color:#fff; }
+  .eclipse .ecl-fact .l { font-size:0.85rem; color:#c9bce4; margin-top:2px; }
+  .eclipse .btn.solid { background:#fff; color:#2e2140; border-color:#fff; }
+  .eclipse .btn.solid:hover { background:#e7dcf7; }
+  .eclipse .ecl-sun { position:absolute; top:-60px; right:-60px; width:220px; height:220px; border-radius:50%; background:radial-gradient(circle at 50% 50%, #1a1230 54%, #ffd27a 55%, #ffb84d 60%, transparent 68%); opacity:0.9; z-index:1; }
+  @media (max-width:600px){ .eclipse .ecl-sun{ width:150px; height:150px; top:-40px; right:-40px; } }
   .event-copy > p { color:#4a3d5c; margin-bottom:18px; max-width:42ch; }
   .event-list { list-style:none; padding:0; margin:0 0 24px; }
   .event-list li { padding:6px 0 6px 26px; position:relative; color:#3d3450; }
@@ -325,6 +342,10 @@
   .bk-cal-cell.available.selected .bk-cal-tag { color:#e7dcf7; }
   .bk-cal-cell.available.full { background:#f6ecec; color:#b58a8a; cursor:not-allowed; font-weight:400; }
   .bk-cal-cell.available.full .bk-cal-tag { color:#c08a8a; }
+  .bk-cal-cell.available.eclipse { background:linear-gradient(135deg,#2e2140,#5a4a7a); color:#fff; border-color:#c9b6f0; }
+  .bk-cal-cell.available.eclipse .bk-cal-tag { color:#e7dcf7; }
+  .bk-cal-cell.available.eclipse:hover { background:#4a3a6e; }
+  .bk-cal-cell.available.eclipse.selected { background:var(--violet); border-color:#fff; }
   .bk-cal-legend { margin:12px 0 0; font-size:0.78rem; color:#6d6178; display:flex; align-items:center; gap:6px; flex-wrap:wrap; }
   .bk-cal-legend .dot { width:11px; height:11px; border-radius:3px; display:inline-block; vertical-align:middle; }
   .bk-cal-legend .dot.open { background:var(--lilac-pale); border:1px solid var(--lilac); }
@@ -457,7 +478,22 @@
   </div>
 </div>
 
-<!-- EVENT: Opening Weekends -->
+<!-- ECLIPSE EVENT -->
+<section class="eclipse" id="eclipse">
+  <div class="ecl-sun"></div>
+  <div class="wrap">
+    <span class="ecl-badge">🌒 Special one-night event</span>
+    <h2>Solar <em>Eclipse</em> Evening</h2>
+    <p class="ecl-when">Wednesday 12th August &middot; 5:30pm &ndash; 9:00pm</p>
+    <p class="ecl-lead">Come and experience the solar eclipse from our beautiful lavender fields &mdash; a rare event not to be missed. Bring a picnic, find a spot, and take in a spectacular sight to remember. Our animals are here too, and solar eclipse glasses will be on sale in the shop so you can watch safely. <strong>Spaces are limited to 50 cars, so booking ahead is essential.</strong></p>
+    <div class="ecl-facts">
+      <div class="ecl-fact"><div class="n">£1</div><div class="l">per car &middot; all occupants free</div></div>
+      <div class="ecl-fact"><div class="n">50 cars</div><div class="l">limited &mdash; booking essential</div></div>
+      <div class="ecl-fact"><div class="n">5.30&ndash;9pm</div><div class="l">Wednesday 12th August</div></div>
+    </div>
+    <a class="btn solid" href="#book" onclick="if(window.showBookingForm){setTimeout(window.showBookingForm,400);}">Book your car for the eclipse</a>
+  </div>
+</section>
 <section class="event" id="event">
   <div class="wrap event-grid">
     <div class="event-img">
@@ -489,7 +525,7 @@
   <div class="wrap book-inner">
     <div class="section-label">Book Your Visit</div>
     <h2>Reserve your <em>spot</em></h2>
-    <p class="book-intro">As it&rsquo;s our first season, we&rsquo;re keeping things small &mdash; just 50 cars a day &mdash; so please <strong>book in advance</strong> to be sure of your spot. As a first-year thank-you it&rsquo;s just <strong>£1 per car</strong> and everyone in the car is free. Payment is handled securely by SumUp. We&rsquo;re open <strong>10am &ndash; 5pm</strong> on our opening weekends.</p>
+    <p class="book-intro">We keep visits relaxed and uncrowded, so please <strong>book in advance</strong> to be sure of your spot. It&rsquo;s just <strong>£1 per car</strong> and everyone in the car is free. Payment is handled securely by SumUp. Weekends are <strong>10am&ndash;5pm</strong>; our <strong>eclipse evening on Wed 12th August runs 5.30&ndash;9pm</strong> (limited to 50 cars &mdash; booking essential).</p>
 
     <div id="bk-prompt" style="text-align:center;">
       <button class="btn solid" id="showBookForm" onclick="showBookingForm()">Book your visit</button>
@@ -1421,9 +1457,10 @@
     const info = document.getElementById('bk-dateinfo');
     const d = days.find(x => x.date === sel);
     if (!d){ info.textContent=''; return; }
+    const eventNote = d.is_event ? ' <strong>🌒 Eclipse evening — 5.30pm to 9pm.</strong>' : '';
     if (d.spaces_left <= 0){ info.innerHTML = '<span style="color:#9b2c2c">This date is fully booked — please choose another.</span>'; }
-    else if (d.spaces_left <= 10){ info.innerHTML = `<span style="color:#b9701f">Only ${d.spaces_left} car spaces left on ${fmt(sel)}.</span>`; }
-    else { info.innerHTML = `<span style="color:#2c6e2c">${d.spaces_left} car spaces available on ${fmt(sel)}.</span>`; }
+    else if (d.spaces_left <= 10){ info.innerHTML = `<span style="color:#b9701f">Only ${d.spaces_left} car spaces left on ${fmt(sel)}.${eventNote}</span>`; }
+    else { info.innerHTML = `<span style="color:#2c6e2c">${d.spaces_left} car spaces available on ${fmt(sel)}.${eventNote}</span>`; }
   }
 
   // ---- Calendar view -------------------------------------------------------
@@ -1464,10 +1501,11 @@
       const selected = document.getElementById('bk-date').value === iso;
       if (info){
         const full = info.spaces_left <= 0;
-        const cls = "bk-cal-cell day available" + (full?" full":"") + (selected?" selected":"");
+        const isEvent = info.is_event;
+        const cls = "bk-cal-cell day available" + (full?" full":"") + (isEvent?" eclipse":"") + (selected?" selected":"");
         cells += `<button type="button" class="${cls}" data-date="${iso}" ${full?'aria-disabled="true"':''}>`+
                  `<span class="bk-cal-num">${dnum}</span>`+
-                 (full?'<span class="bk-cal-tag">Full</span>':'<span class="bk-cal-tag">Open</span>')+
+                 (full?'<span class="bk-cal-tag">Full</span>':(isEvent?'<span class="bk-cal-tag">🌒 Eclipse</span>':'<span class="bk-cal-tag">Open</span>'))+
                  `</button>`;
       } else {
         cells += `<div class="bk-cal-cell day"><span class="bk-cal-num">${dnum}</span></div>`;
