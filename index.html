@@ -1256,6 +1256,7 @@
           <span class="fulfil-d">Pick up at the farm</span>
         </label>
       </div>
+      <p id="cf-forced-note" style="display:none;font-size:0.9rem;color:#5a4a7a;background:#f3eef9;border-radius:8px;padding:10px 12px;margin:0 0 10px;line-height:1.5;">🌒 Your basket includes eclipse glasses, which are <strong>collected at the event</strong> on Wednesday 12th August (from 5.30pm) — so this order is set to collection.</p>
       <textarea id="cf-address" placeholder="Delivery address" autocomplete="shipping street-address"></textarea>
       <p id="cf-collect-note" style="display:none;font-size:0.9rem;color:#5d5070;margin:0 0 10px;line-height:1.5;">🧺 Collect from the farm on our opening weekends, <strong>10am&ndash;5pm</strong>. We&rsquo;ll email you once your order is ready.</p>
       <button class="checkout-btn" id="payBtn" onclick="pay()">Pay with SumUp</button>
@@ -1392,7 +1393,40 @@
 
   window.openBasket = function(){ document.getElementById('drawer').classList.add('open'); document.getElementById('overlay').classList.add('open'); };
   window.closeBasket = function(){ document.getElementById('drawer').classList.remove('open'); document.getElementById('overlay').classList.remove('open'); };
-  window.showCheckoutForm = function(){ document.getElementById('checkoutForm').classList.add('show'); document.getElementById('toCheckout').style.display='none'; };
+  // Products that can only be collected (never delivered) — e.g. eclipse glasses
+  // that are handed out at the event. If any is in the basket, the whole order
+  // must be collection.
+  const COLLECTION_ONLY_IDS = ['solar-eclipse-glasses'];
+  function basketHasCollectionOnly(){
+    return Object.keys(basket).some(id => basket[id] > 0 && COLLECTION_ONLY_IDS.includes(id));
+  }
+
+  window.showCheckoutForm = function(){
+    document.getElementById('checkoutForm').classList.add('show');
+    document.getElementById('toCheckout').style.display='none';
+    applyCollectionOnly();
+  };
+
+  function applyCollectionOnly(){
+    var forced = basketHasCollectionOnly();
+    var optDelivery = document.getElementById('opt-delivery');
+    var delRadio = optDelivery.querySelector('input');
+    var colRadio = document.getElementById('opt-collection').querySelector('input');
+    var forcedNote = document.getElementById('cf-forced-note');
+    if (forced){
+      // Lock to collection: select it, disable delivery.
+      colRadio.checked = true; delRadio.checked = false; delRadio.disabled = true;
+      optDelivery.style.opacity = '0.5';
+      optDelivery.style.pointerEvents = 'none';
+      if (forcedNote) forcedNote.style.display = 'block';
+      setFulfil('collection');
+    } else {
+      delRadio.disabled = false;
+      optDelivery.style.opacity = '';
+      optDelivery.style.pointerEvents = '';
+      if (forcedNote) forcedNote.style.display = 'none';
+    }
+  }
 
   window.setFulfil = function(type){
     var addr = document.getElementById('cf-address');
