@@ -213,6 +213,7 @@
     border-radius:8px; cursor:pointer; background:#fff; transition:border-color .15s, background .15s; }
   .fulfil-opt.selected { border-color:#5a4a7a; background:#f5f1fa; }
   .fulfil-opt input { position:absolute; opacity:0; width:0; height:0; margin:0; }
+  .fulfil-opt.disabled { opacity:0.4 !important; text-decoration:line-through; }
   .fulfil-opt .fulfil-t { font-weight:500; font-size:0.98rem; color:#2e2140; }
   .fulfil-opt .fulfil-d { font-size:0.82rem; color:#6d6178; }
   #checkoutMsg { font-size:0.9rem; margin-top:8px; min-height:1.2em; }
@@ -1416,13 +1417,13 @@
     if (forced){
       // Lock to collection: select it, disable delivery.
       colRadio.checked = true; delRadio.checked = false; delRadio.disabled = true;
-      optDelivery.style.opacity = '0.5';
+      optDelivery.classList.add('disabled');
       optDelivery.style.pointerEvents = 'none';
       if (forcedNote) forcedNote.style.display = 'block';
       setFulfil('collection');
     } else {
       delRadio.disabled = false;
-      optDelivery.style.opacity = '';
+      optDelivery.classList.remove('disabled');
       optDelivery.style.pointerEvents = '';
       if (forcedNote) forcedNote.style.display = 'none';
     }
@@ -1431,10 +1432,17 @@
   window.setFulfil = function(type){
     var addr = document.getElementById('cf-address');
     var note = document.getElementById('cf-collect-note');
+    var forced = basketHasCollectionOnly();
     document.getElementById('opt-delivery').classList.toggle('selected', type==='delivery');
     document.getElementById('opt-collection').classList.toggle('selected', type==='collection');
-    if (type==='collection'){ addr.style.display='none'; note.style.display='block'; }
-    else { addr.style.display=''; note.style.display='none'; }
+    if (type==='collection'){
+      addr.style.display='none';
+      // When glasses force collection, the eclipse note is shown instead —
+      // don't also show the generic weekend note (they contradict each other).
+      note.style.display = forced ? 'none' : 'block';
+    } else {
+      addr.style.display=''; note.style.display='none';
+    }
   };
 
   window.pay = async function(){
