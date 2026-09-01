@@ -267,7 +267,16 @@
 
   /* ---------- Autumn / October image banner ---------- */
   .autumn-banner { line-height:0; background:#1a1020; }
-  .autumn-banner img { width:100%; height:auto; display:block; }
+  .autumn-banner img {
+    width:100%;
+    height:clamp(340px, 42vw, 620px);
+    object-fit:cover;
+    object-position:center;
+    display:block;
+  }
+  @media (max-width:600px){
+    .autumn-banner img { height:clamp(280px, 62vw, 360px); }
+  }
   .event-copy > p { color:#4a3d5c; margin-bottom:18px; max-width:42ch; }
   .event-list { list-style:none; padding:0; margin:0 0 24px; }
   .event-list li { padding:6px 0 6px 26px; position:relative; color:#3d3450; }
