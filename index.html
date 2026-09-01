@@ -265,22 +265,9 @@
   .event-copy h2 em { font-style:italic; color:var(--violet); }
   .event-dates { font-family:'Fraunces',serif; font-size:1.25rem; color:var(--violet); margin-bottom:16px; }
 
-  /* ---------- Eclipse event banner ---------- */
-  .eclipse { position:relative; overflow:hidden; background:linear-gradient(135deg,#1a1230 0%,#2e2140 45%,#4a3a6e 100%); color:#fff; }
-  .eclipse .wrap { position:relative; z-index:2; padding:54px 24px; text-align:center; }
-  .eclipse .ecl-badge { display:inline-block; background:rgba(255,255,255,0.12); border:1px solid rgba(255,255,255,0.35); color:#f3ecff; border-radius:999px; padding:6px 18px; font-size:0.82rem; letter-spacing:0.14em; text-transform:uppercase; margin-bottom:18px; }
-  .eclipse h2 { font-family:'Fraunces',serif; font-weight:300; font-size:clamp(2.2rem,6vw,3.6rem); margin:0 0 6px; color:#fff; }
-  .eclipse h2 em { font-style:italic; color:#c9b6f0; }
-  .eclipse .ecl-when { font-size:1.3rem; font-family:'Fraunces',serif; color:#e7dcf7; margin:0 0 18px; }
-  .eclipse .ecl-lead { max-width:34em; margin:0 auto 26px; color:#e4dcf2; font-size:1.05rem; line-height:1.65; }
-  .eclipse .ecl-facts { display:flex; gap:26px; flex-wrap:wrap; justify-content:center; margin:0 auto 30px; max-width:640px; }
-  .eclipse .ecl-fact { flex:1; min-width:130px; }
-  .eclipse .ecl-fact .n { font-family:'Fraunces',serif; font-size:1.5rem; color:#fff; }
-  .eclipse .ecl-fact .l { font-size:0.85rem; color:#c9bce4; margin-top:2px; }
-  .eclipse .btn.solid { background:#fff; color:#2e2140; border-color:#fff; }
-  .eclipse .btn.solid:hover { background:#e7dcf7; }
-  .eclipse .ecl-sun { position:absolute; top:-60px; right:-60px; width:220px; height:220px; border-radius:50%; background:radial-gradient(circle at 50% 50%, #1a1230 54%, #ffd27a 55%, #ffb84d 60%, transparent 68%); opacity:0.9; z-index:1; }
-  @media (max-width:600px){ .eclipse .ecl-sun{ width:150px; height:150px; top:-40px; right:-40px; } }
+  /* ---------- Autumn / October image banner ---------- */
+  .autumn-banner { line-height:0; background:#1a1020; }
+  .autumn-banner img { width:100%; height:auto; display:block; }
   .event-copy > p { color:#4a3d5c; margin-bottom:18px; max-width:42ch; }
   .event-list { list-style:none; padding:0; margin:0 0 24px; }
   .event-list li { padding:6px 0 6px 26px; position:relative; color:#3d3450; }
@@ -479,21 +466,9 @@
   </div>
 </div>
 
-<!-- ECLIPSE EVENT -->
-<section class="eclipse" id="eclipse">
-  <div class="ecl-sun"></div>
-  <div class="wrap">
-    <span class="ecl-badge">🌒 Special one-night event</span>
-    <h2>Solar <em>Eclipse</em> Evening</h2>
-    <p class="ecl-when">Wednesday 12th August &middot; 5:30pm &ndash; 9:00pm</p>
-    <p class="ecl-lead">Come and experience the solar eclipse from our beautiful lavender fields &mdash; a rare event not to be missed. Bring a picnic, find a spot, and take in a spectacular sight to remember. Our animals are here too, and solar eclipse glasses will be on sale in the shop so you can watch safely. <strong>Spaces are limited to 50 cars, so booking ahead is essential.</strong></p>
-    <div class="ecl-facts">
-      <div class="ecl-fact"><div class="n">£1</div><div class="l">per car &middot; all occupants free</div></div>
-      <div class="ecl-fact"><div class="n">50 cars</div><div class="l">limited &mdash; booking essential</div></div>
-      <div class="ecl-fact"><div class="n">5.30&ndash;9pm</div><div class="l">Wednesday 12th August</div></div>
-    </div>
-    <a class="btn solid" href="#book" onclick="if(window.showBookingForm){setTimeout(window.showBookingForm,400);}">Book your car for the eclipse</a>
-  </div>
+<!-- OCTOBER / AUTUMN BANNER -->
+<section class="autumn-banner" id="october">
+  <img src="images/october-banner.png" alt="Nene Valley Lavender — Stay Tuned, October Plans Coming Soon! Pumpkin fun, family activities, seasonal treats, local produce, beautiful fields and autumn magic.">
 </section>
 <section class="event" id="event">
   <div class="wrap event-grid">
@@ -526,7 +501,7 @@
   <div class="wrap book-inner">
     <div class="section-label">Book Your Visit</div>
     <h2>Reserve your <em>spot</em></h2>
-    <p class="book-intro">We keep visits relaxed and uncrowded, so please <strong>book in advance</strong> to be sure of your spot. It&rsquo;s just <strong>£1 per car</strong> and everyone in the car is free. Payment is handled securely by SumUp. Weekends are <strong>10am&ndash;5pm</strong>; our <strong>eclipse evening on Wed 12th August runs 5.30&ndash;9pm</strong> (limited to 50 cars &mdash; booking essential).</p>
+    <p class="book-intro">We keep visits relaxed and uncrowded, so please <strong>book in advance</strong> to be sure of your spot. It&rsquo;s just <strong>£1 per car</strong> and everyone in the car is free. Payment is handled securely by SumUp. We&rsquo;re open <strong>10am&ndash;5pm</strong> on our opening days.</p>
 
     <div id="bk-prompt" style="text-align:center;">
       <button class="btn solid" id="showBookForm" onclick="showBookingForm()">Book your visit</button>
