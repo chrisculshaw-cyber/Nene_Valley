@@ -176,7 +176,12 @@
   .sp-teaser-photo img{width:100%;aspect-ratio:4/3;object-fit:cover;object-position:center 60%;border-radius:14px;box-shadow:0 14px 36px rgba(70,54,30,0.18)}
   a.plaque{display:block;text-decoration:none}
   a.plaque.open:hover{background:var(--comb)}
-  .soon-note{display:inline-block;margin-top:20px!important;font-size:0.95rem!important;color:#f3d79a!important;font-style:italic}
+  /* ---------- Bee Experience ---------- */
+  .bee-exp{background:var(--comb);background-image:radial-gradient(var(--comb-line) 1px,transparent 1px);background-size:22px 22px;border-bottom:1px solid var(--comb-line)}
+  .bee-exp-card{max-width:760px;margin:0 auto;background:#fff;border:1px solid var(--comb-line);border-top:5px solid var(--honey);border-radius:16px;padding:clamp(32px,5vw,56px);text-align:center;box-shadow:0 18px 44px rgba(70,54,30,0.12)}
+  .bee-exp-badge{display:inline-block;font-size:clamp(0.85rem,1.3vw,1rem);font-weight:500;letter-spacing:0.2em;text-transform:uppercase;background:var(--honey-deep);color:#fff;padding:8px 18px;border-radius:999px;margin-bottom:20px}
+  .bee-exp-card p{font-size:1.1rem;color:#4a4236;margin:18px auto 0;max-width:36em}
+  .bee-exp-card .bee-exp-note{font-family:'Fraunces',serif;font-style:italic;color:var(--honey-deep);font-size:1.12rem}
   /* ---------- More experiences ---------- */
   .more-exp{text-align:center;padding:clamp(56px,8vh,96px) 0}
   .more-exp p{max-width:38em;margin:16px auto 0;color:#5c5346;font-size:1.08rem}
@@ -195,6 +200,7 @@
         <li><a href="#bees">Our Bees</a></li>
         <li><a href="#keepers">Beekeepers</a></li>
         <li><a href="#hives">The Hives</a></li>
+        <li><a href="#visits">Hive Visits</a></li>
         <li><a href="#experience">Bee Experience</a></li>
         <li><a href="sponsor.html">Sponsor a Hive</a></li>
         <li><a href="index.html">Lavender Farm</a></li>
@@ -293,20 +299,31 @@
   </div>
 </section>
 
-<!-- BEE EXPERIENCE -->
-<section id="experience" class="visits">
+<!-- HIVE VISITS -->
+<section id="visits" class="visits">
   <div class="wrap">
     <div class="visits-copy">
-      <div class="lede">Coming in 2027</div>
-      <h2 class="big">The Bee <em>Experience</em></h2>
-      <p>From 2027 you&rsquo;ll be able to suit up and visit the hives with us. We&rsquo;ll kit you out in a bee suit and take you up to the apiary to see a working colony up close &mdash; calm, careful, and endlessly fascinating. A favourite with children and grown-ups alike.</p>
-      <p class="soon-note">Dates and booking will be announced alongside our 2027 season.</p>
+      <div class="lede">Hive Visits</div>
+      <h2 class="big">Suit up and <em>say hello</em></h2>
+      <p>There&rsquo;s nothing quite like standing beside a working hive. We kit you out in a bee suit and take you up to the apiary to see the colony up close &mdash; calm, careful, and endlessly fascinating. It&rsquo;s a favourite with children and grown-ups alike.</p>
     </div>
     <div class="visits-grid">
       <figure class="lead"><img src="apiary_web/apiary-visit.jpg" alt="A visitor in a bee suit beside the hives" loading="lazy"></figure>
       <figure><img src="apiary_web/buddies.jpg" alt="A young visitor in a bee suit at the apiary" loading="lazy"></figure>
       <figure><img src="apiary_web/apiary-visit-2.jpg" alt="A visitor inspecting a hive in a bee suit" loading="lazy"></figure>
       <figure><img src="apiary_web/blake.jpg" alt="Blake in his bee suit beside Paw Buddies, the hive he sponsors" loading="lazy"></figure>
+    </div>
+  </div>
+</section>
+
+<!-- BEE EXPERIENCE -->
+<section id="experience" class="bee-exp">
+  <div class="wrap">
+    <div class="bee-exp-card">
+      <span class="bee-exp-badge">Coming in 2027</span>
+      <h2 class="big">The Bee <em>Experience</em></h2>
+      <p>From 2027 you&rsquo;ll be able to suit up and visit the hives with us. We&rsquo;ll kit you out in a bee suit and take you up to the apiary to see a working colony up close &mdash; calm, careful, and endlessly fascinating. A favourite with children and grown-ups alike.</p>
+      <p class="bee-exp-note">Dates and booking will be announced alongside our 2027 season.</p>
     </div>
   </div>
 </section>
@@ -325,6 +342,7 @@
     <div class="f-links">
       <a href="#bees">Our Bees</a>
       <a href="#keepers">Beekeepers</a>
+      <a href="#visits">Hive Visits</a>
       <a href="#experience">Bee Experience</a>
       <a href="sponsor.html">Sponsor a Hive</a>
       <a href="index.html">Lavender Farm</a>
