@@ -265,6 +265,9 @@
   /* ---------- Event ---------- */
   .event { background: linear-gradient(180deg, var(--lilac-pale, #ece3f7), var(--paper)); padding: clamp(50px,8vh,90px) 0; }
   .event-grid { display:grid; grid-template-columns: 0.9fr 1.1fr; gap:48px; align-items:center; }
+  .event-band { padding: clamp(48px,8vh,80px) 0; text-align:center; background:var(--paper,#f6f1fb); }
+  .event-band .eb-thanks { font-family:'Fraunces',serif; font-style:italic; font-size:clamp(1.3rem,3vw,1.7rem); color:var(--violet,#5a4a7a); margin:0 0 14px; }
+  .event-band .eb-find { font-size:0.95rem; color:#6d6178; margin:0; }
   .event-img img { width:100%; border-radius:8px; box-shadow:0 12px 40px rgba(46,33,64,0.18); display:block; }
   .event-copy h2 { font-size:clamp(2rem,4vw,3rem); font-weight:300; margin:6px 0 4px; }
   .event-copy h2 em { font-style:italic; color:var(--violet); }
@@ -453,7 +456,7 @@
     <nav id="nav">
       <button class="nav-toggle" id="navToggle" aria-label="Menu">&#9776;</button>
       <ul>
-        <li><a href="#event">Visit Us</a></li>
+        <li><a href="#visit">Visit Us</a></li>
         <li><a href="#shop">Shop</a></li>
         <li><a href="#track">Track Order</a></li>
         <li><a href="#story">Our Story</a></li>
@@ -509,28 +512,10 @@
     </div>
   </div>
 </section>
-<section class="event" id="event">
-  <div class="wrap event-grid">
-    <div class="event-img">
-      <img src="images/Event-v2.jpeg" alt="Nene Valley Lavender — First Year Opening Offer, Opening Weekends 20th June to 2nd August"
-        onerror="this.closest('.event-img').style.display='none'">
-    </div>
-    <div class="event-copy">
-      <div class="section-label">Our First Season</div>
-      <h2>Be part of our <em>story</em></h2>
-      <p class="event-dates">Opening weekends &middot; 20th June &ndash; 2nd August &middot; 10am &ndash; 5pm</p>
-      <p>This is our very first season welcoming visitors &mdash; and there&rsquo;s something special about being here at the beginning. Our lavender is settling into its second year, our goats are in kid, the ducklings are growing fast and our hens are busy laying. Come and watch it all unfold, and grow with us.</p>
-      <ul class="event-list">
-        <li>Wander our young lavender fields as they come into their own</li>
-        <li>Meet the animals &mdash; goats (with kids on the way), ducklings, hens &amp; bees</li>
-        <li>Shop our lavender products &amp; honey on site</li>
-        <li>Parking on site &middot; dogs welcome on leads</li>
-      </ul>
-      <div class="event-cta">
-        <span class="ticket">Thank you for a wonderful first year &middot; 2027 dates coming soon</span>
-      </div>
-      <p class="event-find">Old Dry Ln N, Brigstock, North Northants, NN14 3HY &middot; what3words: <strong>nuzzling.plant.patch</strong></p>
-    </div>
+<section class="event-band" id="event">
+  <div class="wrap">
+    <p class="eb-thanks">Thank you for a wonderful first year &middot; 2027 dates coming soon</p>
+    <p class="eb-find">Old Dry Ln N, Brigstock, North Northants, NN14 3HY &middot; what3words: <strong>nuzzling.plant.patch</strong></p>
   </div>
 </section>
 
