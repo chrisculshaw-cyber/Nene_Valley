@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Nene Valley Apiary — Our Bees &amp; Sponsor a Hive | Brigstock</title>
-<meta name="description" content="Meet the bees of Nene Valley Apiary in Brigstock — rows of hand-kept hives among the lavender. Sponsor a hive, get your own named plaque, and come and meet your bees.">
+<meta name="description" content="Meet the bees of Nene Valley Apiary in Brigstock. Sponsor a hive for 12 months to fund feeding, winter care and treatment for a colony — and see your name on its plaque.">
 <link rel="icon" href="favicon.ico">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -82,7 +82,7 @@
   .keepers-photo{margin:0}
   .keepers-photo img{width:100%;aspect-ratio:4/5;object-fit:cover;object-position:center 60%;border-radius:14px;box-shadow:0 18px 44px rgba(70,54,30,0.2)}
   .keepers-photo figcaption{font-family:'Fraunces',serif;font-style:italic;color:#7a6f63;font-size:0.95rem;margin-top:12px;text-align:center}
-  .keepers .intro{font-size:1.08rem;color:#473f52;margin:18px 0 30px}
+  .keepers .intro{font-size:1.08rem;color:#473f52;margin:18px 0 0}
   .keeper{padding:22px 0 22px 22px;border-left:3px solid var(--honey)}
   .keeper + .keeper{margin-top:18px}
   .keeper h3{font-size:1.45rem;margin:0}
@@ -91,6 +91,14 @@
   @media (max-width:860px){.keepers-grid{grid-template-columns:1fr;gap:36px}}
 
   /* ---------- Sponsor a hive ---------- */
+  .sp-lead{font-size:1.1rem;color:#4a4236;margin:18px 0 0}
+  .sp-funds{background:#fff;border:1px solid var(--comb-line);border-left:4px solid var(--honey);border-radius:10px;padding:20px 22px;margin:24px 0 6px}
+  .sp-funds-title{font-size:0.75rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--honey-deep);margin-bottom:10px}
+  .sp-funds ul{margin:0;padding:0;list-style:none;display:grid;gap:8px}
+  .sp-funds li{padding-left:24px;position:relative;color:#4a4236}
+  .sp-funds li::before{content:"";position:absolute;left:2px;top:0.55em;width:9px;height:9px;border-radius:2px;background:var(--honey);transform:rotate(45deg)}
+  .sp-funds strong{color:var(--ink);font-weight:500}
+  .sp-renew{margin:22px 0 0;font-size:0.95rem;color:#6b604f;font-style:italic}
   .sponsor{background:var(--comb);background-image:radial-gradient(var(--comb-line) 1px,transparent 1px);background-size:22px 22px;border-top:1px solid var(--comb-line);border-bottom:1px solid var(--comb-line)}
   .sponsor .intro-grid{grid-template-columns:0.9fr 1.1fr}
   .steps{list-style:none;margin:28px 0 0;padding:0;display:grid;gap:18px}
@@ -184,7 +192,7 @@
   <div class="wrap hero-copy">
     <div class="kicker">Brigstock &middot; North Northamptonshire</div>
     <h1>Nene Valley <span class="script">Apiary</span></h1>
-    <p>Our bees live among the lavender &mdash; rows of hand-kept hives, each one with its own character. Come and meet them, taste their honey, or sponsor a hive of your very own.</p>
+    <p>Our bees live among the lavender &mdash; rows of hand-kept hives, each one with its own character. Come and meet them, taste their honey, or sponsor a hive for the year to help keep its colony strong.</p>
   </div>
 </section>
 
@@ -218,17 +226,8 @@
       <div class="body">
         <div class="lede">Meet the Beekeepers</div>
         <h2 class="big">The two of us <em>behind the hives</em></h2>
-        <p class="intro">Every hive here is looked after by hand, by two people who love this patch of Northamptonshire and everything that buzzes across it.</p>
-        <div class="keeper">
-          <h3>Chris</h3>
-          <div class="role">Beekeeper</div>
-          <p>Chris looks after the colonies week in, week out &mdash; inspections, swarm control, keeping the bees healthy through winter and taking off the honey they can spare. NBKA-trained, and happiest in a bee suit on a sunny afternoon.</p>
-        </div>
-        <div class="keeper">
-          <h3>Daren</h3>
-          <div class="role">Beekeeper &amp; lavender grower</div>
-          <p>Daren keeps bees alongside growing the lavender they can&rsquo;t get enough of &mdash; so he looks after both ends of the story, from the flowers in the field to the colonies at the top of it. It&rsquo;s his fields that give our honey its floral note, and his welcome that makes the apiary feel like home for bees and visitors alike.</p>
-        </div>
+        <p class="intro">Every hive here is looked after by hand, by the two of us. We&rsquo;re Chris and Daren, both beekeepers, and between us we do the weekly inspections, the swarm control, the feeding and treating, and the careful work of getting each colony through winter strong and healthy &mdash; taking off only the honey the bees can spare.</p>
+        <p class="intro">The field is Daren&rsquo;s too. He owns the land the apiary sits on, grows the lavender the bees can&rsquo;t get enough of, and distils it into the essential oils at the heart of our Nene Valley Lavender products. So when our bees work the lavender rows each summer, they&rsquo;re foraging on flowers we&rsquo;ve planted and tended ourselves &mdash; which is what gives our honey its gentle, floral note.</p>
       </div>
     </div>
   </div>
@@ -240,22 +239,32 @@
     <div class="intro-grid">
       <div class="body">
         <div class="lede">Sponsor a Hive</div>
-        <h2 class="big">Give a hive a <em>home &amp; a name</em></h2>
-        <p style="font-size:1.1rem;color:#4a4236">Sponsoring a hive is a lovely way to support local beekeeping &mdash; whether for yourself, as a gift, or in memory of someone. Your hive gets its own named slate plaque out in the apiary, and you&rsquo;re welcome to come and meet your bees.</p>
+        <h2 class="big">Sponsor a hive <em>for 12 months</em></h2>
+        <p class="sp-lead">A sponsorship doesn&rsquo;t buy a hive &mdash; the bees stay in our care. What it does is fund a full year of looking after one colony, so it comes through winter healthy and strong. In return, the hive carries your name for the year.</p>
+        <div class="sp-funds">
+          <div class="sp-funds-title">Your 12-month sponsorship helps us to</div>
+          <ul>
+            <li><strong>Feed the colony</strong> when forage runs short in autumn and early spring</li>
+            <li><strong>Get them through winter</strong> &mdash; the hardest months for any colony</li>
+            <li><strong>Treat them</strong> against varroa mite and keep disease at bay</li>
+            <li><strong>Keep the colony strong</strong> with regular inspections through the season</li>
+          </ul>
+        </div>
         <ol class="steps">
           <li>
             <span class="mark" aria-hidden="true">&#127803;</span>
-            <div><h3>Choose your hive</h3><p>Pick a hive to sponsor and give it a name &mdash; your family name, a loved one, or something playful. It&rsquo;s entirely yours.</p></div>
+            <div><h3>Sponsor a hive for a year</h3><p>Choose a name for it &mdash; your family, a loved one, a business, or something playful. Lovely as a gift or in memory of someone, too.</p></div>
           </li>
           <li>
             <span class="mark" aria-hidden="true">&#127991;&#65039;</span>
-            <div><h3>We add your plaque</h3><p>We fit a smart slate plaque to your hive with its name and your dedication, out in the apiary for all to see.</p></div>
+            <div><h3>We add your plaque</h3><p>A smart slate plaque goes on the hive with its name and your dedication, out in the apiary for the 12 months of your sponsorship.</p></div>
           </li>
           <li>
-            <span class="mark" aria-hidden="true">&#127855;</span>
-            <div><h3>Come and meet your bees</h3><p>Visit your hive through the season, see how the colony is doing, and share in a little of the honey they make.</p></div>
+            <span class="mark" aria-hidden="true">&#128029;</span>
+            <div><h3>Follow the colony&rsquo;s year</h3><p>Come and see the hive you&rsquo;re supporting and how its colony is getting on through the seasons.</p></div>
           </li>
         </ol>
+        <p class="sp-renew">Sponsorships run for 12 months and can be renewed each year.</p>
         <p style="margin-top:30px"><a class="btn solid" href="#enquire">Enquire about sponsoring</a></p>
       </div>
       <div class="sponsor-photo">
@@ -271,7 +280,7 @@
     <div class="hives-head">
       <div class="lede" style="text-align:center">The Hives</div>
       <h2 class="big">Meet the colony</h2>
-      <p>Some of the characters already buzzing away in our apiary &mdash; each with a plaque, a name, and a sponsor who looks out for them.</p>
+      <p>Some of the characters already buzzing away in our apiary &mdash; each with a plaque, a name, and a sponsor helping us care for them this year.</p>
     </div>
     <div class="plaques">
       <div class="plaque taken"><div class="name">The Bartley Hive</div><div class="by">Sponsored by Simon Bartley</div><span class="status">Sponsored</span></div>
@@ -288,7 +297,7 @@
       <div class="plaque taken"><div class="name">Paw Buddies</div><div class="by">Sponsored by Blake Casswell</div><span class="status">Sponsored</span></div>
       <div class="plaque taken"><div class="name">Roy</div><span class="status">Named hive</span></div>
       <div class="plaque taken"><div class="name">Ann</div><span class="status">Named hive</span></div>
-      <div class="plaque open"><div class="name">Your hive here</div><div class="by">Choose a name &amp; make it yours</div><span class="status">Available</span></div>
+      <div class="plaque open"><div class="name">Your hive here</div><div class="by">Sponsor this hive for 12 months</div><span class="status">Available</span></div>
     </div>
   </div>
 </section>
@@ -313,8 +322,8 @@
 <!-- CTA -->
 <section id="enquire" class="cta">
   <div class="wrap">
-    <h2>Fancy a hive to <em>call your own?</em></h2>
-    <p>Sponsorships, hive visits, honey &mdash; whatever you&rsquo;d like to know, we&rsquo;d love to hear from you. Drop us a line and we&rsquo;ll tell you everything.</p>
+    <h2>Sponsor a hive <em>for the year?</em></h2>
+    <p>Sponsoring a colony, renewing a sponsorship, hive visits, honey &mdash; whatever you&rsquo;d like to know, we&rsquo;d love to hear from you. Drop us a line and we&rsquo;ll tell you everything.</p>
     <a class="btn solid" href="mailto:nenevalleylavender@mail.com?subject=Sponsor%20a%20Hive%20enquiry">Email us about a hive</a>
     <a class="btn" href="index.html#contact">Visit the lavender farm</a>
   </div>
