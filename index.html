@@ -265,17 +265,33 @@
   .event-copy h2 em { font-style:italic; color:var(--violet); }
   .event-dates { font-family:'Fraunces',serif; font-size:1.25rem; color:var(--violet); margin-bottom:16px; }
 
-  /* ---------- Autumn / October image banner ---------- */
-  .autumn-banner { line-height:0; background:#1a1020; }
-  .autumn-banner img {
-    width:100%;
-    height:clamp(340px, 42vw, 620px);
-    object-fit:cover;
-    object-position:center;
-    display:block;
+  /* ---------- Thank you / season close banner ---------- */
+  .thankyou-banner {
+    position:relative;
+    background:#2e2140 url("images/eclipse.jpg") center 30% / cover no-repeat;
+    min-height:clamp(380px, 48vw, 600px);
+    display:flex; align-items:center;
   }
+  .thankyou-banner .ty-overlay {
+    width:100%;
+    background:linear-gradient(180deg, rgba(30,20,48,0.72) 0%, rgba(30,20,48,0.42) 45%, rgba(30,20,48,0.66) 100%);
+    padding:64px 24px;
+  }
+  .thankyou-banner .ty-inner { max-width:720px; margin:0 auto; text-align:center; color:#fff; }
+  .thankyou-banner .ty-badge {
+    display:inline-block; background:rgba(255,255,255,0.15); border:1px solid rgba(255,255,255,0.4);
+    color:#fff; border-radius:999px; padding:6px 18px; font-size:0.8rem; letter-spacing:0.14em;
+    text-transform:uppercase; margin-bottom:18px;
+  }
+  .thankyou-banner h2 {
+    font-family:'Fraunces',Georgia,serif; font-weight:400; color:#fff;
+    font-size:clamp(1.9rem,5vw,3rem); margin:0 0 16px; line-height:1.15;
+    text-shadow:0 2px 18px rgba(0,0,0,0.45);
+  }
+  .thankyou-banner p { font-size:1.08rem; line-height:1.65; margin:0 auto 14px; max-width:40em; text-shadow:0 1px 10px rgba(0,0,0,0.5); }
+  .thankyou-banner .ty-soon { font-size:1.15rem; color:#f3ecff; }
   @media (max-width:600px){
-    .autumn-banner img { height:clamp(280px, 62vw, 360px); }
+    .thankyou-banner .ty-overlay { padding:48px 20px; }
   }
   .event-copy > p { color:#4a3d5c; margin-bottom:18px; max-width:42ch; }
   .event-list { list-style:none; padding:0; margin:0 0 24px; }
@@ -458,7 +474,6 @@
       <p class="lead reveal d3">A little farm at Drumbledrone Eden in Brigstock, North Northamptonshire, on the edge of the incredibly scenic Nene Valley, growing several varieties of English lavender and producing 100% organic essential oil, honey and skincare.</p>
       <div class="reveal d4" style="display:flex; gap:16px; flex-wrap:wrap;">
         <a class="btn solid" href="#shop">Explore the shop</a>
-        <a class="btn" href="#book" onclick="if(window.showBookingForm){setTimeout(window.showBookingForm,400);}">Plan a visit</a>
       </div>
       <p class="reveal d4" style="margin-top:14px; font-size:0.9rem; color:#6d6178;">🚚 UK delivery &middot; 🧺 collection from the farm on opening weekends</p>
     </div>
@@ -475,9 +490,16 @@
   </div>
 </div>
 
-<!-- OCTOBER / AUTUMN BANNER -->
-<section class="autumn-banner" id="october">
-  <img src="images/october-banner.png" alt="Nene Valley Lavender — Stay Tuned, October Plans Coming Soon! Pumpkin fun, family activities, seasonal treats, local produce, beautiful fields and autumn magic.">
+<!-- THANK YOU / SEASON CLOSE BANNER -->
+<section class="thankyou-banner" id="thankyou">
+  <div class="ty-overlay">
+    <div class="ty-inner">
+      <span class="ty-badge">Our first year</span>
+      <h2>Thank you for a wonderful first year</h2>
+      <p>What a season it’s been. From wandering the lavender fields to our Solar Eclipse Evening under the summer sky, thank you to everyone who came and made our very first year so special.</p>
+      <p class="ty-soon">We’ll be announcing our opening dates for <strong>2027</strong> soon — we can’t wait to welcome you back.</p>
+    </div>
+  </div>
 </section>
 <section class="event" id="event">
   <div class="wrap event-grid">
@@ -497,79 +519,9 @@
         <li>Parking on site &middot; dogs welcome on leads</li>
       </ul>
       <div class="event-cta">
-        <span class="ticket">First-year offer: just £1 per car &middot; all occupants free</span>
-        <a class="btn solid" href="#book" id="revealBook">Book your visit</a>
+        <span class="ticket">Thank you for a wonderful first year &middot; 2027 dates coming soon</span>
       </div>
       <p class="event-find">Old Dry Ln N, Brigstock, North Northants, NN14 3HY &middot; what3words: <strong>nuzzling.plant.patch</strong></p>
-    </div>
-  </div>
-</section>
-
-<!-- BOOKING -->
-<section class="book" id="book">
-  <div class="wrap book-inner">
-    <div class="section-label">Book Your Visit</div>
-    <h2>Reserve your <em>spot</em></h2>
-    <p class="book-intro">We keep visits relaxed and uncrowded, so please <strong>book in advance</strong> to be sure of your spot. It&rsquo;s just <strong>£1 per car</strong> and everyone in the car is free. Payment is handled securely by SumUp. We&rsquo;re open <strong>10am&ndash;5pm</strong> on our opening days.</p>
-
-    <div id="bk-prompt" style="text-align:center;">
-      <button class="btn solid" id="showBookForm" onclick="showBookingForm()">Book your visit</button>
-    </div>
-
-    <div class="book-card" id="bookCard" style="display:none;">
-      <div class="bk-field">
-        <span>Choose a date</span>
-        <div id="bk-calendar" class="bk-cal"><p class="bk-cal-loading">Loading dates…</p></div>
-        <input type="hidden" id="bk-date" value="">
-        <small id="bk-dateinfo"></small>
-      </div>
-      <label class="bk-field">
-        <span>Car registration</span>
-        <input type="text" id="bk-reg" placeholder="e.g. AB12 CDE" maxlength="12">
-        <small>Booking is £1 per car. Everyone in the car is free.</small>
-      </label>
-      <div class="bk-row bk-row-3">
-        <label class="bk-field">
-          <span>Adults</span>
-          <input type="number" id="bk-adults" min="0" value="2">
-          <small>16+</small>
-        </label>
-        <label class="bk-field">
-          <span>Children</span>
-          <input type="number" id="bk-children" min="0" value="0">
-          <small>under 16</small>
-        </label>
-        <label class="bk-field">
-          <span>Infants</span>
-          <input type="number" id="bk-infants" min="0" value="0">
-          <small>under 2</small>
-        </label>
-      </div>
-      <label class="bk-field">
-        <span>Your name</span>
-        <input type="text" id="bk-name" autocomplete="name">
-      </label>
-      <label class="bk-field">
-        <span>Email</span>
-        <input type="email" id="bk-email" autocomplete="email">
-      </label>
-      <label class="bk-field">
-        <span>Phone number</span>
-        <input type="tel" id="bk-phone" autocomplete="tel" placeholder="In case we need to reach you">
-      </label>
-
-      <div class="bk-disclaimer">
-        <strong>Before you visit — please read</strong>
-        <p>Nene Valley Lavender is a <strong>working farm</strong>. The ground is uneven and there may be holes, ditches, mud, slopes, water, farm machinery and animals. Sturdy footwear is strongly advised and suitable clothing for the weather. Please supervise children at all times and keep dogs on leads. Visitors enter and explore the farm <strong>at their own risk</strong>; please take care and follow any signs or instructions from staff on the day.</p>
-        <label class="bk-check bk-agree">
-          <input type="checkbox" id="bk-disclaimer"> I have read and understood the visitor safety notice above.
-        </label>
-      </div>
-
-      <div class="bk-total"><span>Total</span><span id="bk-total">£1.00</span></div>
-      <button class="btn solid" id="bk-pay" onclick="bookVisit()">Book &amp; pay with SumUp</button>
-      <div id="bk-msg"></div>
-      <div id="bk-suggest"></div>
     </div>
   </div>
 </section>
@@ -626,8 +578,7 @@
       <div class="section-label">Visit Us</div>
       <h2>Wander the <em>lavender fields</em></h2>
       <p>Come and wander around our lavender fields and enjoy the peace and tranquillity. Bring a picnic and make an afternoon of it.</p>
-      <p style="margin-bottom:30px;">Book your visit online &mdash; just £1 per car &mdash; and we&rsquo;d love to welcome you to the farm.</p>
-      <a class="btn solid" href="#book" onclick="if(window.showBookingForm){setTimeout(window.showBookingForm,400);}">Book a visit</a>
+      <p style="margin-bottom:30px;">Our first season has drawn to a close &mdash; thank you to everyone who visited. We&rsquo;ll be announcing our 2027 opening dates soon.</p>
     </div>
     <div class="info-card">
       <div class="info-block">
