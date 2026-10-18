@@ -227,16 +227,14 @@
 
   /* ---------- Intro / philosophy ---------- */
   .intro { padding: clamp(80px,12vh,140px) 0; position:relative; }
+  .intro-head { margin-bottom: 36px; }
   .intro-grid { display:grid; grid-template-columns: 0.9fr 1.1fr; gap: 70px; align-items:start; }
   .section-label { font-size:0.78rem; letter-spacing:0.28em; text-transform:uppercase; color:var(--gold); }
   .intro h2 { font-size: clamp(2rem,4vw,3.1rem); font-weight:300; margin: 18px 0 0; }
   .intro h2 em { font-style:italic; color: var(--violet); }
   .intro .body p { margin-bottom: 22px; font-size:1.08rem; color:#4a3d5c; }
-  .story-photo { margin:32px 0 0; }
-  /* On desktop, drop the body text down so it starts level with the photo */
-  @media (min-width:861px){
-    .intro-grid .body { margin-top:93px; }
-  }
+  .story-photo { margin:0; }
+
   .story-photo img { width:100%; height:auto; border-radius:14px; box-shadow:0 14px 40px rgba(90,74,122,0.18); display:block; }
   .story-photo figcaption { margin-top:12px; font-family:'Fraunces',serif; font-style:italic; font-size:0.95rem; color:#6d6178; text-align:center; }
   .pull { font-family:'Tangerine',cursive; font-size: clamp(2.4rem,5vw,3.4rem); color: var(--violet); line-height:1; margin: 10px 0 26px; }
@@ -298,7 +296,10 @@
   .thankyou-banner p { font-size:1.08rem; line-height:1.65; margin:0 auto 14px; max-width:40em; text-shadow:0 1px 10px rgba(0,0,0,0.5); }
   .thankyou-banner .ty-soon { font-size:1.15rem; color:#f3ecff; }
   @media (max-width:600px){
-    .thankyou-banner .ty-overlay { padding:48px 20px; }
+    .thankyou-banner .ty-overlay {
+      padding:48px 20px;
+      background:linear-gradient(180deg, rgba(26,16,40,0.82) 0%, rgba(26,16,40,0.74) 50%, rgba(26,16,40,0.82) 100%);
+    }
   }
   .event-copy > p { color:#4a3d5c; margin-bottom:18px; max-width:42ch; }
   .event-list { list-style:none; padding:0; margin:0 0 24px; }
@@ -537,19 +538,21 @@
   <div class="sprig s2" aria-hidden="true">
     <svg viewBox="0 0 60 120"><path d="M30 118 V52"/><path d="M30 70 C18 66 14 56 16 48 C24 50 30 58 30 64"/><path d="M30 64 C42 60 46 50 44 42 C36 44 30 52 30 58"/><ellipse class="bud" cx="30" cy="20" rx="9" ry="15"/><circle class="bud" cx="24" cy="14" r="3.5"/><circle class="bud" cx="36" cy="16" r="3.5"/><circle class="bud" cx="30" cy="8" r="3.5"/></svg>
   </div>
-  <div class="wrap intro-grid">
-    <div>
+  <div class="wrap intro-inner">
+    <div class="intro-head">
       <div class="section-label">Our Story</div>
       <h2>Calm, grown <em>by hand</em></h2>
-      <figure class="story-photo">
-        <img src="images/tilly.jpg" alt="Picking lavender by hand in the fields at Nene Valley Lavender" loading="lazy">
-        <figcaption>Hand-picking the lavender on the farm</figcaption>
-      </figure>
     </div>
+    <div class="intro-grid">
+    <figure class="story-photo">
+      <img src="images/tilly.jpg" alt="Picking lavender by hand in the fields at Nene Valley Lavender" loading="lazy">
+      <figcaption>Hand-picking the lavender on the farm</figcaption>
+    </figure>
     <div class="body">
       <p class="pull">Our aim is simple &mdash; to create products that relax you.</p>
       <p>We want to give you an experience of calming wellbeing when you come and wander around our lavender fields. Lavender has been used for centuries for many remedies, and wandering among our plants is extremely peaceful.</p>
       <p>Everything we make &mdash; the essential oil, the skincare blends, the honey and beeswax from our own hives &mdash; comes from this one small farm in the stunning Nene Valley, made to promote both mental and body wellbeing.</p>
+    </div>
     </div>
   </div>
 </section>
