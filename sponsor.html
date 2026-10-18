@@ -189,7 +189,7 @@
   .sp-form legend{font-family:'Fraunces',serif;font-size:1.3rem;color:var(--ink);margin-bottom:12px;display:flex;align-items:center;gap:10px}
   .sp-form .num{display:inline-flex;width:30px;height:30px;border-radius:50%;background:var(--honey-deep);color:#fff;font-family:'Jost',sans-serif;font-size:0.9rem;align-items:center;justify-content:center}
   .sp-form label{display:block;font-size:0.92rem;color:#4a4236;margin:0 0 14px}
-  .sp-form input[type=text],.sp-form input[type=email],.sp-form input[type=tel]{display:block;width:100%;margin-top:6px;padding:13px 14px;font:inherit;font-size:1rem;color:var(--ink);background:var(--paper);border:1px solid var(--line);border-radius:8px}
+  .sp-form input[type=text],.sp-form input[type=email],.sp-form input[type=tel],.sp-form input[type=date]{display:block;width:100%;margin-top:6px;padding:13px 14px;font:inherit;font-size:1rem;color:var(--ink);background:var(--paper);border:1px solid var(--line);border-radius:8px}
   .sp-form input:focus{outline:2px solid var(--honey);outline-offset:1px;border-color:var(--honey)}
   .sp-form input.bad{border-color:#b23;background:#fff6f6}
   .sp-form .opt{color:var(--muted);font-size:0.85rem}
@@ -325,6 +325,8 @@
             <div id="sp-gift-fields" hidden>
               <label>Their name<input type="text" id="sp-recipient-name" maxlength="80"></label>
               <label>Their email <span class="opt">(optional &mdash; so we can send them the hive updates)</span><input type="email" id="sp-recipient-email" maxlength="120"></label>
+              <label>Gift date <span class="opt">(optional &mdash; e.g. a birthday)</span><input type="date" id="sp-gift-date"></label>
+              <p class="hint">We&rsquo;ll email them that morning to tell them about their hive, and their 12 months start from that day. Leave blank to start straight away.</p>
             </div>
           </fieldset>
 
@@ -393,6 +395,11 @@
     var $ = function(id){ return document.getElementById(id); };
     var form = $('spForm'); if(!form) return;
 
+    // Gift date limits: today .. one year ahead (UK date)
+    function todayISO(){ return new Date().toLocaleDateString('en-CA', { timeZone: 'Europe/London' }); }
+    function maxISO(){ var d = new Date(todayISO() + 'T00:00:00Z'); d.setUTCDate(d.getUTCDate() + 366); return d.toISOString().slice(0,10); }
+    $('sp-gift-date').min = todayISO(); $('sp-gift-date').max = maxISO();
+
     // Gift toggle
     function syncGift(){
       var gift = (document.querySelector('input[name="sp-for"]:checked')||{}).value === 'gift';
@@ -428,6 +435,7 @@
         is_gift: gift,
         recipient_name: gift ? $('sp-recipient-name').value.trim() : '',
         recipient_email: gift ? $('sp-recipient-email').value.trim() : '',
+        gift_date: gift ? $('sp-gift-date').value : '',
         hive_name: $('sp-hive-name').value.trim(),
         sponsor_line: $('sp-sponsor-line').value.trim(),
         updates_opt_in: $('sp-updates').checked
@@ -436,6 +444,7 @@
       if (!emailRe.test(d.buyer_email)) return fail($('sp-buyer-email'), 'Please enter a valid email address.');
       if (gift && !d.recipient_name) return fail($('sp-recipient-name'), 'Please tell us who the sponsorship is for.');
       if (gift && d.recipient_email && !emailRe.test(d.recipient_email)) return fail($('sp-recipient-email'), 'Their email address doesn\u2019t look right.');
+      if (d.gift_date && (d.gift_date < todayISO() || d.gift_date > maxISO())) return fail($('sp-gift-date'), 'Please choose a gift date between today and a year from now.');
       if (!d.hive_name) return fail($('sp-hive-name'), 'Please choose a name for the hive.');
       if (!d.sponsor_line) return fail($('sp-sponsor-line'), 'Please tell us who the hive is sponsored by.');
 
