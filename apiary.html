@@ -76,6 +76,20 @@
   .intro-figs .tall{grid-row:span 2;aspect-ratio:3/4}
   .intro-figs .wide{aspect-ratio:4/3}
 
+  /* ---------- Meet the beekeepers ---------- */
+  .keepers{border-top:1px solid var(--line)}
+  .keepers-grid{display:grid;grid-template-columns:0.9fr 1.1fr;gap:60px;align-items:center}
+  .keepers-photo{margin:0}
+  .keepers-photo img{width:100%;aspect-ratio:4/5;object-fit:cover;object-position:center 60%;border-radius:14px;box-shadow:0 18px 44px rgba(70,54,30,0.2)}
+  .keepers-photo figcaption{font-family:'Fraunces',serif;font-style:italic;color:#7a6f63;font-size:0.95rem;margin-top:12px;text-align:center}
+  .keepers .intro{font-size:1.08rem;color:#473f52;margin:18px 0 30px}
+  .keeper{padding:22px 0 22px 22px;border-left:3px solid var(--honey)}
+  .keeper + .keeper{margin-top:18px}
+  .keeper h3{font-size:1.45rem;margin:0}
+  .keeper .role{font-size:0.75rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--honey-deep);margin:6px 0 10px}
+  .keeper p{margin:0;color:#5c5346;font-size:1.02rem}
+  @media (max-width:860px){.keepers-grid{grid-template-columns:1fr;gap:36px}}
+
   /* ---------- Sponsor a hive ---------- */
   .sponsor{background:var(--comb);background-image:radial-gradient(var(--comb-line) 1px,transparent 1px);background-size:22px 22px;border-top:1px solid var(--comb-line);border-bottom:1px solid var(--comb-line)}
   .sponsor .intro-grid{grid-template-columns:0.9fr 1.1fr}
@@ -156,6 +170,7 @@
       <button class="nav-toggle" id="navToggle" aria-label="Menu" aria-expanded="false">&#9776;</button>
       <ul id="navList">
         <li><a href="#bees">Our Bees</a></li>
+        <li><a href="#keepers">Beekeepers</a></li>
         <li><a href="#sponsor">Sponsor a Hive</a></li>
         <li><a href="#hives">The Hives</a></li>
         <li><a href="#visits">Hive Visits</a></li>
@@ -185,9 +200,36 @@
         <p>Beekeeping is slow, careful work: checking the colonies, keeping them healthy and strong, and taking only the honey the bees can spare. It&rsquo;s a labour of love, and one we&rsquo;re always happy to share with visitors.</p>
       </div>
       <div class="intro-figs">
-        <img class="tall" src="apiary_web/me.jpg" alt="Daren in his beekeeping suit at the apiary" loading="lazy">
+        <img class="tall" src="apiary_web/me.jpg" alt="Chris in his beekeeping suit at the apiary" loading="lazy">
         <img class="wide" src="apiary_web/two-bees.jpg" alt="Honeybees at the entrance of a hive" loading="lazy">
         <img class="wide" src="apiary_web/honey.jpg" alt="A jar of Nene Valley lavender honey" loading="lazy">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MEET THE BEEKEEPERS -->
+<section id="keepers" class="keepers">
+  <div class="wrap">
+    <div class="keepers-grid">
+      <figure class="keepers-photo">
+        <img src="apiary_web/me-daren.jpg" alt="Chris and Daren at the farm, Daren waving from the trailer" loading="lazy">
+        <figcaption>Chris &amp; Daren, hard at work (mostly)</figcaption>
+      </figure>
+      <div class="body">
+        <div class="lede">Meet the Beekeepers</div>
+        <h2 class="big">The two of us <em>behind the hives</em></h2>
+        <p class="intro">Every hive here is looked after by hand, by two people who love this patch of Northamptonshire and everything that buzzes across it.</p>
+        <div class="keeper">
+          <h3>Chris</h3>
+          <div class="role">Beekeeper</div>
+          <p>Chris looks after the colonies week in, week out &mdash; inspections, swarm control, keeping the bees healthy through winter and taking off the honey they can spare. NBKA-trained, and happiest in a bee suit on a sunny afternoon.</p>
+        </div>
+        <div class="keeper">
+          <h3>Daren</h3>
+          <div class="role">Beekeeper &amp; lavender grower</div>
+          <p>Daren keeps bees alongside growing the lavender they can&rsquo;t get enough of &mdash; so he looks after both ends of the story, from the flowers in the field to the colonies at the top of it. It&rsquo;s his fields that give our honey its floral note, and his welcome that makes the apiary feel like home for bees and visitors alike.</p>
+        </div>
       </div>
     </div>
   </div>
@@ -282,6 +324,7 @@
   <div class="wrap">
     <div class="f-links">
       <a href="#bees">Our Bees</a>
+      <a href="#keepers">Beekeepers</a>
       <a href="#sponsor">Sponsor a Hive</a>
       <a href="#visits">Hive Visits</a>
       <a href="index.html">Lavender Farm</a>
