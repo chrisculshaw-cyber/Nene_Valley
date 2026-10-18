@@ -64,8 +64,8 @@
 
   /* ---------- Section rhythm ---------- */
   section{padding:clamp(64px,10vh,120px) 0}
-  .lede{font-size:0.8rem;letter-spacing:0.26em;text-transform:uppercase;color:var(--honey-deep);margin-bottom:18px}
-  h2.big{font-size:clamp(2rem,4.4vw,3.3rem);font-weight:300}
+  .lede{font-size:clamp(0.95rem,1.4vw,1.1rem);font-weight:500;letter-spacing:0.22em;text-transform:uppercase;color:var(--honey-deep);margin-bottom:14px}
+  h2.big{font-size:clamp(2.4rem,5.2vw,4rem);font-weight:300}
   h2.big em{font-style:italic;color:var(--honey-deep)}
 
   /* ---------- Intro: the bees ---------- */
@@ -166,6 +166,22 @@
     .visits-grid{grid-template-columns:1fr 1fr;gap:10px}
   }
   @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+  /* ---------- Sponsor teaser ---------- */
+  .sp-teaser{background:var(--comb);background-image:radial-gradient(var(--comb-line) 1px,transparent 1px);background-size:22px 22px;border-top:1px solid var(--comb-line);border-bottom:1px solid var(--comb-line);padding:clamp(48px,7vh,80px) 0}
+  .sp-teaser-grid{display:grid;grid-template-columns:1.3fr 0.7fr;gap:50px;align-items:center}
+  .sp-teaser p{font-size:1.06rem;color:#4a4236;margin:16px 0 18px;max-width:36em}
+  .sp-chips{list-style:none;padding:0;margin:0 0 26px;display:flex;flex-wrap:wrap;gap:8px}
+  .sp-chips li{font-size:0.78rem;letter-spacing:0.08em;padding:6px 14px;border-radius:999px;background:#fff;border:1px solid var(--comb-line);color:var(--honey-deep)}
+  .sp-teaser-photo{margin:0}
+  .sp-teaser-photo img{width:100%;aspect-ratio:4/3;object-fit:cover;object-position:center 60%;border-radius:14px;box-shadow:0 14px 36px rgba(70,54,30,0.18)}
+  a.plaque{display:block;text-decoration:none}
+  a.plaque.open:hover{background:var(--comb)}
+  .soon-note{display:inline-block;margin-top:20px!important;font-size:0.95rem!important;color:#f3d79a!important;font-style:italic}
+  /* ---------- More experiences ---------- */
+  .more-exp{text-align:center;padding:clamp(56px,8vh,96px) 0}
+  .more-exp p{max-width:38em;margin:16px auto 0;color:#5c5346;font-size:1.08rem}
+  .more-exp a{color:var(--honey-deep)}
+  @media (max-width:860px){.sp-teaser-grid{grid-template-columns:1fr;gap:30px}}
 </style>
 </head>
 <body id="top">
@@ -178,9 +194,9 @@
       <ul id="navList">
         <li><a href="#bees">Our Bees</a></li>
         <li><a href="#keepers">Beekeepers</a></li>
-        <li><a href="#sponsor">Sponsor a Hive</a></li>
         <li><a href="#hives">The Hives</a></li>
-        <li><a href="#visits">Hive Visits</a></li>
+        <li><a href="#experience">Bee Experience</a></li>
+        <li><a href="sponsor.html">Sponsor a Hive</a></li>
         <li><a href="index.html">Lavender Farm</a></li>
       </ul>
     </nav>
@@ -233,43 +249,18 @@
   </div>
 </section>
 
-<!-- SPONSOR A HIVE -->
-<section id="sponsor" class="sponsor">
+<!-- SPONSOR A HIVE (teaser) -->
+<section id="sponsor" class="sp-teaser">
   <div class="wrap">
-    <div class="intro-grid">
-      <div class="body">
+    <div class="sp-teaser-grid">
+      <div>
         <div class="lede">Sponsor a Hive</div>
-        <h2 class="big">Sponsor a hive <em>for 12 months</em></h2>
-        <p class="sp-lead">A sponsorship doesn&rsquo;t buy a hive &mdash; the bees stay in our care. What it does is fund a full year of looking after one colony, so it comes through winter healthy and strong. In return, the hive carries your name for the year.</p>
-        <div class="sp-funds">
-          <div class="sp-funds-title">Your 12-month sponsorship helps us to</div>
-          <ul>
-            <li><strong>Feed the colony</strong> when forage runs short in autumn and early spring</li>
-            <li><strong>Get them through winter</strong> &mdash; the hardest months for any colony</li>
-            <li><strong>Treat them</strong> against varroa mite and keep disease at bay</li>
-            <li><strong>Keep the colony strong</strong> with regular inspections through the season</li>
-          </ul>
-        </div>
-        <ol class="steps">
-          <li>
-            <span class="mark" aria-hidden="true">&#127803;</span>
-            <div><h3>Sponsor a hive for a year</h3><p>Choose a name for it &mdash; your family, a loved one, a business, or something playful. Lovely as a gift or in memory of someone, too.</p></div>
-          </li>
-          <li>
-            <span class="mark" aria-hidden="true">&#127991;&#65039;</span>
-            <div><h3>We add your plaque</h3><p>A smart slate plaque goes on the hive with its name and your dedication, out in the apiary for the 12 months of your sponsorship.</p></div>
-          </li>
-          <li>
-            <span class="mark" aria-hidden="true">&#128029;</span>
-            <div><h3>Follow the colony&rsquo;s year</h3><p>Come and see the hive you&rsquo;re supporting and how its colony is getting on through the seasons.</p></div>
-          </li>
-        </ol>
-        <p class="sp-renew">Sponsorships run for 12 months and can be renewed each year.</p>
-        <p style="margin-top:30px"><a class="btn solid" href="#enquire">Enquire about sponsoring</a></p>
+        <h2 class="big">Help a colony <em>through its year</em></h2>
+        <p>A 12-month sponsorship funds the feeding, winter care and treatment that keep one of our colonies strong &mdash; and your name goes on its plaque for the year.</p>
+        <ul class="sp-chips"><li>Feeding</li><li>Overwintering</li><li>Treatment</li><li>Inspections</li></ul>
+        <a class="btn solid" href="sponsor.html">How sponsorship works</a>
       </div>
-      <div class="sponsor-photo">
-        <img src="apiary_web/buzzingham.jpg" alt="A sponsored hive plaque — Buzzingham Palace" loading="lazy">
-      </div>
+      <figure class="sp-teaser-photo"><img src="apiary_web/buzzingham.jpg" alt="A sponsored hive plaque — Buzzingham Palace" loading="lazy"></figure>
     </div>
   </div>
 </section>
@@ -297,18 +288,19 @@
       <div class="plaque taken"><div class="name">Paw Buddies</div><div class="by">Sponsored by Blake Casswell</div><span class="status">Sponsored</span></div>
       <div class="plaque taken"><div class="name">Roy</div><span class="status">Named hive</span></div>
       <div class="plaque taken"><div class="name">Ann</div><span class="status">Named hive</span></div>
-      <div class="plaque open"><div class="name">Your hive here</div><div class="by">Sponsor this hive for 12 months</div><span class="status">Available</span></div>
+      <a class="plaque open" href="sponsor.html"><div class="name">Your hive here</div><div class="by">Sponsor this hive for 12 months</div><span class="status">Available</span></a>
     </div>
   </div>
 </section>
 
-<!-- HIVE VISITS -->
-<section id="visits" class="visits">
+<!-- BEE EXPERIENCE -->
+<section id="experience" class="visits">
   <div class="wrap">
     <div class="visits-copy">
-      <div class="lede">Hive Visits</div>
-      <h2 class="big">Suit up and <em>say hello</em></h2>
-      <p>There&rsquo;s nothing quite like standing beside a working hive. We kit you out in a bee suit and take you up to the apiary to see the colony up close &mdash; calm, careful, and endlessly fascinating. It&rsquo;s a favourite with children and grown-ups alike.</p>
+      <div class="lede">Coming in 2027</div>
+      <h2 class="big">The Bee <em>Experience</em></h2>
+      <p>From 2027 you&rsquo;ll be able to suit up and visit the hives with us. We&rsquo;ll kit you out in a bee suit and take you up to the apiary to see a working colony up close &mdash; calm, careful, and endlessly fascinating. A favourite with children and grown-ups alike.</p>
+      <p class="soon-note">Dates and booking will be announced alongside our 2027 season.</p>
     </div>
     <div class="visits-grid">
       <figure class="lead"><img src="apiary_web/apiary-visit.jpg" alt="A visitor in a bee suit beside the hives" loading="lazy"></figure>
@@ -319,13 +311,12 @@
   </div>
 </section>
 
-<!-- CTA -->
-<section id="enquire" class="cta">
+<!-- MORE EXPERIENCES -->
+<section id="more" class="more-exp">
   <div class="wrap">
-    <h2>Sponsor a hive <em>for the year?</em></h2>
-    <p>Sponsoring a colony, renewing a sponsorship, hive visits, honey &mdash; whatever you&rsquo;d like to know, we&rsquo;d love to hear from you. Drop us a line and we&rsquo;ll tell you everything.</p>
-    <a class="btn solid" href="mailto:nenevalleylavender@mail.com?subject=Sponsor%20a%20Hive%20enquiry">Email us about a hive</a>
-    <a class="btn" href="index.html#contact">Visit the lavender farm</a>
+    <div class="lede" style="text-align:center">Coming soon</div>
+    <h2 class="big">More <em>experiences</em> on the way</h2>
+    <p>The Bee Experience is just the start. We&rsquo;re planning more ways to spend time on the farm, among the lavender and with the bees. Keep an eye on this page &mdash; or <a href="mailto:nenevalleylavender@mail.com?subject=Tell%20me%20about%20new%20experiences">drop us a line</a> and we&rsquo;ll let you know first.</p>
   </div>
 </section>
 
@@ -334,8 +325,8 @@
     <div class="f-links">
       <a href="#bees">Our Bees</a>
       <a href="#keepers">Beekeepers</a>
-      <a href="#sponsor">Sponsor a Hive</a>
-      <a href="#visits">Hive Visits</a>
+      <a href="#experience">Bee Experience</a>
+      <a href="sponsor.html">Sponsor a Hive</a>
       <a href="index.html">Lavender Farm</a>
     </div>
     Nene Valley Apiary &middot; Old Dry Lane North, Brigstock, North Northants, NN14 3HY<br>

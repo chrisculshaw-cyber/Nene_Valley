@@ -1,0 +1,277 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sponsor a Hive — Nene Valley Apiary | Brigstock</title>
+<meta name="description" content="Sponsor a hive at Nene Valley Apiary, Brigstock, for 12 months. Your sponsorship funds feeding, winter care and treatment for one colony — and your name goes on its plaque for the year.">
+<link rel="icon" href="favicon.ico">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Jost:wght@300;400;500&family=Tangerine:wght@700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#2e2140;          /* shared aubergine */
+    --paper:#f7f3ee;        /* shared warm cream */
+    --paper-deep:#efe7dd;
+    --honey:#c6882b;        /* apiary accent — amber */
+    --honey-deep:#9a6410;
+    --comb:#f6e7c2;         /* pale honeycomb band */
+    --comb-line:#e7d4a6;
+    --slate:#3a4249;        /* real plaque colour */
+    --slate-2:#2c3339;
+    --line:#ddd1c4;
+    --muted:#6f6555;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;font-family:'Jost',sans-serif;color:var(--ink);background:var(--paper);line-height:1.65;-webkit-font-smoothing:antialiased}
+  img{max-width:100%;display:block}
+  h1,h2,h3{font-family:'Fraunces',serif;font-weight:400;line-height:1.12;margin:0}
+  a{color:inherit}
+  .wrap{max-width:1140px;margin:0 auto;padding:0 28px}
+
+  /* ---------- Header / nav ---------- */
+  header{position:sticky;top:0;z-index:40;background:rgba(247,243,238,0.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  .nav-inner{max-width:1140px;margin:0 auto;padding:14px 28px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+  .nav-logo img{height:46px;width:auto}
+  nav ul{list-style:none;display:flex;gap:30px;margin:0;padding:0}
+  nav a{text-decoration:none;font-size:0.9rem;letter-spacing:0.04em;position:relative;padding:4px 0}
+  nav a::after{content:"";position:absolute;left:0;bottom:-2px;width:0;height:1px;background:var(--honey);transition:width .35s ease}
+  nav a:hover::after{width:100%}
+  .nav-toggle{display:none;background:none;border:none;font-size:1.6rem;color:var(--ink);cursor:pointer}
+
+  /* ---------- Hero ---------- */
+  .hero{position:relative;min-height:clamp(440px,70vh,660px);display:flex;align-items:flex-end;
+    background:var(--ink) url("apiary_web/apiary.jpg") center 42% / cover no-repeat}
+  .hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(28,20,42,0.30) 0%,rgba(28,20,42,0.10) 40%,rgba(28,20,42,0.78) 100%)}
+  .hero-copy{position:relative;z-index:2;color:#fff;padding:0 0 56px}
+  .hero .kicker{font-size:0.82rem;letter-spacing:0.34em;text-transform:uppercase;color:#f6e7c2;margin-bottom:14px}
+  .hero h1{font-size:clamp(2.6rem,7vw,5rem);font-weight:300;color:#fff;text-shadow:0 2px 30px rgba(0,0,0,0.35)}
+  .hero h1 .script{font-family:'Tangerine',cursive;font-weight:700;color:#f3d79a;font-size:1.25em;line-height:0.8;display:inline-block}
+  .hero p{max-width:34em;margin:18px 0 0;font-size:1.12rem;color:#f3ece2;text-shadow:0 1px 14px rgba(0,0,0,0.4)}
+
+  /* ---------- Buttons ---------- */
+  .btn{display:inline-block;font-family:'Jost',sans-serif;font-size:0.82rem;letter-spacing:0.16em;text-transform:uppercase;
+    padding:15px 34px;border:1px solid var(--honey-deep);color:var(--honey-deep);background:transparent;text-decoration:none;
+    transition:background .25s,color .25s,border-color .25s;cursor:pointer}
+  .btn:hover{background:var(--honey-deep);color:#fff}
+  .btn.solid{background:var(--honey-deep);color:#fff;border-color:var(--honey-deep)}
+  .btn.solid:hover{background:var(--ink);border-color:var(--ink)}
+  .btn.onDark{border-color:#f3d79a;color:#fff}
+  .btn.onDark:hover{background:#f3d79a;color:var(--ink)}
+
+  /* ---------- Section rhythm ---------- */
+  section{padding:clamp(64px,10vh,120px) 0}
+  .lede{font-size:clamp(0.95rem,1.4vw,1.1rem);font-weight:500;letter-spacing:0.22em;text-transform:uppercase;color:var(--honey-deep);margin-bottom:14px}
+  h2.big{font-size:clamp(2.4rem,5.2vw,4rem);font-weight:300}
+  h2.big em{font-style:italic;color:var(--honey-deep)}
+
+  /* ---------- Intro: the bees ---------- */
+  .intro-grid{display:grid;grid-template-columns:1.05fr 0.95fr;gap:60px;align-items:center}
+  .intro-grid .body p{font-size:1.08rem;margin:0 0 20px;color:#473f52}
+  .intro-figs{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:auto auto;gap:14px}
+  .intro-figs img{width:100%;height:100%;object-fit:cover;border-radius:12px;box-shadow:0 14px 36px rgba(70,54,30,0.16)}
+  .intro-figs .tall{grid-row:span 2;aspect-ratio:3/4}
+  .intro-figs .wide{aspect-ratio:4/3}
+
+  /* ---------- Meet the beekeepers ---------- */
+  .keepers{border-top:1px solid var(--line)}
+  .keepers-grid{display:grid;grid-template-columns:0.9fr 1.1fr;gap:60px;align-items:center}
+  .keepers-photo{margin:0}
+  .keepers-photo img{width:100%;aspect-ratio:4/5;object-fit:cover;object-position:center 60%;border-radius:14px;box-shadow:0 18px 44px rgba(70,54,30,0.2)}
+  .keepers-photo figcaption{font-family:'Fraunces',serif;font-style:italic;color:#7a6f63;font-size:0.95rem;margin-top:12px;text-align:center}
+  .keepers .intro{font-size:1.08rem;color:#473f52;margin:18px 0 0}
+  .keeper{padding:22px 0 22px 22px;border-left:3px solid var(--honey)}
+  .keeper + .keeper{margin-top:18px}
+  .keeper h3{font-size:1.45rem;margin:0}
+  .keeper .role{font-size:0.75rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--honey-deep);margin:6px 0 10px}
+  .keeper p{margin:0;color:#5c5346;font-size:1.02rem}
+  @media (max-width:860px){.keepers-grid{grid-template-columns:1fr;gap:36px}}
+
+  /* ---------- Sponsor a hive ---------- */
+  .sp-lead{font-size:1.1rem;color:#4a4236;margin:22px 0 0}
+  .sp-funds{background:#fff;border:1px solid var(--comb-line);border-left:4px solid var(--honey);border-radius:10px;padding:20px 22px;margin:24px 0 6px}
+  .sp-funds-title{font-size:0.75rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--honey-deep);margin-bottom:10px}
+  .sp-funds ul{margin:0;padding:0;list-style:none;display:grid;gap:8px}
+  .sp-funds li{padding-left:24px;position:relative;color:#4a4236}
+  .sp-funds li::before{content:"";position:absolute;left:2px;top:0.55em;width:9px;height:9px;border-radius:2px;background:var(--honey);transform:rotate(45deg)}
+  .sp-funds strong{color:var(--ink);font-weight:500}
+  .sp-renew{margin:22px 0 0;font-size:0.95rem;color:#6b604f;font-style:italic}
+  .sponsor{background:var(--comb);background-image:radial-gradient(var(--comb-line) 1px,transparent 1px);background-size:22px 22px;border-top:1px solid var(--comb-line);border-bottom:1px solid var(--comb-line)}
+  .sponsor .intro-grid{grid-template-columns:0.9fr 1.1fr}
+  .steps{list-style:none;margin:28px 0 0;padding:0;display:grid;gap:18px}
+  .steps li{display:flex;gap:16px;align-items:flex-start}
+  .steps .mark{flex:none;width:42px;height:42px;border-radius:50%;background:var(--honey-deep);color:#fff;display:flex;align-items:center;justify-content:center;font-size:1.2rem}
+  .steps h3{font-size:1.15rem;margin:0 0 2px}
+  .steps p{margin:0;color:#5c5346;font-size:1rem}
+  .sponsor-photo img{width:100%;border-radius:14px;box-shadow:0 18px 44px rgba(70,54,30,0.2);aspect-ratio:3/4;object-fit:cover}
+
+  /* ---------- The sponsored hives (slate plaque cards) ---------- */
+  .hives-head{text-align:center;max-width:46em;margin:0 auto 50px}
+  .hives-head p{color:#5c5346;font-size:1.08rem;margin:16px 0 0}
+  .plaques{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:18px}
+  .plaque{background:linear-gradient(155deg,var(--slate),var(--slate-2));border-radius:12px;padding:26px 22px;color:#eef1f3;
+    text-align:center;box-shadow:0 10px 26px rgba(44,51,57,0.28);border:1px solid rgba(255,255,255,0.06);position:relative;overflow:hidden}
+  .plaque::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 50% 0%,rgba(255,255,255,0.09),transparent 60%)}
+  .plaque .name{font-family:'Fraunces',serif;font-style:italic;font-weight:500;font-size:1.3rem;position:relative}
+  .plaque .by{font-size:0.82rem;letter-spacing:0.06em;color:#b9c2c8;margin-top:8px;position:relative}
+  .plaque.taken .status{display:inline-block;margin-top:14px;font-size:0.68rem;letter-spacing:0.16em;text-transform:uppercase;color:#f3d79a;position:relative}
+  .plaque.open{background:#fff;border:1.5px dashed var(--honey);color:var(--ink);box-shadow:none}
+  .plaque.open::before{display:none}
+  .plaque.open .name{color:var(--honey-deep);font-style:normal;font-weight:400}
+  .plaque.open .by{color:var(--muted)}
+  .plaque.open .status{display:inline-block;margin-top:14px;font-size:0.68rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--honey-deep)}
+
+  /* ---------- Hive visits ---------- */
+  .visits{background:var(--ink);color:#f3ece2}
+  .visits h2.big{color:#fff}
+  .visits h2.big em{color:#f3d79a}
+  .visits .lede{color:#f3d79a}
+  .visits-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:46px}
+  .visits-grid figure{margin:0;position:relative;border-radius:14px;overflow:hidden}
+  .visits-grid img{width:100%;height:100%;object-fit:cover;aspect-ratio:3/4}
+  .visits-grid .lead{grid-row:span 1}
+  .visits-copy{max-width:40em}
+  .visits-copy p{color:#e4dcd0;font-size:1.08rem;margin:16px 0 0}
+
+  /* ---------- CTA ---------- */
+  .cta{text-align:center;background:var(--comb);background-image:radial-gradient(var(--comb-line) 1px,transparent 1px);background-size:22px 22px;border-top:1px solid var(--comb-line)}
+  .cta h2{font-size:clamp(1.9rem,4vw,2.9rem);font-weight:300}
+  .cta h2 em{font-style:italic;color:var(--honey-deep)}
+  .cta p{max-width:34em;margin:16px auto 30px;color:#5c5346;font-size:1.1rem}
+  .cta .btn{margin:0 8px 10px}
+
+  /* ---------- Footer ---------- */
+  footer{background:var(--ink);color:#cfc5d9;padding:48px 0;text-align:center;font-size:0.92rem}
+  footer a{color:#f3d79a;text-decoration:none}
+  footer .f-links{margin:0 0 14px}
+  footer .f-links a{margin:0 12px;color:#e8e1f0}
+
+  /* ---------- Responsive ---------- */
+  @media (max-width:860px){
+    nav ul{position:fixed;inset:64px 0 auto 0;background:var(--paper);flex-direction:column;gap:0;padding:8px 0;border-bottom:1px solid var(--line);display:none}
+    nav ul.open{display:flex}
+    nav li{padding:12px 28px}
+    .nav-toggle{display:block}
+    .intro-grid{grid-template-columns:1fr;gap:34px}
+    .sponsor .intro-grid{grid-template-columns:1fr}
+    .sponsor-photo{max-width:420px;margin:0 auto}
+    .visits-grid{grid-template-columns:1fr 1fr}
+    .visits-grid .lead{grid-column:auto}
+  }
+  @media (max-width:520px){
+    .intro-figs{grid-template-columns:1fr 1fr}
+    .visits-grid{grid-template-columns:1fr 1fr;gap:10px}
+  }
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+  .hero.sp-hero{min-height:clamp(320px,48vh,460px);background-image:url("apiary_web/apiary-1.jpg");background-position:center 50%}
+  .sp-back{text-align:center;padding:56px 0 64px;border-top:1px solid var(--line)}
+  .sp-back p{color:#5c5346;font-size:1.05rem;margin:0 0 22px}
+  .sp-back .btn{margin:0 8px 10px}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav-inner">
+    <a class="nav-logo" href="index.html"><img src="images/logo_1701860470.webp" alt="Nene Valley Lavender"></a>
+    <nav id="nav">
+      <button class="nav-toggle" id="navToggle" aria-label="Menu" aria-expanded="false">&#9776;</button>
+      <ul id="navList">
+        <li><a href="apiary.html">The Apiary</a></li>
+        <li><a href="apiary.html#hives">The Hives</a></li>
+        <li><a href="apiary.html#experience">Bee Experience</a></li>
+        <li><a href="#sponsor">Sponsor a Hive</a></li>
+        <li><a href="index.html">Lavender Farm</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero sp-hero" style="padding:0">
+  <div class="wrap hero-copy">
+    <div class="kicker">Nene Valley Apiary</div>
+    <h1>Sponsor a <span class="script">Hive</span></h1>
+    <p>Help one of our colonies through its year &mdash; and see your name on its plaque.</p>
+  </div>
+</section>
+
+<!-- SPONSOR A HIVE -->
+<section id="sponsor" class="sponsor">
+  <div class="wrap">
+    <div class="intro-grid">
+      <div class="body">
+        <div class="lede">How it works</div>
+        <h2 class="big">Sponsor a hive <em>for 12 months</em></h2>
+        <p class="sp-lead">A sponsorship doesn&rsquo;t buy a hive &mdash; the bees stay in our care. What it does is fund a full year of looking after one colony, so it comes through winter healthy and strong. In return, the hive carries your name for the year.</p>
+        <div class="sp-funds">
+          <div class="sp-funds-title">Your 12-month sponsorship helps us to</div>
+          <ul>
+            <li><strong>Feed the colony</strong> when forage runs short in autumn and early spring</li>
+            <li><strong>Get them through winter</strong> &mdash; the hardest months for any colony</li>
+            <li><strong>Treat them</strong> against varroa mite and keep disease at bay</li>
+            <li><strong>Keep the colony strong</strong> with regular inspections through the season</li>
+          </ul>
+        </div>
+        <ol class="steps">
+          <li>
+            <span class="mark" aria-hidden="true">&#127803;</span>
+            <div><h3>Sponsor a hive for a year</h3><p>Choose a name for it &mdash; your family, a loved one, a business, or something playful. Lovely as a gift or in memory of someone, too.</p></div>
+          </li>
+          <li>
+            <span class="mark" aria-hidden="true">&#127991;&#65039;</span>
+            <div><h3>We add your plaque</h3><p>A smart slate plaque goes on the hive with its name and your dedication, out in the apiary for the 12 months of your sponsorship.</p></div>
+          </li>
+          <li>
+            <span class="mark" aria-hidden="true">&#128029;</span>
+            <div><h3>Follow the colony&rsquo;s year</h3><p>Come and see the hive you&rsquo;re supporting and how its colony is getting on through the seasons.</p></div>
+          </li>
+        </ol>
+        <p class="sp-renew">Sponsorships run for 12 months and can be renewed each year.</p>
+        <p style="margin-top:30px"><a class="btn solid" href="mailto:nenevalleylavender@mail.com?subject=Sponsor%20a%20Hive%20enquiry">Email us about sponsoring</a></p>
+      </div>
+      <div class="sponsor-photo">
+        <img src="apiary_web/buzzingham.jpg" alt="A sponsored hive plaque — Buzzingham Palace" loading="lazy">
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sp-back">
+  <div class="wrap">
+    <p>See the hives our sponsors are already supporting, or find out more about our bees.</p>
+    <a class="btn" href="apiary.html#hives">Meet the sponsored hives</a>
+    <a class="btn" href="apiary.html">Back to the apiary</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="f-links">
+      <a href="apiary.html">The Apiary</a>
+      <a href="apiary.html#hives">The Hives</a>
+      <a href="apiary.html#experience">Bee Experience</a>
+      <a href="index.html">Lavender Farm</a>
+    </div>
+    Nene Valley Apiary &middot; Old Dry Lane North, Brigstock, North Northants, NN14 3HY<br>
+    what3words: nuzzling.plant.patch &middot; <a href="mailto:nenevalleylavender@mail.com">nenevalleylavender@mail.com</a>
+  </div>
+</footer>
+
+<script>
+  // Mobile nav toggle
+  (function(){
+    var t=document.getElementById('navToggle'), l=document.getElementById('navList');
+    if(t&&l){ t.addEventListener('click',function(){
+      var open=l.classList.toggle('open');
+      t.setAttribute('aria-expanded',open?'true':'false');
+    });
+    l.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){l.classList.remove('open');t.setAttribute('aria-expanded','false');});});
+    }
+  })();
+</script>
+</body>
+</html>
