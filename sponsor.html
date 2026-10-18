@@ -170,6 +170,44 @@
   .sp-back{text-align:center;padding:56px 0 64px;border-top:1px solid var(--line)}
   .sp-back p{color:#5c5346;font-size:1.05rem;margin:0 0 22px}
   .sp-back .btn{margin:0 8px 10px}
+  /* ---------- Price + form ---------- */
+  .sp-buy{background:#fff;border-top:1px solid var(--line)}
+  .sp-buy-grid{display:grid;grid-template-columns:0.85fr 1.15fr;gap:56px;align-items:start}
+  .sp-price{background:var(--comb);border:1px solid var(--comb-line);border-radius:16px;padding:32px 30px;position:sticky;top:96px}
+  .sp-price-amount{font-family:'Fraunces',serif;font-size:clamp(3rem,6vw,4.2rem);font-weight:400;color:var(--ink);line-height:1}
+  .sp-price-amount span{display:block;font-family:'Jost',sans-serif;font-size:0.95rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--honey-deep);margin-top:8px}
+  .sp-incl{list-style:none;padding:0;margin:24px 0 0;display:grid;gap:10px}
+  .sp-incl li{position:relative;padding-left:28px;color:#4a4236}
+  .sp-incl li::before{content:"\2713";position:absolute;left:0;top:0;color:var(--honey-deep);font-weight:600}
+  .sp-incl strong{color:var(--ink);font-weight:500}
+  .sp-price-note{font-size:0.95rem;color:#6b604f;margin:20px 0 0}
+  .sp-preview{margin-top:26px}
+  .sp-preview-label{font-size:0.75rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--honey-deep);margin-bottom:10px}
+  .sp-preview .name{word-break:break-word}
+  .sp-form .big{margin-bottom:8px}
+  .sp-form fieldset{border:0;padding:0;margin:28px 0 0}
+  .sp-form legend{font-family:'Fraunces',serif;font-size:1.3rem;color:var(--ink);margin-bottom:12px;display:flex;align-items:center;gap:10px}
+  .sp-form .num{display:inline-flex;width:30px;height:30px;border-radius:50%;background:var(--honey-deep);color:#fff;font-family:'Jost',sans-serif;font-size:0.9rem;align-items:center;justify-content:center}
+  .sp-form label{display:block;font-size:0.92rem;color:#4a4236;margin:0 0 14px}
+  .sp-form input[type=text],.sp-form input[type=email],.sp-form input[type=tel]{display:block;width:100%;margin-top:6px;padding:13px 14px;font:inherit;font-size:1rem;color:var(--ink);background:var(--paper);border:1px solid var(--line);border-radius:8px}
+  .sp-form input:focus{outline:2px solid var(--honey);outline-offset:1px;border-color:var(--honey)}
+  .sp-form input.bad{border-color:#b23;background:#fff6f6}
+  .sp-form .opt{color:var(--muted);font-size:0.85rem}
+  .sp-form .hint{font-size:0.85rem;color:var(--muted);margin:-6px 0 0}
+  .sp-choice{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:14px}
+  .sp-form label.radio{display:flex;align-items:center;gap:8px;padding:12px 18px;border:1px solid var(--line);border-radius:999px;background:var(--paper);cursor:pointer;margin:0}
+  .sp-form label.radio:has(input:checked){border-color:var(--honey-deep);background:var(--comb);color:var(--ink)}
+  .sp-form label.check{display:flex;gap:10px;align-items:flex-start;margin:26px 0 0;cursor:pointer}
+  .sp-form label.check input{margin-top:4px}
+  .sp-pay{width:100%;margin-top:26px;font-size:0.95rem;padding:18px}
+  .sp-pay:disabled{opacity:0.6;cursor:default}
+  .sp-msg{min-height:1.3em;margin:12px 0 0;font-size:0.95rem}
+  .sp-secure{font-size:0.85rem;color:var(--muted);margin:6px 0 0}
+  .sp-thanks{background:var(--comb);border:1px solid var(--comb-line);border-top:5px solid var(--honey);border-radius:16px;padding:36px}
+  .sp-thanks p{color:#4a4236;font-size:1.06rem;margin:16px 0 0}
+  .sp-thanks .btn{margin-top:24px}
+  .sp-ref{font-size:0.95rem!important;color:var(--muted)!important}
+  @media (max-width:860px){.sp-buy-grid{grid-template-columns:1fr;gap:36px}.sp-price{position:static}}
 </style>
 </head>
 <body>
@@ -231,11 +269,93 @@
           </li>
         </ol>
         <p class="sp-renew">Sponsorships run for 12 months and can be renewed each year.</p>
-        <p style="margin-top:30px"><a class="btn solid" href="mailto:nenevalleylavender@mail.com?subject=Sponsor%20a%20Hive%20enquiry">Email us about sponsoring</a></p>
+        <p style="margin-top:30px"><a class="btn solid" href="#sponsor-now">Sponsor a hive &mdash; &pound;55</a></p>
       </div>
       <div class="sponsor-photo">
         <img src="apiary_web/buzzingham.jpg" alt="A sponsored hive plaque — Buzzingham Palace" loading="lazy">
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICE + FORM -->
+<section id="sponsor-now" class="sp-buy">
+  <div class="wrap">
+    <div class="sp-buy-grid">
+
+      <aside class="sp-price">
+        <div class="lede">What you get</div>
+        <div class="sp-price-amount">&pound;55<span>for 12 months</span></div>
+        <ul class="sp-incl">
+          <li><strong>A named slate plaque</strong> on the hive for the year</li>
+          <li><strong>A sponsorship certificate</strong></li>
+          <li><strong>Updates from the hive</strong> through the year</li>
+          <li><strong>Photos</strong> of the colony</li>
+          <li><strong>A jar of honey</strong> from the bees you&rsquo;ve sponsored</li>
+        </ul>
+        <p class="sp-price-note">Everything above is included in the &pound;55 &mdash; and every penny helps us feed, treat and care for the colony through its year.</p>
+
+        <div class="sp-preview" aria-hidden="true">
+          <div class="sp-preview-label">Your plaque</div>
+          <div class="plaque taken">
+            <div class="name" id="pvName">Your hive name</div>
+            <div class="by" id="pvBy">Sponsored by &hellip;</div>
+          </div>
+        </div>
+      </aside>
+
+      <div class="sp-form-wrap">
+        <div id="spThanks" class="sp-thanks" hidden>
+          <div class="lede">Thank you</div>
+          <h2 class="big">Thank you for <em>sponsoring a hive</em></h2>
+          <p id="spThanksMsg">Thank you so much &mdash; we&rsquo;ve received your sponsorship. A confirmation email is on its way, and we&rsquo;ll be in touch about your plaque and certificate.</p>
+          <p class="sp-ref" id="spThanksRef"></p>
+          <a class="btn" href="apiary.html#hives">See our sponsored hives</a>
+        </div>
+
+        <form id="spForm" class="sp-form" novalidate>
+          <div class="lede">Sponsor online</div>
+          <h2 class="big">Sponsor <em>a hive</em></h2>
+
+          <fieldset>
+            <legend><span class="num">1</span> Your details</legend>
+            <label>Your name<input type="text" id="sp-buyer-name" autocomplete="name" maxlength="80" required></label>
+            <label>Your email<input type="email" id="sp-buyer-email" autocomplete="email" maxlength="120" required></label>
+            <label>Phone <span class="opt">(optional)</span><input type="tel" id="sp-buyer-phone" autocomplete="tel" maxlength="30"></label>
+          </fieldset>
+
+          <fieldset>
+            <legend><span class="num">2</span> Who is it for?</legend>
+            <div class="sp-choice">
+              <label class="radio"><input type="radio" name="sp-for" value="self" checked> For me</label>
+              <label class="radio"><input type="radio" name="sp-for" value="gift"> It&rsquo;s a gift</label>
+            </div>
+            <div id="sp-gift-fields" hidden>
+              <label>Their name<input type="text" id="sp-recipient-name" maxlength="80"></label>
+              <label>Their email <span class="opt">(optional &mdash; so we can send them the hive updates)</span><input type="email" id="sp-recipient-email" maxlength="120"></label>
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend><span class="num">3</span> Name your hive</legend>
+            <label>Hive name<input type="text" id="sp-hive-name" maxlength="30" placeholder="e.g. Buzzingham Palace" required></label>
+            <p class="hint">Up to 30 characters, so it fits on the plaque.</p>
+          </fieldset>
+
+          <fieldset>
+            <legend><span class="num">4</span> Who is it sponsored by?</legend>
+            <label>Sponsored by<input type="text" id="sp-sponsor-line" maxlength="40" placeholder="e.g. The Hatfield Family" required></label>
+            <p class="hint">This appears on the plaque after &ldquo;Sponsored by&rdquo;. Up to 40 characters.</p>
+          </fieldset>
+
+          <label class="check"><input type="checkbox" id="sp-updates" checked> Email hive updates and photos through the year</label>
+
+          <button type="submit" class="btn solid sp-pay" id="spPay">Pay &pound;55 with SumUp</button>
+          <p id="spMsg" class="sp-msg" role="status"></p>
+          <p class="sp-secure">Secure card payment through SumUp. We never see your card details.</p>
+        </form>
+      </div>
+
     </div>
   </div>
 </section>
@@ -270,6 +390,90 @@
       t.setAttribute('aria-expanded',open?'true':'false');
     });
     l.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){l.classList.remove('open');t.setAttribute('aria-expanded','false');});});
+    }
+  })();
+</script>
+<script>
+  // Sponsor a hive: form, live plaque preview, SumUp checkout
+  (function(){
+    var WORKER = "https://nenevalley.chris-culshaw.workers.dev";
+    var API = (location.hostname.endsWith("workers.dev")) ? "" : WORKER;
+    var $ = function(id){ return document.getElementById(id); };
+    var form = $('spForm'); if(!form) return;
+
+    // Gift toggle
+    function syncGift(){
+      var gift = (document.querySelector('input[name="sp-for"]:checked')||{}).value === 'gift';
+      $('sp-gift-fields').hidden = !gift;
+    }
+    document.querySelectorAll('input[name="sp-for"]').forEach(function(r){ r.addEventListener('change', syncGift); });
+
+    // Live plaque preview
+    function syncPreview(){
+      var n = $('sp-hive-name').value.trim(), b = $('sp-sponsor-line').value.trim();
+      $('pvName').textContent = n || 'Your hive name';
+      $('pvBy').textContent = 'Sponsored by ' + (b || '\u2026');
+    }
+    $('sp-hive-name').addEventListener('input', syncPreview);
+    $('sp-sponsor-line').addEventListener('input', syncPreview);
+
+    var emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    function fail(el, text){
+      var msg = $('spMsg'); msg.style.color = '#b23'; msg.textContent = text;
+      if (el){ el.classList.add('bad'); el.focus(); }
+      return false;
+    }
+    form.querySelectorAll('input').forEach(function(i){ i.addEventListener('input', function(){ i.classList.remove('bad'); }); });
+
+    form.addEventListener('submit', async function(e){
+      e.preventDefault();
+      var msg = $('spMsg'); msg.textContent = '';
+      var gift = (document.querySelector('input[name="sp-for"]:checked')||{}).value === 'gift';
+      var d = {
+        buyer_name: $('sp-buyer-name').value.trim(),
+        buyer_email: $('sp-buyer-email').value.trim(),
+        buyer_phone: $('sp-buyer-phone').value.trim(),
+        is_gift: gift,
+        recipient_name: gift ? $('sp-recipient-name').value.trim() : '',
+        recipient_email: gift ? $('sp-recipient-email').value.trim() : '',
+        hive_name: $('sp-hive-name').value.trim(),
+        sponsor_line: $('sp-sponsor-line').value.trim(),
+        updates_opt_in: $('sp-updates').checked
+      };
+      if (!d.buyer_name) return fail($('sp-buyer-name'), 'Please enter your name.');
+      if (!emailRe.test(d.buyer_email)) return fail($('sp-buyer-email'), 'Please enter a valid email address.');
+      if (gift && !d.recipient_name) return fail($('sp-recipient-name'), 'Please tell us who the sponsorship is for.');
+      if (gift && d.recipient_email && !emailRe.test(d.recipient_email)) return fail($('sp-recipient-email'), 'Their email address doesn\u2019t look right.');
+      if (!d.hive_name) return fail($('sp-hive-name'), 'Please choose a name for the hive.');
+      if (!d.sponsor_line) return fail($('sp-sponsor-line'), 'Please tell us who the hive is sponsored by.');
+
+      var btn = $('spPay'); btn.disabled = true;
+      msg.style.color = '#5a4a7a'; msg.textContent = 'Setting up secure payment\u2026';
+      try {
+        var res = await fetch(API + '/api/sponsor/checkout', {
+          method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(d)
+        });
+        var data = await res.json().catch(function(){ return {}; });
+        if (res.ok && data.url){ window.location.href = data.url; return; }
+        fail(null, data.error || 'Could not start payment. Please try again.'); btn.disabled = false;
+      } catch(err){
+        fail(null, 'Something went wrong. Please try again.'); btn.disabled = false;
+      }
+    });
+
+    // Returning from SumUp: sponsor.html?ref=NVS...
+    var ref = new URLSearchParams(location.search).get('ref');
+    if (ref){
+      form.hidden = true; $('spThanks').hidden = false;
+      var aside = document.querySelector('.sp-price'); if (aside) aside.hidden = true;
+      document.querySelector('.sp-buy-grid').style.gridTemplateColumns = '1fr';
+      $('spThanksRef').textContent = 'Your reference: ' + ref;
+      document.getElementById('sponsor-now').scrollIntoView();
+      fetch(API + '/api/sponsor/status?ref=' + encodeURIComponent(ref)).then(function(r){ return r.json(); }).then(function(s){
+        if (s && s.status && s.status !== 'paid'){
+          $('spThanksMsg').textContent = 'We\u2019re just confirming your payment with SumUp. You\u2019ll get a confirmation email as soon as it\u2019s through \u2014 if you don\u2019t hear from us within the hour, email nenevalleylavender@mail.com quoting your reference.';
+        }
+      }).catch(function(){});
     }
   })();
 </script>
