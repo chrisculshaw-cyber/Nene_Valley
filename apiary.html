@@ -121,7 +121,7 @@
   .visits h2.big{color:#fff}
   .visits h2.big em{color:#f3d79a}
   .visits .lede{color:#f3d79a}
-  .visits-grid{display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:16px;margin-top:46px}
+  .visits-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:46px}
   .visits-grid figure{margin:0;position:relative;border-radius:14px;overflow:hidden}
   .visits-grid img{width:100%;height:100%;object-fit:cover;aspect-ratio:3/4}
   .visits-grid .lead{grid-row:span 1}
@@ -151,12 +151,11 @@
     .sponsor .intro-grid{grid-template-columns:1fr}
     .sponsor-photo{max-width:420px;margin:0 auto}
     .visits-grid{grid-template-columns:1fr 1fr}
-    .visits-grid .lead{grid-column:span 2}
+    .visits-grid .lead{grid-column:auto}
   }
   @media (max-width:520px){
     .intro-figs{grid-template-columns:1fr 1fr}
-    .visits-grid{grid-template-columns:1fr}
-    .visits-grid .lead{grid-column:span 1}
+    .visits-grid{grid-template-columns:1fr 1fr;gap:10px}
   }
   @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
 </style>
@@ -306,6 +305,7 @@
       <figure class="lead"><img src="apiary_web/apiary-visit.jpg" alt="A visitor in a bee suit beside the hives" loading="lazy"></figure>
       <figure><img src="apiary_web/buddies.jpg" alt="A young visitor in a bee suit at the apiary" loading="lazy"></figure>
       <figure><img src="apiary_web/apiary-visit-2.jpg" alt="A visitor inspecting a hive in a bee suit" loading="lazy"></figure>
+      <figure><img src="apiary_web/blake.jpg" alt="Blake in his bee suit beside Paw Buddies, the hive he sponsors" loading="lazy"></figure>
     </div>
   </div>
 </section>
