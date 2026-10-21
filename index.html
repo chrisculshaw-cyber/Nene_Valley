@@ -446,34 +446,25 @@
     .hero-grid, .intro-grid, .visit-grid, .contact-grid { grid-template-columns:1fr; gap:40px; }
     .hero-art{ order:-1; max-width:300px; margin:0 auto; }
   }
-  /* ---------- Nene Valley Apiary (homepage feature) ---------- */
-  .apiary-home { background:#f6e7c2; background-image:radial-gradient(#e7d4a6 1px, transparent 1px); background-size:22px 22px; border-top:1px solid #e7d4a6; border-bottom:1px solid #e7d4a6; padding: clamp(70px,10vw,120px) 0; }
-  .apiary-home .ah-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items:center; }
-  .apiary-home .ah-photo { position:relative; margin:0; }
-  .apiary-home .ah-photo > img.ah-main { width:100%; aspect-ratio:4/5; object-fit:cover; border-radius:14px; box-shadow:0 18px 44px rgba(70,54,30,0.22); display:block; }
-  .apiary-home .ah-photo > img.ah-plaque { position:absolute; right:-22px; bottom:28px; width:46%; height:auto; border-radius:10px; box-shadow:0 14px 34px rgba(0,0,0,0.28); border:4px solid #fff; transform:rotate(3deg); }
+  /* ---------- Nene Valley Apiary (homepage feature, compact) ---------- */
+  .apiary-home { background:#f6e7c2; background-image:radial-gradient(#e7d4a6 1px, transparent 1px); background-size:22px 22px; border-top:1px solid #e7d4a6; border-bottom:1px solid #e7d4a6; padding: clamp(40px,6vw,64px) 0; }
+  .apiary-home .ah-grid { display:grid; grid-template-columns: 0.75fr 1.25fr; gap: 48px; align-items:center; }
+  .apiary-home .ah-photo { margin:0; }
+  .apiary-home .ah-photo img { width:100%; aspect-ratio:4/3; object-fit:cover; border-radius:12px; box-shadow:0 12px 30px rgba(70,54,30,0.18); display:block; }
   .apiary-home .section-label { color:#9a6410; font-size:clamp(0.9rem,1.3vw,1.05rem); font-weight:500; letter-spacing:0.24em; }
-  .apiary-home h2 { font-size: clamp(2.3rem,4.6vw,3.6rem); font-weight:300; margin:14px 0 0; color:var(--ink); }
+  .apiary-home h2 { font-size: clamp(2rem,3.6vw,2.8rem); font-weight:300; margin:10px 0 0; color:var(--ink); }
   .apiary-home h2 em { font-style:italic; color:#9a6410; }
-  .apiary-home .ah-lead { font-size:1.1rem; color:#4a4236; margin:20px 0 26px; max-width:32em; }
-  .apiary-home .ah-cards { list-style:none; padding:0; margin:0 0 30px; display:grid; gap:12px; }
-  .apiary-home .ah-cards a { display:flex; gap:16px; align-items:center; background:#fff; border:1px solid #e7d4a6; border-radius:12px; padding:16px 18px; text-decoration:none; color:var(--ink); transition:transform .25s ease, box-shadow .25s ease; }
-  .apiary-home .ah-cards a:hover { transform:translateY(-2px); box-shadow:0 10px 24px rgba(70,54,30,0.12); }
-  .apiary-home .ah-icon { flex:none; width:44px; height:44px; border-radius:50%; background:#9a6410; color:#fff; display:flex; align-items:center; justify-content:center; font-size:1.25rem; }
-  .apiary-home .ah-cards strong { display:block; font-family:'Fraunces',serif; font-weight:400; font-size:1.2rem; }
-  .apiary-home .ah-cards span.sub { display:block; font-size:0.92rem; color:#6b604f; margin-top:2px; }
-  .apiary-home .ah-cards .tag { margin-left:auto; flex:none; font-size:0.72rem; letter-spacing:0.14em; text-transform:uppercase; color:#9a6410; white-space:nowrap; }
-  .apiary-home .btn { border-color:#9a6410; color:#9a6410; }
+  .apiary-home .ah-lead { font-size:1.05rem; color:#4a4236; margin:14px 0 18px; max-width:36em; }
+  .apiary-home .ah-chips { list-style:none; padding:0; margin:0 0 22px; display:flex; flex-wrap:wrap; gap:8px; }
+  .apiary-home .ah-chips a { display:inline-block; font-size:0.9rem; padding:7px 14px; border-radius:999px; background:#fff; border:1px solid #e7d4a6; color:#6b4a10; text-decoration:none; }
+  .apiary-home .ah-chips a:hover { border-color:#9a6410; }
+  .apiary-home .btn { border-color:#9a6410; color:#9a6410; padding:13px 28px; }
   .apiary-home .btn.solid { background:#9a6410; color:#fff; }
   .apiary-home .btn:hover, .apiary-home .btn.solid:hover { background:var(--ink); border-color:var(--ink); color:#fff; }
-  .apiary-home .ah-cards .m-only { display:none; }
-  .apiary-home .ah-btns { display:flex; gap:12px; flex-wrap:wrap; }
+  .apiary-home .ah-btns { display:flex; gap:10px; flex-wrap:wrap; }
   @media (max-width:860px){
-    .apiary-home .ah-grid { grid-template-columns:1fr; gap:44px; }
-    .apiary-home .ah-photo { max-width:520px; }
-    .apiary-home .ah-photo > img.ah-plaque { right:-8px; width:50%; }
-    .apiary-home .ah-cards .tag { display:none; }
-    .apiary-home .ah-cards .m-only { display:inline; }
+    .apiary-home .ah-grid { grid-template-columns:1fr; gap:24px; }
+    .apiary-home .ah-photo img { aspect-ratio:16/9; }
   }
 </style>
 </head>
@@ -586,17 +577,16 @@
 <section class="apiary-home" id="apiary">
   <div class="wrap ah-grid">
     <figure class="ah-photo">
-      <img class="ah-main" src="apiary_web/apiary.jpg" alt="The hives of Nene Valley Apiary at the top of the lavender field" loading="lazy">
-      <img class="ah-plaque" src="apiary_web/buzzingham.jpg" alt="A sponsored hive plaque: Buzzingham Palace" loading="lazy">
+      <img src="apiary_web/apiary.jpg" alt="The hives of Nene Valley Apiary at the top of the lavender field" loading="lazy">
     </figure>
     <div>
       <div class="section-label">Nene Valley Apiary</div>
       <h2>Meet the bees <em>behind our honey</em></h2>
-      <p class="ah-lead">At the top of the lavender field sits our apiary &mdash; hand-kept hives whose bees forage our lavender and the hedgerows all around. It&rsquo;s where every jar of our honey and every block of beeswax begins.</p>
-      <ul class="ah-cards">
-        <li><a href="apiary.html"><span class="ah-icon" aria-hidden="true">&#128029;</span><span><strong>Our bees &amp; beekeepers</strong><span class="sub">Meet the colonies, and Chris &amp; Daren who look after them</span></span></a></li>
-        <li><a href="sponsor.html"><span class="ah-icon" aria-hidden="true">&#127855;</span><span><strong>Sponsor a hive</strong><span class="sub">Name a hive for a year &mdash; plaque, certificate, updates &amp; honey<span class="m-only"> &middot; <strong style="display:inline;font-family:inherit;font-size:inherit;font-weight:600;color:#9a6410">&pound;55</strong></span></span></span><span class="tag">&pound;55</span></a></li>
-        <li><a href="apiary.html#experience"><span class="ah-icon" aria-hidden="true">&#127803;</span><span><strong>The Bee Experience</strong><span class="sub">Suit up and visit the hives with us<span class="m-only"> &middot; <strong style="display:inline;font-family:inherit;font-size:inherit;font-weight:600;color:#9a6410">coming 2027</strong></span></span></span><span class="tag">Coming 2027</span></a></li>
+      <p class="ah-lead">Our hand-kept hives sit at the top of the lavender field &mdash; it&rsquo;s where every jar of our honey begins.</p>
+      <ul class="ah-chips">
+        <li><a href="apiary.html#keepers">&#128029; Our beekeepers</a></li>
+        <li><a href="sponsor.html">&#127855; Sponsor a hive &middot; &pound;55</a></li>
+        <li><a href="apiary.html#experience">&#127803; Bee Experience &middot; coming 2027</a></li>
       </ul>
       <div class="ah-btns">
         <a class="btn solid" href="apiary.html">Visit the apiary</a>
