@@ -72,7 +72,7 @@
   .hero .wash.a { width: 560px; height: 420px; background: var(--lilac); top:-120px; right:-100px; }
   .hero .wash.b { width: 460px; height: 360px; background: #d9cae9; bottom:-140px; left:-120px; opacity:0.45; }
   .hero-grid { position: relative; z-index: 2; display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 50px; align-items: center; }
-  .eyebrow { font-size: 0.8rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--violet); margin-bottom: 26px; display:flex; align-items:center; gap:14px; }
+  .eyebrow { font-size: clamp(0.95rem,1.4vw,1.1rem); font-weight:500; letter-spacing: 0.3em; text-transform: uppercase; color: var(--violet); margin-bottom: 26px; display:flex; align-items:center; gap:14px; }
   .eyebrow::before { content:""; width:42px; height:1px; background: var(--gold); display:inline-block; }
   .hero h1 { font-size: clamp(2.8rem, 6.5vw, 5.2rem); font-weight: 300; letter-spacing: -0.02em; }
   .hero h1 em { font-style: italic; color: var(--violet); }
@@ -114,7 +114,7 @@
   .band .band-inner { position:relative; z-index:2; color:#fff; padding:0 6vw; max-width:34em; }
   .band .band-inner .placeholder-note { color:var(--violet); font-family:'Fraunces',serif; font-style:italic; }
   .band.has-photo .band-inner { color:#fff; }
-  .band h2 { font-size:clamp(1.8rem,4vw,3rem); font-weight:300; }
+  .band h2 { font-size:clamp(2.2rem,5vw,3.8rem); font-weight:300; }
   .band h2 em { font-style:italic; }
   .band p { margin-top:14px; font-size:1.05rem; opacity:0.95; }
   /* when no photo loads, hide the white overlay text-shadow look and show a soft note */
@@ -229,20 +229,20 @@
   .intro { padding: clamp(80px,12vh,140px) 0; position:relative; }
   .intro-head { margin-bottom: 36px; }
   .intro-grid { display:grid; grid-template-columns: 0.9fr 1.1fr; gap: 70px; align-items:start; }
-  .section-label { font-size:0.78rem; letter-spacing:0.28em; text-transform:uppercase; color:var(--gold); }
-  .intro h2 { font-size: clamp(2rem,4vw,3.1rem); font-weight:300; margin: 18px 0 0; }
+  .section-label { font-size:clamp(0.95rem,1.4vw,1.1rem); font-weight:500; letter-spacing:0.24em; text-transform:uppercase; color:var(--gold); }
+  .intro h2 { font-size: clamp(2.4rem,5vw,3.8rem); font-weight:300; margin: 18px 0 0; }
   .intro h2 em { font-style:italic; color: var(--violet); }
   .intro .body p { margin-bottom: 22px; font-size:1.08rem; color:#4a3d5c; }
   .story-photo { margin:0; }
 
   .story-photo img { width:100%; height:auto; border-radius:14px; box-shadow:0 14px 40px rgba(90,74,122,0.18); display:block; }
   .story-photo figcaption { margin-top:12px; font-family:'Fraunces',serif; font-style:italic; font-size:0.95rem; color:#6d6178; text-align:center; }
-  .pull { font-family:'Tangerine',cursive; font-size: clamp(2.4rem,5vw,3.4rem); color: var(--violet); line-height:1; margin: 10px 0 26px; }
+  .intro .body p.pull, .pull { font-family:'Fraunces',serif; font-style:italic; font-weight:400; font-size: clamp(1.7rem,3.2vw,2.4rem); color: var(--violet); line-height:1.25; margin: 0 0 28px; }
 
   /* ---------- Products ---------- */
   .shop { padding: clamp(60px,9vh,110px) 0 clamp(80px,12vh,140px); background: var(--paper-deep); position:relative; }
   .shop-head { display:flex; align-items:flex-end; justify-content:space-between; flex-wrap:wrap; gap:18px; margin-bottom: 54px; }
-  .shop-head h2 { font-size: clamp(2rem,4vw,3rem); font-weight:300; }
+  .shop-head h2 { font-size: clamp(2.4rem,5vw,3.8rem); font-weight:300; }
   .shop-head h2 em { font-style:italic; color:var(--violet); }
   .products { display:grid; grid-template-columns: repeat(auto-fill, minmax(200px,1fr)); gap: 4px; background: var(--line); border:1px solid var(--line); }
   .card { background: var(--paper); padding: 20px; display:flex; flex-direction:column; transition: background .4s; }
@@ -316,7 +316,7 @@
   /* ---------- Booking ---------- */
   .book { background: var(--paper); padding: clamp(50px,8vh,90px) 0; }
   .book-inner { max-width:620px; margin:0 auto; text-align:center; }
-  .book h2 { font-size:clamp(2rem,4vw,2.8rem); font-weight:300; margin:6px 0 14px; }
+  .book h2 { font-size:clamp(2.3rem,4.6vw,3.4rem); font-weight:300; margin:6px 0 14px; }
   .book h2 em { font-style:italic; color:var(--violet); }
   .book-intro { color:#4a3d5c; margin-bottom:30px; }
   .book-card { background:#fff; border:1px solid var(--line); border-radius:10px; padding:30px; text-align:left; box-shadow:0 6px 24px rgba(46,33,64,0.08); }
@@ -379,7 +379,7 @@
   .visit { padding: clamp(80px,12vh,140px) 0; position:relative; overflow:hidden; }
   .visit .wash { position:absolute; width:600px; height:480px; background:var(--lilac); border-radius:50%; filter:blur(70px); opacity:0.4; top:-100px; left:-160px; z-index:0; }
   .visit-grid { position:relative; z-index:2; display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:center; }
-  .visit h2 { font-size:clamp(2rem,4vw,3rem); font-weight:300; margin-bottom:22px; }
+  .visit h2 { font-size:clamp(2.4rem,5vw,3.8rem); font-weight:300; margin-bottom:22px; }
   .visit h2 em { font-style:italic; color:var(--violet); }
   .visit p { font-size:1.08rem; color:#4a3d5c; margin-bottom:18px; max-width:34em; }
   .info-card { background:var(--paper); border:1px solid var(--line); padding:38px; }
@@ -397,7 +397,7 @@
   /* ---------- Contact ---------- */
   .contact { background: var(--ink); color: var(--paper); padding: clamp(80px,12vh,140px) 0; }
   .contact-grid { display:grid; grid-template-columns:1fr 1fr; gap:60px; }
-  .contact h2 { font-size:clamp(2rem,4vw,3rem); font-weight:300; color:var(--paper); }
+  .contact h2 { font-size:clamp(2.4rem,5vw,3.8rem); font-weight:300; color:var(--paper); }
   .contact h2 em{ font-style:italic; color:var(--lilac); }
   .contact .section-label{ color:var(--lilac); }
   .contact p.sub{ color:#cdbfdf; margin:18px 0 0; max-width:30em; }
@@ -446,6 +446,35 @@
     .hero-grid, .intro-grid, .visit-grid, .contact-grid { grid-template-columns:1fr; gap:40px; }
     .hero-art{ order:-1; max-width:300px; margin:0 auto; }
   }
+  /* ---------- Nene Valley Apiary (homepage feature) ---------- */
+  .apiary-home { background:#f6e7c2; background-image:radial-gradient(#e7d4a6 1px, transparent 1px); background-size:22px 22px; border-top:1px solid #e7d4a6; border-bottom:1px solid #e7d4a6; padding: clamp(70px,10vw,120px) 0; }
+  .apiary-home .ah-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items:center; }
+  .apiary-home .ah-photo { position:relative; margin:0; }
+  .apiary-home .ah-photo > img.ah-main { width:100%; aspect-ratio:4/5; object-fit:cover; border-radius:14px; box-shadow:0 18px 44px rgba(70,54,30,0.22); display:block; }
+  .apiary-home .ah-photo > img.ah-plaque { position:absolute; right:-22px; bottom:28px; width:46%; height:auto; border-radius:10px; box-shadow:0 14px 34px rgba(0,0,0,0.28); border:4px solid #fff; transform:rotate(3deg); }
+  .apiary-home .section-label { color:#9a6410; font-size:clamp(0.9rem,1.3vw,1.05rem); font-weight:500; letter-spacing:0.24em; }
+  .apiary-home h2 { font-size: clamp(2.3rem,4.6vw,3.6rem); font-weight:300; margin:14px 0 0; color:var(--ink); }
+  .apiary-home h2 em { font-style:italic; color:#9a6410; }
+  .apiary-home .ah-lead { font-size:1.1rem; color:#4a4236; margin:20px 0 26px; max-width:32em; }
+  .apiary-home .ah-cards { list-style:none; padding:0; margin:0 0 30px; display:grid; gap:12px; }
+  .apiary-home .ah-cards a { display:flex; gap:16px; align-items:center; background:#fff; border:1px solid #e7d4a6; border-radius:12px; padding:16px 18px; text-decoration:none; color:var(--ink); transition:transform .25s ease, box-shadow .25s ease; }
+  .apiary-home .ah-cards a:hover { transform:translateY(-2px); box-shadow:0 10px 24px rgba(70,54,30,0.12); }
+  .apiary-home .ah-icon { flex:none; width:44px; height:44px; border-radius:50%; background:#9a6410; color:#fff; display:flex; align-items:center; justify-content:center; font-size:1.25rem; }
+  .apiary-home .ah-cards strong { display:block; font-family:'Fraunces',serif; font-weight:400; font-size:1.2rem; }
+  .apiary-home .ah-cards span.sub { display:block; font-size:0.92rem; color:#6b604f; margin-top:2px; }
+  .apiary-home .ah-cards .tag { margin-left:auto; flex:none; font-size:0.72rem; letter-spacing:0.14em; text-transform:uppercase; color:#9a6410; white-space:nowrap; }
+  .apiary-home .btn { border-color:#9a6410; color:#9a6410; }
+  .apiary-home .btn.solid { background:#9a6410; color:#fff; }
+  .apiary-home .btn:hover, .apiary-home .btn.solid:hover { background:var(--ink); border-color:var(--ink); color:#fff; }
+  .apiary-home .ah-cards .m-only { display:none; }
+  .apiary-home .ah-btns { display:flex; gap:12px; flex-wrap:wrap; }
+  @media (max-width:860px){
+    .apiary-home .ah-grid { grid-template-columns:1fr; gap:44px; }
+    .apiary-home .ah-photo { max-width:520px; }
+    .apiary-home .ah-photo > img.ah-plaque { right:-8px; width:50%; }
+    .apiary-home .ah-cards .tag { display:none; }
+    .apiary-home .ah-cards .m-only { display:inline; }
+  }
 </style>
 </head>
 <body>
@@ -458,6 +487,7 @@
       <ul>
         <li><a href="#visit">Visit Us</a></li>
         <li><a href="#shop">Shop</a></li>
+        <li><a href="apiary.html">Apiary</a></li>
         <li><a href="#track">Track Order</a></li>
         <li><a href="#story">Our Story</a></li>
         <li><a href="#reviews">Reviews</a></li>
@@ -549,6 +579,30 @@
   <div class="band-inner">
     <h2 id="bandText">Grown for the bees, <em>and for you</em></h2>
     <p id="bandSub">100% organic lavender, hand-tended on the edge of the Nene Valley.</p>
+  </div>
+</section>
+
+<!-- NENE VALLEY APIARY -->
+<section class="apiary-home" id="apiary">
+  <div class="wrap ah-grid">
+    <figure class="ah-photo">
+      <img class="ah-main" src="apiary_web/apiary.jpg" alt="The hives of Nene Valley Apiary at the top of the lavender field" loading="lazy">
+      <img class="ah-plaque" src="apiary_web/buzzingham.jpg" alt="A sponsored hive plaque: Buzzingham Palace" loading="lazy">
+    </figure>
+    <div>
+      <div class="section-label">Nene Valley Apiary</div>
+      <h2>Meet the bees <em>behind our honey</em></h2>
+      <p class="ah-lead">At the top of the lavender field sits our apiary &mdash; hand-kept hives whose bees forage our lavender and the hedgerows all around. It&rsquo;s where every jar of our honey and every block of beeswax begins.</p>
+      <ul class="ah-cards">
+        <li><a href="apiary.html"><span class="ah-icon" aria-hidden="true">&#128029;</span><span><strong>Our bees &amp; beekeepers</strong><span class="sub">Meet the colonies, and Chris &amp; Daren who look after them</span></span></a></li>
+        <li><a href="sponsor.html"><span class="ah-icon" aria-hidden="true">&#127855;</span><span><strong>Sponsor a hive</strong><span class="sub">Name a hive for a year &mdash; plaque, certificate, updates &amp; honey<span class="m-only"> &middot; <strong style="display:inline;font-family:inherit;font-size:inherit;font-weight:600;color:#9a6410">&pound;55</strong></span></span></span><span class="tag">&pound;55</span></a></li>
+        <li><a href="apiary.html#experience"><span class="ah-icon" aria-hidden="true">&#127803;</span><span><strong>The Bee Experience</strong><span class="sub">Suit up and visit the hives with us<span class="m-only"> &middot; <strong style="display:inline;font-family:inherit;font-size:inherit;font-weight:600;color:#9a6410">coming 2027</strong></span></span></span><span class="tag">Coming 2027</span></a></li>
+      </ul>
+      <div class="ah-btns">
+        <a class="btn solid" href="apiary.html">Visit the apiary</a>
+        <a class="btn" href="sponsor.html">Sponsor a hive</a>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -1036,6 +1090,8 @@
           <h4>Explore</h4>
           <a href="#shop">Shop</a>
           <a href="#story">Our Story</a>
+          <a href="apiary.html">The Apiary</a>
+          <a href="sponsor.html">Sponsor a Hive</a>
           <a href="#visit">Visit</a>
           <a href="#reviews">Reviews</a>
           <a href="#contact">Contact</a>
