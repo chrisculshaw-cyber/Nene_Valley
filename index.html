@@ -466,6 +466,35 @@
     .apiary-home .ah-grid { grid-template-columns:1fr; gap:24px; }
     .apiary-home .ah-photo img { aspect-ratio:16/9; }
   }
+  /* ---------- 2027 calendar ---------- */
+  .cal-home { padding: clamp(60px,8vw,100px) 0; background: linear-gradient(180deg, var(--paper) 0%, #efe7f6 100%); overflow:hidden; }
+  .cal-home .cal-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 70px; align-items:center; }
+  .cal-stack { position:relative; height: clamp(420px, 46vw, 600px); }
+  .cal-stack figure { position:absolute; margin:0; width:62%; background:#fff; padding:8px; border-radius:6px; box-shadow:0 22px 50px rgba(46,33,64,0.28); transition: transform .5s ease; }
+  .cal-stack figure img { display:block; width:100%; border-radius:3px; }
+  .cal-stack .cal-back { right:2%; top:6%; transform: rotate(6deg); }
+  .cal-stack .cal-front { left:2%; top:0; transform: rotate(-4deg); z-index:2; }
+  .cal-stack:hover .cal-front { transform: rotate(-6deg) translateX(-10px); }
+  .cal-stack:hover .cal-back { transform: rotate(9deg) translateX(10px); }
+  .cal-stack figcaption { position:absolute; left:50%; bottom:-34px; transform:translateX(-50%); white-space:nowrap; font-family:'Fraunces',serif; font-style:italic; font-size:0.85rem; color:#7a6f63; }
+  .cal-price { position:absolute; z-index:3; right:4%; bottom:2%; width:110px; height:110px; border-radius:50%; background:var(--violet); color:#fff; display:flex; flex-direction:column; align-items:center; justify-content:center; box-shadow:0 10px 26px rgba(46,33,64,0.35); transform:rotate(8deg); }
+  .cal-price strong { font-family:'Fraunces',serif; font-weight:400; font-size:2.1rem; line-height:1; }
+  .cal-price span { font-size:0.68rem; letter-spacing:0.14em; text-transform:uppercase; margin-top:4px; }
+  .cal-home h2 { font-size: clamp(2.4rem,5vw,3.8rem); font-weight:300; margin:12px 0 0; }
+  .cal-home h2 em { font-style:italic; color:var(--violet); }
+  .cal-home .cal-lead { font-size:1.1rem; color:#4f4560; margin:20px 0 0; max-width:32em; }
+  .cal-points { list-style:none; padding:0; margin:24px 0 30px; display:grid; gap:10px; }
+  .cal-points li { display:flex; gap:12px; align-items:flex-start; color:#4f4560; }
+  .cal-points li span.i { flex:none; width:30px; height:30px; border-radius:50%; background:#ece3f7; display:flex; align-items:center; justify-content:center; font-size:0.95rem; }
+  .cal-btns { display:flex; gap:12px; flex-wrap:wrap; align-items:center; }
+  .cal-thanks { margin-top:22px; font-family:'Fraunces',serif; font-style:italic; color:#7a6f63; font-size:0.98rem; }
+  @media (max-width:860px){
+    .cal-home .cal-grid { grid-template-columns:1fr; gap:60px; }
+    .cal-stack { height: 112vw; max-height:560px; }
+    .cal-stack figure { width:66%; }
+    .cal-price { width:92px; height:92px; }
+    .cal-price strong { font-size:1.7rem; }
+  }
 </style>
 </head>
 <body>
@@ -592,6 +621,32 @@
         <a class="btn solid" href="apiary.html">Visit the apiary</a>
         <a class="btn" href="sponsor.html">Sponsor a hive</a>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- 2027 CALENDAR -->
+<section class="cal-home" id="calendar">
+  <div class="wrap cal-grid">
+    <div class="cal-stack">
+      <figure class="cal-back"><img src="images/calendar-2027-june.jpg" alt="June page of the Nene Valley Lavender 2027 calendar: two young goats meeting on a wooden ramp" loading="lazy"></figure>
+      <figure class="cal-front"><img src="images/calendar-2027-cover.jpg" alt="Cover of the Nene Valley Lavender Calendar 2027: lavender rows at sunset" loading="lazy"></figure>
+      <div class="cal-price" aria-hidden="true"><strong>&pound;10</strong><span>Collection</span></div>
+    </div>
+    <div>
+      <div class="section-label">New &middot; Limited print run</div>
+      <h2>Our 2027 calendar, <em>through your eyes</em></h2>
+      <p class="cal-lead">Twelve months of the farm, captured by the people who visited it. Every photograph was entered into our 2026 photo competition &mdash; the lavender in full bloom, the bees, the goats and those long summer evenings.</p>
+      <ul class="cal-points">
+        <li><span class="i" aria-hidden="true">&#128247;</span><span>A photograph for every month, each credited to the person who took it</span></li>
+        <li><span class="i" aria-hidden="true">&#128197;</span><span>Wall calendar with a full month grid &mdash; room to write your plans</span></li>
+        <li><span class="i" aria-hidden="true">&#129530;</span><span><strong>&pound;10, collection only</strong> from the farm in Brigstock &mdash; we&rsquo;ll email you to arrange a time</span></li>
+      </ul>
+      <div class="cal-btns">
+        <button class="btn solid" type="button" id="cal-add" onclick="calAdd()">Order for collection &middot; &pound;10</button>
+        <a class="btn" href="#shop">See the full shop</a>
+      </div>
+      <p class="cal-thanks">Thank you to everyone who entered the photo competition &mdash; this calendar is yours as much as ours.</p>
     </div>
   </div>
 </section>
@@ -1237,9 +1292,9 @@
           <span class="fulfil-d">Pick up at the farm</span>
         </label>
       </div>
-      <p id="cf-forced-note" style="display:none;font-size:0.9rem;color:#5a4a7a;background:#f3eef9;border-radius:8px;padding:10px 12px;margin:0 0 10px;line-height:1.5;">🌒 Your basket includes eclipse items, which are <strong>collected at the event</strong> on Wednesday 12th August (from 5.30pm) — so this order is set to collection.</p>
+      <p id="cf-forced-note" style="display:none;font-size:0.9rem;color:#5a4a7a;background:#f3eef9;border-radius:8px;padding:10px 12px;margin:0 0 10px;line-height:1.5;">🧺 Your basket includes items that are <strong>collection only</strong> (such as our 2027 calendar), so this order is set to collection. We&rsquo;ll email you to arrange a time to collect from the farm in Brigstock.</p>
       <textarea id="cf-address" placeholder="Delivery address" autocomplete="shipping street-address"></textarea>
-      <p id="cf-collect-note" style="display:none;font-size:0.9rem;color:#5d5070;margin:0 0 10px;line-height:1.5;">🧺 Collect from the farm on our opening weekends, <strong>10am&ndash;5pm</strong>. We&rsquo;ll email you once your order is ready.</p>
+      <p id="cf-collect-note" style="display:none;font-size:0.9rem;color:#5d5070;margin:0 0 10px;line-height:1.5;">🧺 Collect from the farm in Brigstock. We&rsquo;ll email you once your order is ready to arrange a time.</p>
       <button class="checkout-btn" id="payBtn" onclick="pay()">Pay with SumUp</button>
       <div id="checkoutMsg"></div>
     </div>
@@ -1372,12 +1427,21 @@
     renderBasket();
   };
 
+  // Homepage calendar button: add the calendar and open the basket
+  window.calAdd = function(){
+    var btn = document.getElementById('cal-add');
+    var p = products['calendar-2027'];
+    if (!p) { document.getElementById('shop').scrollIntoView({ behavior: 'smooth' }); return; }
+    if (p.stock <= 0) { if (btn) { btn.textContent = 'Sold out \u2014 sorry!'; btn.disabled = true; } return; }
+    window.addToBasket('calendar-2027');
+    window.openBasket();
+  };
   window.openBasket = function(){ document.getElementById('drawer').classList.add('open'); document.getElementById('overlay').classList.add('open'); };
   window.closeBasket = function(){ document.getElementById('drawer').classList.remove('open'); document.getElementById('overlay').classList.remove('open'); };
   // Products that can only be collected (never delivered) — e.g. eclipse glasses
   // that are handed out at the event. If any is in the basket, the whole order
   // must be collection.
-  const COLLECTION_ONLY_IDS = ['solar-eclipse-glasses', 'eclipse-phone-filter'];
+  const COLLECTION_ONLY_IDS = ['solar-eclipse-glasses', 'eclipse-phone-filter', 'calendar-2027'];
   function basketHasCollectionOnly(){
     return Object.keys(basket).some(id => basket[id] > 0 && COLLECTION_ONLY_IDS.includes(id));
   }
